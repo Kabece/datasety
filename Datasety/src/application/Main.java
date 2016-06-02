@@ -11,13 +11,15 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
+import javafx.stage.Stage;
+import parsing.CSVController;
 
 
 public class Main extends Application {
@@ -39,9 +41,15 @@ public class Main extends Application {
 	            new EventHandler<ActionEvent>() {
 	                @Override
 	                public void handle(final ActionEvent e) {
+	                	ExtensionFilter csvFilter = new ExtensionFilter("CSV Files", "*.csv");
+	                	ExtensionFilter xmlFilter = new ExtensionFilter("XML Files", "*.xml");
+	                	fileChooser.getExtensionFilters().add(csvFilter);
+	                	fileChooser.getExtensionFilters().add(xmlFilter);
 	                    File file = fileChooser.showOpenDialog(primaryStage);
 	                    if (file != null) {
-	                        openFile(file);
+	                    	if (fileChooser.getSelectedExtensionFilter().getDescription().equals("CSV Files")) {
+	                    		openFile(file);
+	                    	}
 	                    }
 	                }
 	            });
@@ -91,8 +99,9 @@ public class Main extends Application {
 
 	private void openFile(File file) {
         try {
-            desktop.open(file);
-        } catch (IOException ex) {
+            //desktop.open(file);
+        	CSVController.read(file);
+        } catch (Exception ex) {
             Logger.getLogger(
                 Main.class.getName()).log(
                     Level.SEVERE, null, ex
