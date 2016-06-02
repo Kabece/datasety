@@ -13,3 +13,7 @@ hs_err_pid*
 
 # Eclipse project metadata
 .metadata
+
+.idea/*
+
+*.iml
