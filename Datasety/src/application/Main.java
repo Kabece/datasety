@@ -2,7 +2,6 @@ package application;
 
 import java.awt.Desktop;
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,6 +19,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import parsing.CSVController;
+import parsing.JsonFileParser;
 
 
 public class Main extends Application {
@@ -43,13 +43,18 @@ public class Main extends Application {
 	                public void handle(final ActionEvent e) {
 	                	ExtensionFilter csvFilter = new ExtensionFilter("CSV Files", "*.csv");
 	                	ExtensionFilter xmlFilter = new ExtensionFilter("XML Files", "*.xml");
+						ExtensionFilter jsonFilter = new ExtensionFilter("JSON Files", "*.json");
 	                	fileChooser.getExtensionFilters().add(csvFilter);
 	                	fileChooser.getExtensionFilters().add(xmlFilter);
+						fileChooser.getExtensionFilters().add(jsonFilter);
 	                    File file = fileChooser.showOpenDialog(primaryStage);
 	                    if (file != null) {
 	                    	if (fileChooser.getSelectedExtensionFilter().getDescription().equals("CSV Files")) {
-	                    		openFile(file);
+	                    		openCSVFile(file);
 	                    	}
+							if (fileChooser.getSelectedExtensionFilter().getDescription().equals("JSON Files")) {
+								openJSONfile(file);
+							}
 	                    }
 	                }
 	            });
@@ -62,7 +67,7 @@ public class Main extends Application {
 	                        fileChooser.showOpenMultipleDialog(primaryStage);
 	                    if (list != null) {
 	                        for (File file : list) {
-	                            openFile(file);
+	                            openCSVFile(file);
 	                        }
 	                    }
 	                }
@@ -97,7 +102,7 @@ public class Main extends Application {
 		launch(args);
 	}
 
-	private void openFile(File file) {
+	private void openCSVFile(File file) {
         try {
             //desktop.open(file);
         	CSVController.read(file);
@@ -108,4 +113,13 @@ public class Main extends Application {
                 );
         }
     }
+
+	private void openJSONfile(File file) {
+		JsonFileParser.read(file);
+	}
+
+	private void openXMLfile(File file) {
+
+	}
+
 }
