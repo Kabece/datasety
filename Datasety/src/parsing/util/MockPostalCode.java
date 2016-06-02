@@ -11,7 +11,7 @@ public class MockPostalCode {
     List<Float> coordinates;
     Integer pop;
     String state;
-    Integer id;
+    Integer _id;
 
     MockPostalCode() {};
 
@@ -20,7 +20,7 @@ public class MockPostalCode {
         this.coordinates = coordinates;
         this.pop = pop;
         this.state = state;
-        this.id = id;
+        this._id = id;
     }
 
 
@@ -57,11 +57,11 @@ public class MockPostalCode {
     }
 
     public Integer getId() {
-        return id;
+        return _id;
     }
 
     public void setId(Integer id) {
-        this.id = id;
+        this._id = id;
     }
 
 
@@ -72,7 +72,7 @@ public class MockPostalCode {
                 ", coordinates=" + coordinates +
                 ", pop=" + pop +
                 ", state='" + state + '\'' +
-                ", id=" + id +
+                ", id=" + _id +
                 '}';
     }
 }
