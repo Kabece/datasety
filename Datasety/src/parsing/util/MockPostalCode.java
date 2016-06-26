@@ -2,9 +2,6 @@ package parsing.util;
 
 import java.util.List;
 
-/**
- * Created by pawel on 02.06.2016.
- */
 public class MockPostalCode {
 
     String city;
