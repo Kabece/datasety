@@ -1,6 +1,8 @@
 package application;
 
 import javafx.beans.property.StringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
@@ -48,6 +50,7 @@ public class SectionsBuilder {
 		patternComboBox.setPromptText("Wzorzec");
 		patternComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 			logger.debug("Process start, patternComboBox value has changed from = {} to = {}", oldValue, newValue);
+			controls.setChosenPattern((PatternType) newValue);
 		});
 
 		// Variable
@@ -63,22 +66,35 @@ public class SectionsBuilder {
 				noDataSpecifiedAlert.showAndWait();
 			}
 		});
+		variableComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+			logger.debug("Process createLogicControlSection, variableComboBox value has changed from = {} to = {}", oldValue, newValue);
+			controls.setChosenVariable((String) newValue);
+		});
 		controls.getVariableList().addListener((ListChangeListener<String>) c -> {
 			logger.debug("Process createLogicControlsSection, variableList changed");
 			// TODO Dodać sprawdzanie czy nie null
 			variableComboBox.getItems().setAll(controls.getVariableList());
 		});
 
+
 		// Operator
 		final Label operatorLabel = new Label("Operator: ");
 		final ComboBox operatorComboBox = new ComboBox();
 		operatorComboBox.getItems().setAll(OperatorType.values());
 		operatorComboBox.setPromptText("Operator");
+		operatorComboBox.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> {
+			logger.debug("Process createLogicControlSection, operatorComboBox value has changed from = {} to = {}", oldValue, newValue);
+			controls.setChosenOperator((OperatorType) newValue);
+		}));
 
 		// Value
 		final Label valueLabel = new Label("Wartość: ");
 		final TextField valueTextField = new TextField();
 		valueTextField.setPromptText("Wpisz wartość");
+		valueTextField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+			logger.debug("Process createLogicControlSection, valueTextField value has been entered: {}", valueTextField.textProperty().getValueSafe());
+			controls.setChosenValue(valueTextField.textProperty().getValueSafe());
+		});
 
 		final GridPane controlsGridPane = new GridPane();
 		controlsGridPane.setHgap(3);
