@@ -9,7 +9,8 @@ import javafx.concurrent.Task;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import parsing.FileType;
 
 import java.io.BufferedReader;
@@ -21,7 +22,7 @@ import java.io.FileReader;
  */
 public class DynamicTable {
 
-   private static final Logger logger = Logger.getLogger(DynamicTable.class);
+   private static final Logger logger = LogManager.getLogger(DynamicTable.class.getName());
 
    /**
 	* Metoda zajmująca się zapełnianiem tabeli danymi

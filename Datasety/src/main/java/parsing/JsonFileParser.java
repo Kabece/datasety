@@ -3,7 +3,8 @@ package parsing;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonStreamParser;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import parsing.util.MockPostalCode;
 
 import java.io.File;
@@ -12,7 +13,7 @@ import java.io.FileReader;
 
 public class JsonFileParser {
 
-   private static final Logger logger = Logger.getLogger(JsonFileParser.class);
+   private static final Logger logger = LogManager.getLogger(JsonFileParser.class.getName());
 
    // TODO Zająć się wyjątkami
    public static void read(File file) {
