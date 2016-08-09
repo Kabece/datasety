@@ -120,8 +120,6 @@ public class DynamicTable {
 	* @return Kolumna tabeli
 	*/
    private TableColumn<ObservableList<StringProperty>, String> createColumn(final int columnIndex, String columnTitle) {
-	  logger.info("Start createColumn");
-
 	  TableColumn<ObservableList<StringProperty>, String> column = new TableColumn<>();
 	  String title;
 	  if (columnTitle == null || columnTitle.trim().length() == 0) {
@@ -140,7 +138,6 @@ public class DynamicTable {
 		 }
 	  });
 
-	  logger.info("Finish createColumn");
 	  return column;
    }
 }
