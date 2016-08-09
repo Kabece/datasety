@@ -7,6 +7,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
@@ -32,8 +33,8 @@ public class Main extends Application {
 		 // TableView Part
 		 final TableView<ObservableList<StringProperty>> tableView = new TableView<>();
 		 final CheckBox headerCheckBox = new CheckBox("Dane maj\u0105 nag\u0142\u00f3wek");
-		 HBox controls = new HBox();
-		 controls.getChildren().addAll(headerCheckBox);
+		 HBox isHeaderHBox = new HBox();
+		 isHeaderHBox.getChildren().addAll(headerCheckBox);
 		 HBox.setHgrow(headerCheckBox, Priority.NEVER);
 
 		 // FileBrowser Part
@@ -70,20 +71,17 @@ public class Main extends Application {
 			}
 		 });
 
-		 final GridPane inputGridPane = new GridPane();
+		 final HBox fileInputHBox = new HBox(3); // spacing = 5
+		 fileInputHBox.getChildren().addAll(openButton, openMultipleButton);
+		 HBox.setHgrow(fileInputHBox, Priority.NEVER);
 
-		 GridPane.setConstraints(openButton, 0, 0);
-		 GridPane.setConstraints(openMultipleButton, 1, 0);
-		 inputGridPane.setHgap(6);
-		 inputGridPane.setVgap(6);
-		 inputGridPane.getChildren().addAll(openButton, openMultipleButton);
+		 // Logic Controls Part
+		 Label patternLabel = new Label("Wzorzec: ");
 
 		 // Main Part
 		 final Pane rootGroup = new VBox(12);
-		 rootGroup.getChildren().addAll(inputGridPane);
 		 rootGroup.setPadding(new Insets(12, 12, 12, 12));
-		 rootGroup.getChildren().addAll(controls);
-		 rootGroup.getChildren().addAll(tableView);
+		 rootGroup.getChildren().addAll(fileInputHBox, isHeaderHBox, tableView);
 
 		 Scene scene = new Scene(rootGroup, 800, 600);
 		 scene.getStylesheets().add(getClass().getResource("/css/application.css").toExternalForm());
