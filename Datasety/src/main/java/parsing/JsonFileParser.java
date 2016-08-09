@@ -1,15 +1,14 @@
 package parsing;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import org.apache.log4j.Logger;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonStreamParser;
-
+import org.apache.log4j.Logger;
 import parsing.util.MockPostalCode;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 
 public class JsonFileParser {
 
@@ -17,10 +16,10 @@ public class JsonFileParser {
 
    // TODO Zająć się wyjątkami
    public static void read(File file) {
-      logger.info("Start read");
+	  logger.info("Start read");
 
 	  Gson gson = new GsonBuilder().create();
-	  JsonStreamParser parser = null;
+	  JsonStreamParser parser;
 	  try {
 		 parser = new JsonStreamParser(new FileReader(file));
 		 while (parser.hasNext()) {

@@ -1,41 +1,32 @@
 package application;
 
-import java.awt.Desktop;
-import java.io.File;
-import java.util.List;
-
-import org.apache.log4j.Logger;
-
 import javafx.application.Application;
 import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableView;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
+import org.apache.log4j.Logger;
 import parsing.FileType;
+
+import java.io.File;
+import java.util.List;
 
 public class Main extends Application {
 
    private static Logger logger = Logger.getLogger(Main.class);
 
-   private Desktop desktop = Desktop.getDesktop();
    private DynamicTable dynamicTable = new DynamicTable();
 
    @Override
    public void start(Stage primaryStage) {
-      logger.info("Start start");
+	  logger.info("Start start");
 	  try {
 		 primaryStage.setTitle("Apka");
 
@@ -52,36 +43,30 @@ public class Main extends Application {
 		 final Button openButton = new Button("Open a File");
 		 final Button openMultipleButton = new Button("Open multiple Files");
 
-		 openButton.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(final ActionEvent e) {
-			   ExtensionFilter csvFilter = new ExtensionFilter("CSV Files", "*.csv");
-			   ExtensionFilter xmlFilter = new ExtensionFilter("XML Files", "*.xml");
-			   ExtensionFilter jsonFilter = new ExtensionFilter("JSON Files", "*.json");
-			   fileChooser.getExtensionFilters().add(csvFilter);
-			   fileChooser.getExtensionFilters().add(xmlFilter);
-			   fileChooser.getExtensionFilters().add(jsonFilter);
-			   File file = fileChooser.showOpenDialog(primaryStage);
-			   if (file != null) {
-				  if (fileChooser.getSelectedExtensionFilter().getDescription().equals("CSV Files")) {
-					 dynamicTable.populateTable(table, file, FileType.CSV, headerCheckBox.isSelected());
-				  }
-				  if (fileChooser.getSelectedExtensionFilter().getDescription().equals("JSON Files")) {
-					 // TODO
-				  }
+		 openButton.setOnAction(e -> {
+			ExtensionFilter csvFilter = new ExtensionFilter("CSV Files", "*.csv");
+			ExtensionFilter xmlFilter = new ExtensionFilter("XML Files", "*.xml");
+			ExtensionFilter jsonFilter = new ExtensionFilter("JSON Files", "*.json");
+			fileChooser.getExtensionFilters().add(csvFilter);
+			fileChooser.getExtensionFilters().add(xmlFilter);
+			fileChooser.getExtensionFilters().add(jsonFilter);
+			File file = fileChooser.showOpenDialog(primaryStage);
+			if (file != null) {
+			   if (fileChooser.getSelectedExtensionFilter().getDescription().equals("CSV Files")) {
+				  dynamicTable.populateTable(table, file, FileType.CSV, headerCheckBox.isSelected());
+			   }
+			   if (fileChooser.getSelectedExtensionFilter().getDescription().equals("JSON Files")) {
+				  // TODO
 			   }
 			}
 		 });
 
 		 // Póki co nic nie robi
-		 openMultipleButton.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(final ActionEvent e) {
-			   List<File> list = fileChooser.showOpenMultipleDialog(primaryStage);
-			   if (list != null) {
-				  for (File file : list) {
-					 // TODO
-				  }
+		 openMultipleButton.setOnAction(e -> {
+			List<File> list = fileChooser.showOpenMultipleDialog(primaryStage);
+			if (list != null) {
+			   for (File file : list) {
+				  // TODO
 			   }
 			}
 		 });
