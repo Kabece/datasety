@@ -16,10 +16,20 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 
+/**
+ * Klasa zajmująca się tworzeniem widoku danych w postaci tabeli
+ */
 public class DynamicTable {
 
    private static final Logger logger = Logger.getLogger(DynamicTable.class);
 
+   /**
+	* Metoda zajmująca się zapełnianiem tabeli danymi
+	* @param table Zapełniana tabela
+	* @param file Plik z danymi
+	* @param fileType Typ (rozszerzenie) pliku
+	* @param hasHeader true jeżeli plik zawiera nagłówek, false w przeciwnym wypadku
+	*/
    public void populateTable(final TableView<ObservableList<StringProperty>> table, final File file,
 		 final FileType fileType, final boolean hasHeader) {
 	  logger.info("Start populateTable");
@@ -45,6 +55,13 @@ public class DynamicTable {
 	  logger.info("Finish populateTable");
    }
 
+   /**
+	* Przetwarza dane z pliku CSV, następnie dodaje je do tabeli
+	* @param table Zapełniana tabela
+	* @param file Plik z danymi
+	* @param hasHeader true jeżeli plik ma nagłówek, false w przeciwnym wypadku
+	* @return Zadanie (Task) parsujące CSV
+	*/
    private Task<Void> parseCsvContent(final TableView<ObservableList<StringProperty>> table, final File file,
 		 final boolean hasHeader) {
 	  logger.info("Start parseCsvContent");
@@ -95,6 +112,12 @@ public class DynamicTable {
 	  return task;
    }
 
+   /**
+	* Tworzy kolumny tabeli, z odpowiednimi nagłówkami oraz dodaje fabrykę komórek tabeli
+	* @param columnIndex Indeks kolumny
+	* @param columnTitle Nazwa kolumny (nagłówek)
+	* @return Kolumna tabeli
+	*/
    private TableColumn<ObservableList<StringProperty>, String> createColumn(final int columnIndex, String columnTitle) {
 	  logger.info("Start createColumn");
 

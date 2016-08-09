@@ -21,7 +21,6 @@ import java.util.List;
 public class Main extends Application {
 
    private static Logger logger = Logger.getLogger(Main.class);
-
    private DynamicTable dynamicTable = new DynamicTable();
 
    @Override
