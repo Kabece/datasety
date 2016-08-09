@@ -98,7 +98,7 @@ public class Main extends Application {
 			rootGroup.getChildren().addAll(table);
 
 			Scene scene = new Scene(rootGroup, 400, 400);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			scene.getStylesheets().add(getClass().getResource("/css/application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
 
