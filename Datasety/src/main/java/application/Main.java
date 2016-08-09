@@ -42,10 +42,10 @@ public class Main extends Application {
 		try {
 			primaryStage.setTitle("HorseApp");
 
-			MainHelper mainHelper = new MainHelper();
+			SectionsBuilder sectionsBuilder = new SectionsBuilder();
 
-			final HBox fileInputHBox = mainHelper.createFileInputSection(primaryStage, tableView);
-			final GridPane controlsGridPane = mainHelper.createLogicControlsSection();
+			final HBox fileInputHBox = sectionsBuilder.createDataInputSection(primaryStage, tableView);
+			final GridPane controlsGridPane = sectionsBuilder.createLogicControlsSection();
 
 			final Pane rootGroup = new VBox(12);
 			rootGroup.setPadding(new Insets(12, 12, 12, 12));

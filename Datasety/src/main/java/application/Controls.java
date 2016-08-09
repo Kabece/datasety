@@ -8,13 +8,13 @@ import javafx.collections.ObservableList;
  */
 public class Controls {
 
-   private ObservableList<String> patternList;
+   private ObservableList<String> variableList;
 
    public Controls() {
-      this.patternList = FXCollections.observableArrayList();
+      this.variableList = FXCollections.observableArrayList();
    }
 
-   public ObservableList<String> getPatternList() {
-      return patternList;
+   public ObservableList<String> getVariableList() {
+      return variableList;
    }
 }

@@ -1,6 +1,7 @@
 package application;
 
 import javafx.beans.property.StringProperty;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
@@ -8,9 +9,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import model.OperatorType;
+import model.PatternType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import parsing.FileType;
+import model.FileType;
 
 import java.io.File;
 import java.util.List;
@@ -19,13 +22,15 @@ import java.util.List;
  * Created by kczurylo on 2016-08-09.
  * Klasa pomocnicza, służąca do tworzenia komponentów widoku
  */
-public class MainHelper {
+public class SectionsBuilder {
 
-	private static Logger logger = LogManager.getLogger(MainHelper.class.getName());
+	private static Logger logger = LogManager.getLogger(SectionsBuilder.class.getName());
 	private DynamicTable dynamicTable;
+	private Controls controls;
 
-	public MainHelper() {
+	public SectionsBuilder() {
 		this.dynamicTable = new DynamicTable();
+		this.controls = new Controls();
 	}
 
 	/**
@@ -34,22 +39,61 @@ public class MainHelper {
 	 * @return GridPane zawierający komponenty.
 	 */
 	public GridPane createLogicControlsSection() {
-		// Logic Controls Part
+		logger.info("Start createLogicControlsSection");
+
+		// Pattern
 		final Label patternLabel = new Label("Wzorzec: ");
 		final ComboBox patternComboBox = new ComboBox();
 		patternComboBox.getItems().setAll(PatternType.values());
 		patternComboBox.setPromptText("Wzorzec");
 		patternComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 			logger.debug("Process start, patternComboBox value has changed from = {} to = {}", oldValue, newValue);
-			Label test = new Label("TEST");
-			GridPane.setConstraints(test, 3, 3);
 		});
 
+		// Variable
+		final Label variableLabel = new Label("Zmienna: ");
+		final ComboBox variableComboBox = new ComboBox();
+		variableComboBox.setPromptText("Zmienna");
+		variableComboBox.setOnMouseClicked(event -> {
+			if (variableComboBox.getItems().isEmpty()) {
+				Alert noDataSpecifiedAlert = new Alert(Alert.AlertType.WARNING);
+				noDataSpecifiedAlert.setTitle("Uwaga!");
+				noDataSpecifiedAlert.setHeaderText("Brak wybranych danych!");
+				noDataSpecifiedAlert.setContentText("Wybierz poprawny z plik z danymi i poczekaj aż się załaduje.");
+				noDataSpecifiedAlert.showAndWait();
+			}
+		});
+		controls.getVariableList().addListener((ListChangeListener<String>) c -> {
+			logger.debug("Process createLogicControlsSection, variableList changed");
+			// TODO Dodać sprawdzanie czy nie null
+			variableComboBox.getItems().setAll(controls.getVariableList());
+		});
+
+		// Operator
+		final Label operatorLabel = new Label("Operator: ");
+		final ComboBox operatorComboBox = new ComboBox();
+		operatorComboBox.getItems().setAll(OperatorType.values());
+		operatorComboBox.setPromptText("Operator");
+
+		// Value
+		final Label valueLabel = new Label("Wartość: ");
+		final TextField valueTextField = new TextField();
+		valueTextField.setPromptText("Wpisz wartość");
+
 		final GridPane controlsGridPane = new GridPane();
+		controlsGridPane.setHgap(3);
+		controlsGridPane.setVgap(3);
 		GridPane.setConstraints(patternLabel, 0, 0);
 		GridPane.setConstraints(patternComboBox, 0, 1);
-		controlsGridPane.getChildren().addAll(patternLabel, patternComboBox);
+		GridPane.setConstraints(variableLabel, 1, 0);
+		GridPane.setConstraints(variableComboBox, 1, 1);
+		GridPane.setConstraints(operatorLabel, 2, 0);
+		GridPane.setConstraints(operatorComboBox, 2, 1);
+		GridPane.setConstraints(valueLabel, 3, 0);
+		GridPane.setConstraints(valueTextField, 3, 1);
+		controlsGridPane.getChildren().addAll(patternLabel, patternComboBox, variableLabel, variableComboBox, operatorLabel, operatorComboBox, valueLabel, valueTextField);
 
+		logger.info("Finish createLogicControlsSection");
 		return controlsGridPane;
 	}
 
@@ -60,11 +104,14 @@ public class MainHelper {
 	 * @param tableView    Komponent tabeli.
 	 * @return HBox zawierający komponenty.
 	 */
-	public HBox createFileInputSection(Stage primaryStage, TableView<ObservableList<StringProperty>> tableView) {
+	public HBox createDataInputSection(Stage primaryStage, TableView<ObservableList<StringProperty>> tableView) {
+		logger.info("Start createDataInputSection");
+
 		final FileChooser fileChooser = new FileChooser();
 		final Button openButton = new Button("Otwórz plik");
 		final Button openMultipleButton = new Button("Otwórz wiele plików");
 		final CheckBox headerCheckBox = new CheckBox("Dane mają nagłówek");
+		headerCheckBox.setSelected(true);
 
 		openButton.setOnAction(e -> {
 			FileChooser.ExtensionFilter csvFilter = new FileChooser.ExtensionFilter("CSV Files", "*.csv");
@@ -76,7 +123,7 @@ public class MainHelper {
 			File file = fileChooser.showOpenDialog(primaryStage);
 			if (file != null) {
 				if (fileChooser.getSelectedExtensionFilter().getDescription().equals("CSV Files")) {
-					dynamicTable.populateTable(tableView, file, FileType.CSV, headerCheckBox.isSelected());
+					dynamicTable.populateTable(tableView, file, FileType.CSV, headerCheckBox.isSelected(), controls);
 				}
 				if (fileChooser.getSelectedExtensionFilter().getDescription().equals("JSON Files")) {
 					// TODO
@@ -98,6 +145,7 @@ public class MainHelper {
 		fileInputHBox.getChildren().addAll(openButton, openMultipleButton, headerCheckBox);
 		HBox.setHgrow(fileInputHBox, Priority.NEVER);
 
+		logger.info("Finish createDataInputSection");
 		return fileInputHBox;
 	}
 }
