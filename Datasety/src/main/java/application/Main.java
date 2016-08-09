@@ -30,8 +30,8 @@ public class Main extends Application {
 		 primaryStage.setTitle("Apka");
 
 		 // TableView Part
-		 final TableView<ObservableList<StringProperty>> table = new TableView<>();
-		 final CheckBox headerCheckBox = new CheckBox("Data has header line");
+		 final TableView<ObservableList<StringProperty>> tableView = new TableView<>();
+		 final CheckBox headerCheckBox = new CheckBox("Dane maj\u0105 nag\u0142\u00f3wek");
 		 HBox controls = new HBox();
 		 controls.getChildren().addAll(headerCheckBox);
 		 HBox.setHgrow(headerCheckBox, Priority.NEVER);
@@ -39,8 +39,8 @@ public class Main extends Application {
 		 // FileBrowser Part
 		 final FileChooser fileChooser = new FileChooser();
 
-		 final Button openButton = new Button("Open a File");
-		 final Button openMultipleButton = new Button("Open multiple Files");
+		 final Button openButton = new Button("Otwórz plik");
+		 final Button openMultipleButton = new Button("Otwórz wiele plików");
 
 		 openButton.setOnAction(e -> {
 			ExtensionFilter csvFilter = new ExtensionFilter("CSV Files", "*.csv");
@@ -52,7 +52,7 @@ public class Main extends Application {
 			File file = fileChooser.showOpenDialog(primaryStage);
 			if (file != null) {
 			   if (fileChooser.getSelectedExtensionFilter().getDescription().equals("CSV Files")) {
-				  dynamicTable.populateTable(table, file, FileType.CSV, headerCheckBox.isSelected());
+				  dynamicTable.populateTable(tableView, file, FileType.CSV, headerCheckBox.isSelected());
 			   }
 			   if (fileChooser.getSelectedExtensionFilter().getDescription().equals("JSON Files")) {
 				  // TODO
@@ -83,9 +83,9 @@ public class Main extends Application {
 		 rootGroup.getChildren().addAll(inputGridPane);
 		 rootGroup.setPadding(new Insets(12, 12, 12, 12));
 		 rootGroup.getChildren().addAll(controls);
-		 rootGroup.getChildren().addAll(table);
+		 rootGroup.getChildren().addAll(tableView);
 
-		 Scene scene = new Scene(rootGroup, 400, 400);
+		 Scene scene = new Scene(rootGroup, 800, 600);
 		 scene.getStylesheets().add(getClass().getResource("/css/application.css").toExternalForm());
 		 primaryStage.setScene(scene);
 		 primaryStage.show();
