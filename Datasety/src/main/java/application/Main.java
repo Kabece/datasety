@@ -46,10 +46,11 @@ public class Main extends Application {
 
 			final HBox fileInputHBox = sectionsBuilder.createDataInputSection(primaryStage, tableView);
 			final GridPane controlsGridPane = sectionsBuilder.createLogicControlsSection();
+			final GridPane analyzerGridPane = sectionsBuilder.createAnalyzerSection();
 
 			final Pane rootGroup = new VBox(12);
 			rootGroup.setPadding(new Insets(12, 12, 12, 12));
-			rootGroup.getChildren().addAll(fileInputHBox, tableView, controlsGridPane);
+			rootGroup.getChildren().addAll(fileInputHBox, tableView, controlsGridPane, analyzerGridPane);
 
 			Scene scene = new Scene(rootGroup, 800, 600);
 			scene.getStylesheets().add(getClass().getResource("/css/application.css").toExternalForm());

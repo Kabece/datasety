@@ -2,8 +2,8 @@ package application;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.OperatorType;
-import model.PatternType;
+import constants.OperatorType;
+import constants.PatternType;
 
 /**
  * Created by kczurylo on 2016-08-09.
@@ -21,6 +21,18 @@ public class LogicSentence {
 
 	public LogicSentence() {
 		variableList = FXCollections.observableArrayList();
+	}
+
+	/**
+	 * Sprawdza czy zdanie logiczne jest kompletne
+	 * @return true jeżeli kompletne, false w przeciwnym wypadku
+	 */
+	public boolean isComplete() {
+		if (chosenPattern != null && chosenOperator != null && chosenVariable != null && chosenValue != null && !variableList.isEmpty()) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public static ObservableList<String> getVariableList() {
