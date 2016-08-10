@@ -7,6 +7,8 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import constants.AnalyzerWorkType;
@@ -54,14 +56,25 @@ public class SectionsBuilder {
 					analyzer.setAnalyzerWorkType((AnalyzerWorkType) newValue);
 				});
 
+		// Result Indicator
+		final Label resultIndicatorLabel = new Label("Wynik: ");
+		final Circle resultIndicatorCircle = new Circle();
+		resultIndicatorCircle.setRadius(15.0f);
+		resultIndicatorCircle.setFill(Color.DARKGRAY);
+
 		// Analyzer
 		final Button analyzeButton = new Button("Analizuj");
 		analyzeButton.setDefaultButton(true);
 		analyzeButton.setOnAction(event -> {
+			resultIndicatorCircle.setFill(Color.DARKGRAY);
 			logger.debug("Process createLogicControlSection, analyzeButton fired!");
 			if (logicSentence.isComplete() && analyzer.isReady()) {
 				logger.trace("Process createLogicControlSection, analazyer data = {}", analyzer.getDataMap());
-				logger.debug("Process createLogicControlSection, analyzer outcome = {}", analyzer.analyze(logicSentence));
+				if (analyzer.analyze(logicSentence)) {
+					resultIndicatorCircle.setFill(Color.FORESTGREEN);
+				} else {
+					resultIndicatorCircle.setFill(Color.MAROON);
+				}
 			} else {
 				Alert analyzingNotReadyAlert = new Alert(Alert.AlertType.WARNING);
 				analyzingNotReadyAlert.setTitle("Uwaga!");
@@ -77,7 +90,9 @@ public class SectionsBuilder {
 		GridPane.setConstraints(analyzerWorkTypeLabel, 0, 0);
 		GridPane.setConstraints(analyzerWorkTypeComboBox, 0, 1);
 		GridPane.setConstraints(analyzeButton, 1, 1);
-		analyzerGridPane.getChildren().addAll(analyzerWorkTypeLabel, analyzerWorkTypeComboBox, analyzeButton);
+		GridPane.setConstraints(resultIndicatorLabel, 0, 3);
+		GridPane.setConstraints(resultIndicatorCircle, 0, 4);
+		analyzerGridPane.getChildren().addAll(analyzerWorkTypeLabel, analyzerWorkTypeComboBox, analyzeButton, resultIndicatorLabel, resultIndicatorCircle);
 
 		logger.info("Finish createAnallyzerSection");
 		return analyzerGridPane;
