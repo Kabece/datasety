@@ -3,9 +3,12 @@ package constants;
 /**
  * Created by kczurylo on 2016-08-09.
  * Typ wzorca używanego w wyrażenia
- * ABSENCE - absencja, ~p
- * EXISTENCE - możliwość (gwarantowalność), p
+ *
+ * ABSENCE - absencja
+ * EXISTENCE - możliwość (gwarantowalność)
+ * INVARIANCE - niezmienniczość (bezpieczeństwo)
+ * PERSISTENCE - persystencja (trwałość)
  */
 public enum PatternType {
-	ABSENCE, EXISTENCE
+	ABSENCE, EXISTENCE, INVARIANCE, PERSISTENCE
 }

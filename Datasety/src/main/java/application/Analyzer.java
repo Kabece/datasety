@@ -45,15 +45,32 @@ public class Analyzer {
 			case EXISTENCE:
 				outcome = checkExistence(logicSentence);
 				break;
+
 			case ABSENCE:
 				outcome = checkAbsence(logicSentence);
 				break;
+
+			case INVARIANCE:
+				outcome = checkInvariance(logicSentence);
+				break;
+
+			case PERSISTENCE:
+				outcome = checkPersistence(logicSentence);
+				break;
+
+			default:
+				logger.warn(
+						  "Warning in analyze, default switch option used! chosenOperator={}, chosenVariable={}, chosenValue={}",
+						  logicSentence.getChosenOperator(), logicSentence.getChosenVariable(), logicSentence.getChosenValue());
+				break;
+
 		}
 
 		logger.info("Finish analyze");
 		return outcome;
 	}
 
+	// TODO Bardzo powtarzalny kod - przekminić jakąś ekstrakcję tego
 	/**
 	 * Sprawdza wzorzec EXISTENCE - możliwość (gwarantowalność)
 	 *
@@ -80,6 +97,7 @@ public class Analyzer {
 					}
 				}
 				break;
+
 			default:
 				logger.warn(
 						  "Warning in checkExistence, default switch option used! chosenOperator={}, chosenVariable={}, chosenValue={}",
@@ -91,6 +109,12 @@ public class Analyzer {
 		return false;
 	}
 
+	/**
+	 * Sprawdza wzorzec ABSENCE - absencja
+	 *
+	 * @param logicSentence Analizowane zdanie
+	 * @return true jeżeli wzorzec spełniony, false w przeciwnym wypadku
+	 */
 	private boolean checkAbsence(LogicSentence logicSentence) {
 		logger.info("Start checkAbsence");
 
@@ -102,12 +126,15 @@ public class Analyzer {
 					}
 				}
 				break;
+
 			case NE:
 				for (String value : dataMap.get((logicSentence.getChosenVariable()))) {
 					if (!value.equals(logicSentence.getChosenValue())) {
 						return false;
 					}
 				}
+				break;
+
 			default:
 				logger.warn("Warning in checkAbsence, default switch option used! chosenOperator={}, chosenVariable={}, chosenValue={}", logicSentence.getChosenOperator(), logicSentence.getChosenVariable(), logicSentence.getChosenValue());
 				break;
@@ -115,6 +142,89 @@ public class Analyzer {
 
 		logger.info("Finish checkAbsence");
 		return true;
+	}
+
+	/**
+	 * Sprawdza wzorzec INVARIANCE - niezmienniczość (bezpieczeństwo)
+	 *
+	 * @param logicSentence Analizowane zdanie
+	 * @return true jeżeli wzorzec spełniony, false w przeciwnym wypadku
+	 */
+	private boolean checkInvariance(LogicSentence logicSentence) {
+		logger.info("Start checkInvariance");
+
+		switch (logicSentence.getChosenOperator()) {
+			case EQ:
+				for (String value : dataMap.get(logicSentence.getChosenVariable())) {
+					if (!value.equals(logicSentence.getChosenValue())) {
+						return false;
+					}
+				}
+				break;
+
+			case NE:
+				for (String value : dataMap.get(logicSentence.getChosenVariable())) {
+					if (value.equals(logicSentence.getChosenValue())) {
+						return false;
+					}
+				}
+				break;
+
+			default:
+				logger.warn(
+						  "Warning in checkInvariance, default switch option used! chosenOperator={}, chosenVariable={}, chosenValue={}",
+						  logicSentence.getChosenOperator(), logicSentence.getChosenVariable(), logicSentence.getChosenValue());
+				break;
+		}
+
+		logger.info("Finish checkInvariance");
+		return true;
+	}
+
+	/**
+	 * Sprawdza wzorzec PERSISTENCE - persystencja (trwałość)
+	 *
+	 * @param logicSentence Analizowane zdanie
+	 * @return true jeżeli wzorzec spełniony, false w przeciwnym wypadku
+	 */
+	private boolean checkPersistence(LogicSentence logicSentence) {
+		logger.info("Start checkPersistence");
+		boolean hasOccured = false;
+
+		switch (logicSentence.getChosenOperator()) {
+			case EQ:
+				for (String value : dataMap.get(logicSentence.getChosenVariable())) {
+					if (!hasOccured && value.equals(logicSentence.getChosenValue())) {
+						hasOccured = true;
+						continue;
+					}
+					if (hasOccured && !value.equals(logicSentence.getChosenValue())) {
+						hasOccured = false;
+					}
+				}
+				break;
+
+			case NE:
+				for (String value : dataMap.get(logicSentence.getChosenVariable())) {
+					if (!hasOccured && !value.equals(logicSentence.getChosenValue())) {
+						hasOccured = true;
+						continue;
+					}
+					if (hasOccured && value.equals(logicSentence.getChosenValue())) {
+						hasOccured = false;
+					}
+				}
+				break;
+
+			default:
+				logger.warn(
+						  "Warning in checkPersistence, default switch option used! chosenOperator={}, chosenVariable={}, chosenValue={}",
+						  logicSentence.getChosenOperator(), logicSentence.getChosenVariable(), logicSentence.getChosenValue());
+				break;
+		}
+
+		logger.info("Finish checkPersistence");
+		return hasOccured;
 	}
 
 	/**
