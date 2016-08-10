@@ -60,7 +60,8 @@ public class SectionsBuilder {
 		analyzeButton.setOnAction(event -> {
 			logger.debug("Process createLogicControlSection, analyzeButton fired!");
 			if (logicSentence.isComplete() && analyzer.isReady()) {
-				logger.debug(analyzer.getDataMap());
+				logger.trace("Process createLogicControlSection, analazyer data = {}", analyzer.getDataMap());
+				logger.debug("Process createLogicControlSection, analyzer outcome = {}", analyzer.analyze(logicSentence));
 			} else {
 				Alert analyzingNotReadyAlert = new Alert(Alert.AlertType.WARNING);
 				analyzingNotReadyAlert.setTitle("Uwaga!");

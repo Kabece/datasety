@@ -1,6 +1,8 @@
 package application;
 
 import constants.AnalyzerWorkType;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,6 +15,8 @@ import java.util.Map;
  */
 @SuppressWarnings("WeakerAccess")
 public class Analyzer {
+
+	private Logger logger = LogManager.getLogger(Analyzer.class.getName());
 
 	private Map<String, ArrayList<String>> dataMap;
 	private List<String> dataHeaders;
@@ -28,12 +32,59 @@ public class Analyzer {
 
 	/**
 	 * Podstawowy analizator wyrażeń
-	 * @param logicSentence Analizowane wyrażenie
+	 *
+	 * @param logicSentence Analizowane zdanie
 	 * @return true jeżeli wyrażenie spełnione, false w przeciwnym wypadku
 	 */
 	public boolean analyze(LogicSentence logicSentence) {
-		// TODO
-		return true;
+		logger.info("Start analyze");
+		boolean outcome = false;
+
+		switch (logicSentence.getChosenPattern()) {
+			case EXISTENCE:
+				outcome = checkExistence(logicSentence);
+				break;
+		}
+
+		logger.info("Finish analyze");
+		return outcome;
+	}
+
+	/**
+	 * Sprawdza wzorzec EXISTENCE - możliwość (gwarantowalność)
+	 *
+	 * @param logicSentence Analizowane zdanie
+	 * @return true jeżeli wzorzec spełniony, false w przeciwnym wypadku
+	 */
+	private boolean checkExistence(LogicSentence logicSentence) {
+		logger.info("Start checkExistence");
+
+		switch (logicSentence.getChosenOperator()) {
+			case EQ:
+				for (String value : dataMap.get(logicSentence.getChosenVariable())) {
+					if (value.equals(logicSentence.getChosenValue())) {
+						return true;
+					}
+				}
+				break;
+
+			case NE:
+				for (String value : dataMap.get(logicSentence.getChosenVariable())) {
+					// NOT EQUALS TO NIE TO SAMO CO ABSENCE!
+					if (!value.equals(logicSentence.getChosenValue())) {
+						return true;
+					}
+				}
+				break;
+			default:
+				logger.warn(
+						"Warning in checkExistence, default switch option used! chosenOperator={}, chosenVariable={}, chosenValue={}",
+						logicSentence.getChosenOperator(), logicSentence.getChosenVariable(), logicSentence.getChosenValue());
+				break;
+		}
+
+		logger.info("Finish checkExistence");
+		return false;
 	}
 
 	/**
