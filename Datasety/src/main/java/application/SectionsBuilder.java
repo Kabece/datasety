@@ -72,7 +72,7 @@ public class SectionsBuilder {
 		});
 		controls.getVariableList().addListener((ListChangeListener<String>) c -> {
 			logger.debug("Process createLogicControlsSection, variableList changed");
-			// TODO Dodać sprawdzanie czy nie null
+			// TODO Dodać sprawdzanie czy nie null / może optional?
 			variableComboBox.getItems().setAll(controls.getVariableList());
 		});
 
