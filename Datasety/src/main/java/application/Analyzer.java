@@ -3,6 +3,7 @@ package application;
 import constants.AnalyzerWorkType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import sun.rmi.runtime.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -44,6 +45,9 @@ public class Analyzer {
 			case EXISTENCE:
 				outcome = checkExistence(logicSentence);
 				break;
+			case ABSENCE:
+				outcome = checkAbsence(logicSentence);
+				break;
 		}
 
 		logger.info("Finish analyze");
@@ -78,13 +82,39 @@ public class Analyzer {
 				break;
 			default:
 				logger.warn(
-						"Warning in checkExistence, default switch option used! chosenOperator={}, chosenVariable={}, chosenValue={}",
-						logicSentence.getChosenOperator(), logicSentence.getChosenVariable(), logicSentence.getChosenValue());
+						  "Warning in checkExistence, default switch option used! chosenOperator={}, chosenVariable={}, chosenValue={}",
+						  logicSentence.getChosenOperator(), logicSentence.getChosenVariable(), logicSentence.getChosenValue());
 				break;
 		}
 
 		logger.info("Finish checkExistence");
 		return false;
+	}
+
+	private boolean checkAbsence(LogicSentence logicSentence) {
+		logger.info("Start checkAbsence");
+
+		switch (logicSentence.getChosenOperator()) {
+			case EQ:
+				for (String value : dataMap.get(logicSentence.getChosenVariable())) {
+					if (value.equals(logicSentence.getChosenValue())) {
+						return false;
+					}
+				}
+				break;
+			case NE:
+				for (String value : dataMap.get((logicSentence.getChosenVariable()))) {
+					if (!value.equals(logicSentence.getChosenValue())) {
+						return false;
+					}
+				}
+			default:
+				logger.warn("Warning in checkAbsence, default switch option used! chosenOperator={}, chosenVariable={}, chosenValue={}", logicSentence.getChosenOperator(), logicSentence.getChosenVariable(), logicSentence.getChosenValue());
+				break;
+		}
+
+		logger.info("Finish checkAbsence");
+		return true;
 	}
 
 	/**

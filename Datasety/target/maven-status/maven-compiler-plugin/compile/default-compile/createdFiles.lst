@@ -1,0 +1,14 @@
+application\Analyzer.class
+application\DynamicTable$2.class
+constants\OperatorType.class
+parsing\JsonFileParser.class
+constants\AnalyzerWorkType.class
+application\Main.class
+application\Analyzer$1.class
+application\DynamicTable$1.class
+application\DynamicTable.class
+application\SectionsBuilder.class
+constants\PatternType.class
+application\LogicSentence.class
+constants\FileType.class
+parsing\util\MockPostalCode.class
