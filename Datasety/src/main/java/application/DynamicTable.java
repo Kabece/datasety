@@ -9,31 +9,50 @@ import javafx.concurrent.Task;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import model.FileType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import model.FileType;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.util.ArrayList;
 
 /**
  * Klasa zajmująca się tworzeniem widoku danych w postaci tabeli
  */
+@SuppressWarnings("WeakerAccess")
 public class DynamicTable {
 
 	private static final Logger logger = LogManager.getLogger(DynamicTable.class.getName());
 
+	private TableView<ObservableList<StringProperty>> table;
+	private File file;
+	private FileType fileType;
+	private boolean hasHeader;
+	private Analyzer analyzer;
+
+	/**
+	 * Podstawowy konstruktor
+	 * @param table Zapełniana tabela
+	 * @param file Plik z danymi
+	 * @param fileType Typ (rozszerzenie) pliku
+	 * @param hasHeader true jeżeli plik zawiera nagłówek, false w przeciwnym wypadku
+	 * @param analyzer Komponent analizujący dane w kontekście wyrażeń
+	 */
+	public DynamicTable(final TableView<ObservableList<StringProperty>> table, final File file, final FileType fileType,
+			final boolean hasHeader, Analyzer analyzer) {
+		this.table = table;
+		this.file = file;
+		this.fileType = fileType;
+		this.hasHeader = hasHeader;
+		this.analyzer = analyzer;
+	}
+
 	/**
 	 * Metoda zajmująca się zapełnianiem tabeli danymi
-	 *
-	 * @param table     Zapełniana tabela
-	 * @param file      Plik z danymi
-	 * @param fileType  Typ (rozszerzenie) pliku
-	 * @param hasHeader true jeżeli plik zawiera nagłówek, false w przeciwnym wypadku
 	 */
-	public void populateTable(final TableView<ObservableList<StringProperty>> table, final File file,
-			final FileType fileType, final boolean hasHeader, Controls controls) {
+	public void populateTable() {
 		logger.info("Start populateTable");
 
 		table.getItems().clear();
@@ -42,7 +61,7 @@ public class DynamicTable {
 		Task<Void> task;
 		switch (fileType) {
 			case CSV:
-				task = parseCsvContent(table, file, hasHeader, controls);
+				task = parseCsvContent();
 				break;
 			default:
 				task = null;
@@ -58,15 +77,12 @@ public class DynamicTable {
 	}
 
 	/**
-	 * Przetwarza dane z pliku CSV, następnie dodaje je do tabeli
+	 * Przetwarza dane z pliku CSV, następnie dodaje je do tabeli.
+	 * Zapisuje je także w wewnętrznej strukturze na potrzeby późniejszej analizy.
 	 *
-	 * @param table     Zapełniana tabela
-	 * @param file      Plik z danymi
-	 * @param hasHeader true jeżeli plik ma nagłówek, false w przeciwnym wypadku
 	 * @return Zadanie (Task) parsujące CSV
 	 */
-	private Task<Void> parseCsvContent(final TableView<ObservableList<StringProperty>> table, final File file,
-			final boolean hasHeader, Controls controls) {
+	private Task<Void> parseCsvContent() {
 		logger.info("Start parseCsvContent");
 
 		Task<Void> task = new Task<Void>() {
@@ -82,8 +98,10 @@ public class DynamicTable {
 					Platform.runLater(() -> {
 						for (int column = 0; column < headerValues.length; column++) {
 							table.getColumns().add(createColumn(column, headerValues[column]));
+							analyzer.getDataMap().put(headerValues[column], new ArrayList<>());
+							analyzer.getDataHeaders().add(headerValues[column]);
 						}
-						controls.getVariableList().addAll(headerValues);
+						LogicSentence.getVariableList().addAll(headerValues);
 					});
 				}
 
@@ -97,10 +115,13 @@ public class DynamicTable {
 						for (int columnIndex = table.getColumns().size(); columnIndex < dataValues.length; columnIndex++) {
 							table.getColumns().add(createColumn(columnIndex, ""));
 						}
-						// Add data to table:
+						// Add dataMap to table:
 						ObservableList<StringProperty> data = FXCollections.observableArrayList();
 						for (String value : dataValues) {
 							data.add(new SimpleStringProperty(value));
+						}
+						for (int i = 0; i < data.size(); i++) {
+							analyzer.getDataMap().get(analyzer.getDataHeaders().get(i)).add(data.get(i).getValue());
 						}
 						table.getItems().add(data);
 					});

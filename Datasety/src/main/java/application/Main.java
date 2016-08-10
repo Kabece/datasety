@@ -18,7 +18,7 @@ public class Main extends Application {
 
 	private static Logger logger = LogManager.getLogger(Main.class.getName());
 	private TableView<ObservableList<StringProperty>> tableView;
-	private Controls controls;
+	private LogicSentence logicSentence;
 
 	public static void main(String[] args) {
 		logger.info("Start main");
@@ -30,7 +30,7 @@ public class Main extends Application {
 	public void init() throws Exception {
 		logger.info("Start init");
 
-		controls = new Controls();
+		logicSentence = new LogicSentence();
 		tableView = new TableView<>();
 
 		logger.info("Finish init");

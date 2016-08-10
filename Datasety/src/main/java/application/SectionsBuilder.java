@@ -1,8 +1,6 @@
 package application;
 
 import javafx.beans.property.StringProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
@@ -24,15 +22,16 @@ import java.util.List;
  * Created by kczurylo on 2016-08-09.
  * Klasa pomocnicza, służąca do tworzenia komponentów widoku
  */
+@SuppressWarnings({ "unchecked", "WeakerAccess" })
 public class SectionsBuilder {
 
 	private static Logger logger = LogManager.getLogger(SectionsBuilder.class.getName());
-	private DynamicTable dynamicTable;
-	private Controls controls;
+	private LogicSentence logicSentence;
+	private Analyzer analyzer;
 
 	public SectionsBuilder() {
-		this.dynamicTable = new DynamicTable();
-		this.controls = new Controls();
+		this.analyzer = new Analyzer();
+		this.logicSentence = new LogicSentence();
 	}
 
 	/**
@@ -50,7 +49,7 @@ public class SectionsBuilder {
 		patternComboBox.setPromptText("Wzorzec");
 		patternComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 			logger.debug("Process start, patternComboBox value has changed from = {} to = {}", oldValue, newValue);
-			controls.setChosenPattern((PatternType) newValue);
+			logicSentence.setChosenPattern((PatternType) newValue);
 		});
 
 		// Variable
@@ -68,12 +67,12 @@ public class SectionsBuilder {
 		});
 		variableComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 			logger.debug("Process createLogicControlSection, variableComboBox value has changed from = {} to = {}", oldValue, newValue);
-			controls.setChosenVariable((String) newValue);
+			logicSentence.setChosenVariable((String) newValue);
 		});
-		controls.getVariableList().addListener((ListChangeListener<String>) c -> {
+		LogicSentence.getVariableList().addListener((ListChangeListener<String>) c -> {
 			logger.debug("Process createLogicControlsSection, variableList changed");
 			// TODO Dodać sprawdzanie czy nie null / może optional?
-			variableComboBox.getItems().setAll(controls.getVariableList());
+			variableComboBox.getItems().setAll(LogicSentence.getVariableList());
 		});
 
 
@@ -84,7 +83,7 @@ public class SectionsBuilder {
 		operatorComboBox.setPromptText("Operator");
 		operatorComboBox.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> {
 			logger.debug("Process createLogicControlSection, operatorComboBox value has changed from = {} to = {}", oldValue, newValue);
-			controls.setChosenOperator((OperatorType) newValue);
+			logicSentence.setChosenOperator((OperatorType) newValue);
 		}));
 
 		// Value
@@ -93,7 +92,15 @@ public class SectionsBuilder {
 		valueTextField.setPromptText("Wpisz wartość");
 		valueTextField.focusedProperty().addListener((observable, oldValue, newValue) -> {
 			logger.debug("Process createLogicControlSection, valueTextField value has been entered: {}", valueTextField.textProperty().getValueSafe());
-			controls.setChosenValue(valueTextField.textProperty().getValueSafe());
+			logicSentence.setChosenValue(valueTextField.textProperty().getValueSafe());
+		});
+
+		// Analyze
+		final Button analyzeButton = new Button("Analizuj");
+		analyzeButton.setDefaultButton(true);
+		analyzeButton.setOnAction(event -> {
+			logger.debug("Process createLogicControlSection, analyzeButton fired!");
+			logger.debug(analyzer.getDataMap());
 		});
 
 		final GridPane controlsGridPane = new GridPane();
@@ -107,7 +114,8 @@ public class SectionsBuilder {
 		GridPane.setConstraints(operatorComboBox, 2, 1);
 		GridPane.setConstraints(valueLabel, 3, 0);
 		GridPane.setConstraints(valueTextField, 3, 1);
-		controlsGridPane.getChildren().addAll(patternLabel, patternComboBox, variableLabel, variableComboBox, operatorLabel, operatorComboBox, valueLabel, valueTextField);
+		GridPane.setConstraints(analyzeButton, 0, 10);
+		controlsGridPane.getChildren().addAll(patternLabel, patternComboBox, variableLabel, variableComboBox, operatorLabel, operatorComboBox, valueLabel, valueTextField, analyzeButton);
 
 		logger.info("Finish createLogicControlsSection");
 		return controlsGridPane;
@@ -139,7 +147,13 @@ public class SectionsBuilder {
 			File file = fileChooser.showOpenDialog(primaryStage);
 			if (file != null) {
 				if (fileChooser.getSelectedExtensionFilter().getDescription().equals("CSV Files")) {
-					dynamicTable.populateTable(tableView, file, FileType.CSV, headerCheckBox.isSelected(), controls);
+					DynamicTable dynamicTable = new DynamicTable(tableView, file, FileType.CSV, headerCheckBox.isSelected(), analyzer);
+					dynamicTable.populateTable();
+					for (ObservableList<StringProperty> o : tableView.getItems()) {
+						for (StringProperty s : o) {
+							logger.debug(s);
+						}
+					}
 				}
 				if (fileChooser.getSelectedExtensionFilter().getDescription().equals("JSON Files")) {
 					// TODO

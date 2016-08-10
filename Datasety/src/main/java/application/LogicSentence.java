@@ -7,21 +7,23 @@ import model.PatternType;
 
 /**
  * Created by kczurylo on 2016-08-09.
+ * Przedstawia jedno logiczne zdanie
  */
-public class Controls {
+@SuppressWarnings("WeakerAccess")
+public class LogicSentence {
 
-	private ObservableList<String> variableList;
+	private static ObservableList<String> variableList;
 
 	private PatternType chosenPattern;
 	private OperatorType chosenOperator;
 	private String chosenVariable;
 	private String chosenValue;
 
-	public Controls() {
-		this.variableList = FXCollections.observableArrayList();
+	public LogicSentence() {
+		variableList = FXCollections.observableArrayList();
 	}
 
-	public ObservableList<String> getVariableList() {
+	public static ObservableList<String> getVariableList() {
 		return variableList;
 	}
 
@@ -59,7 +61,7 @@ public class Controls {
 
 	@Override
 	public String toString() {
-		return "Controls{" + "chosenPattern=" + chosenPattern + ", chosenOperator=" + chosenOperator
+		return "LogicSentence{" + "chosenPattern=" + chosenPattern + ", chosenOperator=" + chosenOperator
 		       + ", chosenVariable='" + chosenVariable + '\'' + ", chosenValue='" + chosenValue + '\'' + '}';
 	}
 }
