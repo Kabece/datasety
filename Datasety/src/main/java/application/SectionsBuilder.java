@@ -11,12 +11,12 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import constants.AnalyzerWorkType;
-import constants.OperatorType;
-import constants.PatternType;
+import enums.AnalyzerWorkType;
+import enums.OperatorType;
+import enums.PatternType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import constants.FileType;
+import enums.FileType;
 
 import java.io.File;
 import java.util.List;

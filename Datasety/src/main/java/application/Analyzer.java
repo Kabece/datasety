@@ -1,9 +1,8 @@
 package application;
 
-import constants.AnalyzerWorkType;
+import enums.AnalyzerWorkType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import sun.rmi.runtime.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;

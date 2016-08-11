@@ -1,4 +1,4 @@
-package constants;
+package enums;
 
 /**
  * Created by kczurylo on 2016-08-09.

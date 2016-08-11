@@ -2,8 +2,8 @@ package application;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import constants.OperatorType;
-import constants.PatternType;
+import enums.OperatorType;
+import enums.PatternType;
 
 /**
  * Created by kczurylo on 2016-08-09.
