@@ -9,6 +9,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import enums.AnalyzerWorkType;
@@ -26,15 +27,18 @@ import java.util.List;
  * Klasa pomocnicza, służąca do tworzenia komponentów widoku
  */
 @SuppressWarnings({ "unchecked", "WeakerAccess" })
+// TODO Podzielić to jeszcze bardziej - na inicjalizację, dodawanie listenerów itd.
 public class SectionsBuilder {
 
 	private static Logger logger = LogManager.getLogger(SectionsBuilder.class.getName());
+	private int currentLogicSentencesRowNumber;
 	private LogicSentence logicSentence;
 	private Analyzer analyzer;
 
 	public SectionsBuilder() {
 		this.analyzer = new Analyzer();
 		this.logicSentence = new LogicSentence();
+		this.currentLogicSentencesRowNumber = 0;
 	}
 
 	/**
@@ -103,8 +107,8 @@ public class SectionsBuilder {
 	 *
 	 * @return GridPane zawierający komponenty.
 	 */
-	public GridPane createLogicControlsSection() {
-		logger.info("Start createLogicControlsSection");
+	public GridPane createLogicSentenceSection() {
+		logger.info("Start createLogicSentenceSection");
 
 		// Pattern
 		final Label patternLabel = new Label("Wzorzec: ");
@@ -112,7 +116,7 @@ public class SectionsBuilder {
 		patternComboBox.getItems().setAll(PatternType.values());
 		patternComboBox.setPromptText("Wzorzec");
 		patternComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-			logger.debug("Process start, patternComboBox value has changed from = {} to = {}", oldValue, newValue);
+			logger.debug("Process createLogicSentenceSection, patternComboBox value has changed from = {} to = {}", oldValue, newValue);
 			logicSentence.setChosenPattern((PatternType) newValue);
 		});
 
@@ -130,12 +134,12 @@ public class SectionsBuilder {
 			}
 		});
 		variableComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-			logger.debug("Process createLogicControlSection, variableComboBox value has changed from = {} to = {}",
+			logger.debug("Process createLogicSentenceSection, variableComboBox value has changed from = {} to = {}",
 					oldValue, newValue);
 			logicSentence.setChosenVariable((String) newValue);
 		});
 		LogicSentence.getVariableList().addListener((ListChangeListener<String>) c -> {
-			logger.debug("Process createLogicControlsSection, variableList changed");
+			logger.debug("Process createLogicSentenceSection, variableList changed");
 			// TODO Dodać sprawdzanie czy nie null / może optional?
 			variableComboBox.getItems().setAll(LogicSentence.getVariableList());
 		});
@@ -146,7 +150,7 @@ public class SectionsBuilder {
 		operatorComboBox.getItems().setAll(OperatorType.values());
 		operatorComboBox.setPromptText("Operator");
 		operatorComboBox.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> {
-			logger.debug("Process createLogicControlSection, operatorComboBox value has changed from = {} to = {}",
+			logger.debug("Process createLogicSentenceSection, operatorComboBox value has changed from = {} to = {}",
 					oldValue, newValue);
 			logicSentence.setChosenOperator((OperatorType) newValue);
 		}));
@@ -156,9 +160,23 @@ public class SectionsBuilder {
 		final TextField valueTextField = new TextField();
 		valueTextField.setPromptText("Wpisz wartość");
 		valueTextField.focusedProperty().addListener((observable, oldValue, newValue) -> {
-			logger.debug("Process createLogicControlSection, valueTextField value has been entered: {}",
+			logger.debug("Process createLogicSentenceSection, valueTextField value has been entered: {}",
 					valueTextField.textProperty().getValueSafe());
 			logicSentence.setChosenValue(valueTextField.textProperty().getValueSafe());
+		});
+		
+		// Next Row
+		final Text nextRowText = new Text("Dodaj kolejne zdanie");
+		nextRowText.setFill(Color.CORNFLOWERBLUE);
+		nextRowText.setOnMouseClicked(event -> {
+			logger.debug("Process createLogicSentenceSection, nextRowText clicked! currentLogicSentencesRowsNumber={}", currentLogicSentencesRowNumber);
+			if (currentLogicSentencesRowNumber < Config.MAX_LOGIC_SENTENCES_ROWS) {
+				addNextLogicSentenceRow(nextRowText);
+				
+				if (currentLogicSentencesRowNumber + 1 == Config.MAX_LOGIC_SENTENCES_ROWS) {
+					nextRowText.setVisible(false);
+				}
+			}
 		});
 
 		final GridPane controlsGridPane = new GridPane();
@@ -172,14 +190,25 @@ public class SectionsBuilder {
 		GridPane.setConstraints(operatorComboBox, 2, 1);
 		GridPane.setConstraints(valueLabel, 3, 0);
 		GridPane.setConstraints(valueTextField, 3, 1);
+		GridPane.setConstraints(nextRowText, 0, 2);
 		controlsGridPane.getChildren()
 				.addAll(patternLabel, patternComboBox, variableLabel, variableComboBox, operatorLabel, operatorComboBox,
-						valueLabel, valueTextField);
+						valueLabel, valueTextField, nextRowText);
 
-		logger.info("Finish createLogicControlsSection");
+		currentLogicSentencesRowNumber++;
+		logger.info("Finish createLogicSentenceSection");
 		return controlsGridPane;
 	}
-
+	
+	private void addNextLogicSentenceRow(Text nextRowText) {
+		logger.info("Start addNextLogicSentenceRow");
+		
+		Main.getRootGroup().getChildren().add(currentLogicSentencesRowNumber + 1, createLogicSentenceSection());
+		nextRowText.setVisible(false);
+		
+		logger.info("Finish addNextLogicSentenceRow");
+	}
+	
 	/**
 	 * Tworzy komponenty odpowiedzialne za wybór pliku.
 	 *
@@ -216,7 +245,7 @@ public class SectionsBuilder {
 					}
 				}
 				if (fileChooser.getSelectedExtensionFilter().getDescription().equals("JSON Files")) {
-					// TODO
+					// TODO Dodać obsługę JSONa
 				}
 			}
 		});
@@ -226,7 +255,7 @@ public class SectionsBuilder {
 			List<File> list = fileChooser.showOpenMultipleDialog(primaryStage);
 			if (list != null) {
 				for (File file : list) {
-					// TODO
+					// TODO Dodać obsługę wielu plików
 				}
 			}
 		});

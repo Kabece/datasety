@@ -19,6 +19,7 @@ public class Main extends Application {
 	private static Logger logger = LogManager.getLogger(Main.class.getName());
 	private TableView<ObservableList<StringProperty>> tableView;
 	private LogicSentence logicSentence;
+	private static Pane rootGroup;
 
 	public static void main(String[] args) {
 		logger.info("Start main");
@@ -32,6 +33,7 @@ public class Main extends Application {
 
 		logicSentence = new LogicSentence();
 		tableView = new TableView<>();
+		rootGroup = new VBox(12);
 
 		logger.info("Finish init");
 	}
@@ -45,10 +47,9 @@ public class Main extends Application {
 			SectionsBuilder sectionsBuilder = new SectionsBuilder();
 
 			final HBox fileInputHBox = sectionsBuilder.createDataInputSection(primaryStage, tableView);
-			final GridPane controlsGridPane = sectionsBuilder.createLogicControlsSection();
+			final GridPane controlsGridPane = sectionsBuilder.createLogicSentenceSection();
 			final GridPane analyzerGridPane = sectionsBuilder.createAnalyzerSection();
 
-			final Pane rootGroup = new VBox(12);
 			rootGroup.setPadding(new Insets(12, 12, 12, 12));
 			rootGroup.getChildren().addAll(fileInputHBox, tableView, controlsGridPane, analyzerGridPane);
 
@@ -63,5 +64,12 @@ public class Main extends Application {
 
 		logger.info("Finish start");
 	}
-
+	
+	/**
+	 * Getter dla g?ównego kontenera komponentów.
+	 * @return g?ówny kontener komponentów.
+	 */
+	public static Pane getRootGroup() {
+		return rootGroup;
+	}
 }
