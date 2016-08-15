@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -215,8 +216,8 @@ public class SectionsBuilder {
 	
 	private void addNextLogicSentenceRow(Text nextRowText) {
 		logger.info("Start addNextLogicSentenceRow");
-		
-		Main.getRootGroup().getChildren().add(currentLogicSentencesRowNumber + 2, createLogicSentenceSection());
+
+		((Pane) Main.getTabs().getTabs().get(Main.getCurrentlySelectedTabIndex()).getContent()).getChildren().add(currentLogicSentencesRowNumber + 2, createLogicSentenceSection());
 		nextRowText.setVisible(false);
 		
 		logger.info("Finish addNextLogicSentenceRow");
@@ -251,12 +252,9 @@ public class SectionsBuilder {
 					DynamicTable dynamicTable = new DynamicTable(tableView, file, FileType.CSV, headerCheckBox.isSelected(),
 							analyzer);
 					dynamicTable.populateTable();
-					for (ObservableList<StringProperty> o : tableView.getItems()) {
-						for (StringProperty s : o) {
-							logger.debug(s);
-						}
-					}
+					Main.getTabs().getTabs().get(Main.getCurrentlySelectedTabIndex()).setText(file.getName().substring(0, Config.MAX_TAB_NAME_LENGHT) + "..");
 				}
+
 				if (fileChooser.getSelectedExtensionFilter().getDescription().equals("JSON Files")) {
 					// TODO Dodać obsługę JSONa
 				}
