@@ -53,7 +53,7 @@ public class Main extends Application {
 			rootGroup.setPadding(new Insets(12, 12, 12, 12));
 			rootGroup.getChildren().addAll(fileInputHBox, tableView, controlsGridPane, analyzerGridPane);
 
-			Scene scene = new Scene(rootGroup, 800, 600);
+			Scene scene = new Scene(rootGroup, 1200, 800);
 			scene.getStylesheets().add(getClass().getResource("/css/application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
@@ -66,8 +66,8 @@ public class Main extends Application {
 	}
 	
 	/**
-	 * Getter dla g?ównego kontenera komponentów.
-	 * @return g?ówny kontener komponentów.
+	 * Getter dla g?ï¿½wnego kontenera komponentï¿½w.
+	 * @return g?ï¿½wny kontener komponentï¿½w.
 	 */
 	public static Pane getRootGroup() {
 		return rootGroup;
