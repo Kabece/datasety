@@ -73,9 +73,9 @@ public class SectionsBuilder {
 		analyzeButton.setOnAction(event -> {
 			resultIndicatorCircle.setFill(Color.DARKGRAY);
 			logger.debug("Process createLogicControlSection, analyzeButton fired!");
-			if (logicSentences.get(currentLogicSentencesRowNumber).isComplete() && analyzer.isReady()) {
+			if (logicSentences.get(currentLogicSentencesRowNumber - 1).isComplete() && analyzer.isReady()) {
 				logger.trace("Process createLogicControlSection, analazyer data = {}", analyzer.getDataMap());
-				if (analyzer.analyze(logicSentences.get(currentLogicSentencesRowNumber))) {
+				if (analyzer.analyzeList(logicSentences)) {
 					resultIndicatorCircle.setFill(Color.FORESTGREEN);
 				} else {
 					resultIndicatorCircle.setFill(Color.MAROON);
