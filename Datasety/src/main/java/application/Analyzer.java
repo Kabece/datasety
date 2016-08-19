@@ -33,6 +33,30 @@ public class Analyzer {
 	}
 
 	/**
+	 * Analizator dla wielu wyrażeń logicznych połączonych
+	 *
+	 * @param logicSentences lista analizowanych zdań.
+	 * @return true jeżeli wyrażenia spełnione, false w przeciwnym wypadku
+	 */
+	public boolean analyzeList(List<LogicSentence> logicSentences) {
+		logger.info("Start analyzeList");
+
+		List<Boolean> outcomes = new ArrayList<>();
+
+		for (LogicSentence logicSentence : logicSentences) {
+			outcomes.add(analyze(logicSentence));
+		}
+		for (int i = 0; i < outcomes.size(); i++) {
+			if (!outcomes.get(i)) {
+				logger.debug("Process analyzeList, returned with false. First false logic sentence = {}", outcomes.get(i));
+				return false;
+			}
+		}
+
+		logger.info("Finish analyzeList");
+		return true;
+	}
+	/**
 	 * Podstawowy analizator wyrażeń
 	 *
 	 * @param logicSentence Analizowane zdanie

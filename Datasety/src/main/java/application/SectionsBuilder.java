@@ -1,25 +1,27 @@
 package application;
 
+import enums.AnalyzerWorkType;
+import enums.FileType;
+import enums.OperatorType;
+import enums.PatternType;
 import javafx.beans.property.StringProperty;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import enums.AnalyzerWorkType;
-import enums.OperatorType;
-import enums.PatternType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import enums.FileType;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -34,12 +36,12 @@ public class SectionsBuilder {
 
 	private static Logger logger = LogManager.getLogger(SectionsBuilder.class.getName());
 	private int currentLogicSentencesRowNumber;
-	private LogicSentence logicSentence;
+	private List<LogicSentence> logicSentences;
 	private Analyzer analyzer;
 
 	public SectionsBuilder() {
 		this.analyzer = new Analyzer();
-		this.logicSentence = new LogicSentence();
+		this.logicSentences = new ArrayList<LogicSentence>();
 		this.currentLogicSentencesRowNumber = 0;
 	}
 
@@ -74,9 +76,9 @@ public class SectionsBuilder {
 		analyzeButton.setOnAction(event -> {
 			resultIndicatorCircle.setFill(Color.DARKGRAY);
 			logger.debug("Process createLogicControlSection, analyzeButton fired!");
-			if (logicSentence.isComplete() && analyzer.isReady()) {
+			if (logicSentences.get(currentLogicSentencesRowNumber - 1).isComplete() && analyzer.isReady()) {
 				logger.trace("Process createLogicControlSection, analazyer data = {}", analyzer.getDataMap());
-				if (analyzer.analyze(logicSentence)) {
+				if (analyzer.analyzeList(logicSentences)) {
 					resultIndicatorCircle.setFill(Color.FORESTGREEN);
 				} else {
 					resultIndicatorCircle.setFill(Color.MAROON);
@@ -112,6 +114,10 @@ public class SectionsBuilder {
 	public GridPane createLogicSentenceSection() {
 		logger.info("Start createLogicSentenceSection");
 
+		logicSentences.add(new LogicSentence());
+		// XD
+		int logicSentenceRowNumberAtTheMomentOfCreationOfThisBlock = currentLogicSentencesRowNumber;
+
 		// Pattern
 		final Label patternLabel = new Label("Wzorzec: ");
 		final ComboBox patternComboBox = new ComboBox();
@@ -119,7 +125,7 @@ public class SectionsBuilder {
 		patternComboBox.setPromptText("Wzorzec");
 		patternComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 			logger.debug("Process createLogicSentenceSection, patternComboBox value has changed from = {} to = {}", oldValue, newValue);
-			logicSentence.setChosenPattern((PatternType) newValue);
+			logicSentences.get(logicSentenceRowNumberAtTheMomentOfCreationOfThisBlock).setChosenPattern((PatternType) newValue);
 		});
 
 		// Variable
@@ -128,17 +134,21 @@ public class SectionsBuilder {
 		variableComboBox.setPromptText("Zmienna");
 		variableComboBox.setOnMouseClicked(event -> {
 			if (variableComboBox.getItems().isEmpty()) {
-				Alert noDataSpecifiedAlert = new Alert(Alert.AlertType.WARNING);
-				noDataSpecifiedAlert.setTitle("Uwaga!");
-				noDataSpecifiedAlert.setHeaderText("Brak wybranych danych!");
-				noDataSpecifiedAlert.setContentText("Wybierz poprawny z plik z danymi i poczekaj aż się załaduje.");
-				noDataSpecifiedAlert.showAndWait();
+				if (LogicSentence.getVariableList().isEmpty()) {
+					Alert noDataSpecifiedAlert = new Alert(Alert.AlertType.WARNING);
+					noDataSpecifiedAlert.setTitle("Uwaga!");
+					noDataSpecifiedAlert.setHeaderText("Brak wybranych danych!");
+					noDataSpecifiedAlert.setContentText("Wybierz poprawny z plik z danymi i poczekaj aż się załaduje.");
+					noDataSpecifiedAlert.showAndWait();
+				} else {
+					variableComboBox.getItems().setAll(LogicSentence.getVariableList());
+				}
 			}
 		});
 		variableComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 			logger.debug("Process createLogicSentenceSection, variableComboBox value has changed from = {} to = {}",
 					oldValue, newValue);
-			logicSentence.setChosenVariable((String) newValue);
+			logicSentences.get(logicSentenceRowNumberAtTheMomentOfCreationOfThisBlock).setChosenVariable((String) newValue);
 		});
 		LogicSentence.getVariableList().addListener((ListChangeListener<String>) c -> {
 			logger.debug("Process createLogicSentenceSection, variableList changed");
@@ -154,7 +164,7 @@ public class SectionsBuilder {
 		operatorComboBox.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> {
 			logger.debug("Process createLogicSentenceSection, operatorComboBox value has changed from = {} to = {}",
 					oldValue, newValue);
-			logicSentence.setChosenOperator((OperatorType) newValue);
+			logicSentences.get(logicSentenceRowNumberAtTheMomentOfCreationOfThisBlock).setChosenOperator((OperatorType) newValue);
 		}));
 
 		// Value
@@ -164,9 +174,10 @@ public class SectionsBuilder {
 		valueTextField.focusedProperty().addListener((observable, oldValue, newValue) -> {
 			logger.debug("Process createLogicSentenceSection, valueTextField value has been entered: {}",
 					valueTextField.textProperty().getValueSafe());
-			logicSentence.setChosenValue(valueTextField.textProperty().getValueSafe());
+			logicSentences.get(logicSentenceRowNumberAtTheMomentOfCreationOfThisBlock).setChosenValue(valueTextField.textProperty().getValueSafe());
 		});
-		
+
+
 		// Next Row
 		final Text nextRowText = new Text("Dodaj kolejne zdanie");
 		nextRowText.setFill(Color.CORNFLOWERBLUE);
@@ -174,12 +185,16 @@ public class SectionsBuilder {
 			logger.debug("Process createLogicSentenceSection, nextRowText clicked! currentLogicSentencesRowsNumber={}", currentLogicSentencesRowNumber);
 			if (currentLogicSentencesRowNumber < Config.MAX_LOGIC_SENTENCES_ROWS) {
 				addNextLogicSentenceRow(nextRowText);
-				
-				if (currentLogicSentencesRowNumber + 1 == Config.MAX_LOGIC_SENTENCES_ROWS) {
+
+				if (currentLogicSentencesRowNumber == Config.MAX_LOGIC_SENTENCES_ROWS) {
 					nextRowText.setVisible(false);
 				}
 			}
 		});
+		currentLogicSentencesRowNumber++;
+		if (currentLogicSentencesRowNumber == Config.MAX_LOGIC_SENTENCES_ROWS) {
+			nextRowText.setVisible(false);
+		}
 
 		final GridPane controlsGridPane = new GridPane();
 		controlsGridPane.setHgap(3);
@@ -197,15 +212,14 @@ public class SectionsBuilder {
 				.addAll(patternLabel, patternComboBox, variableLabel, variableComboBox, operatorLabel, operatorComboBox,
 						valueLabel, valueTextField, nextRowText);
 
-		currentLogicSentencesRowNumber++;
 		logger.info("Finish createLogicSentenceSection");
 		return controlsGridPane;
 	}
 	
 	private void addNextLogicSentenceRow(Text nextRowText) {
 		logger.info("Start addNextLogicSentenceRow");
-		
-		Main.getRootGroup().getChildren().add(currentLogicSentencesRowNumber + 1, createLogicSentenceSection());
+
+		((Pane) Main.getTabs().getTabs().get(Main.getCurrentlySelectedTabIndex()).getContent()).getChildren().add(currentLogicSentencesRowNumber + 2, createLogicSentenceSection());
 		nextRowText.setVisible(false);
 		
 		logger.info("Finish addNextLogicSentenceRow");
@@ -240,12 +254,9 @@ public class SectionsBuilder {
 					DynamicTable dynamicTable = new DynamicTable(tableView, file, FileType.CSV, headerCheckBox.isSelected(),
 							analyzer);
 					dynamicTable.populateTable();
-					for (ObservableList<StringProperty> o : tableView.getItems()) {
-						for (StringProperty s : o) {
-							logger.debug(s);
-						}
-					}
+					Main.getTabs().getTabs().get(Main.getCurrentlySelectedTabIndex()).setText(file.getName().substring(0, Config.MAX_TAB_NAME_LENGHT) + "..");
 				}
+
 				if (fileChooser.getSelectedExtensionFilter().getDescription().equals("JSON Files")) {
 					// TODO Dodać obsługę JSONa
 				}
