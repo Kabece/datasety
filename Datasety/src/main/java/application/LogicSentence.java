@@ -7,7 +7,9 @@ import enums.PatternType;
 
 /**
  * Created by kczurylo on 2016-08-09.
- * Przedstawia jedno logiczne zdanie
+ * <p>
+ *    Przedstawia jedno logiczne zdanie.
+ * </p>
  */
 @SuppressWarnings("WeakerAccess")
 public class LogicSentence {

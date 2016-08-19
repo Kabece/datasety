@@ -24,7 +24,9 @@ import java.util.List;
 
 /**
  * Created by kczurylo on 2016-08-09.
- * Klasa pomocnicza, służąca do tworzenia komponentów widoku
+ * <p>
+ *    Klasa pomocnicza, służąca do tworzenia komponentów widoku.
+ * </p>
  */
 @SuppressWarnings({ "unchecked", "WeakerAccess" })
 // TODO Podzielić to jeszcze bardziej - na inicjalizację, dodawanie listenerów itd.

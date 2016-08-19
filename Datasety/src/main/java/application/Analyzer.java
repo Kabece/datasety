@@ -11,7 +11,9 @@ import java.util.Map;
 
 /**
  * Created by kczurylo on 2016-08-10.
- * Klasa zajmująca się analizowaniem danych pod względem zadanej logiki
+ * <p>
+ *    Klasa zajmująca się analizowaniem danych pod względem zadanej logiki.
+ * </p>
  */
 @SuppressWarnings("WeakerAccess")
 public class Analyzer {

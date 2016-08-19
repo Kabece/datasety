@@ -19,7 +19,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 
 /**
- * Klasa zajmująca się tworzeniem widoku danych w postaci tabeli
+ * Klasa zajmująca się tworzeniem widoku danych w postaci tabeli.
  */
 @SuppressWarnings("WeakerAccess")
 public class DynamicTable {

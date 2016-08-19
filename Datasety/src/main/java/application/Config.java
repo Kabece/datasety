@@ -2,7 +2,9 @@ package application;
 
 /**
  * Created by kczurylo on 2016-08-12.
- * Klasa ze stałymi konfiguracyjnymi
+ * <p>
+ *    Stałe konfiguracyjne.
+ * </p>
  */
 public class Config {
 	
