@@ -2,9 +2,11 @@ package enums;
 
 /**
  * Created by kczurylo on 2016-08-10.
- * Typ pracy analizatora
- * CHECK - Tylko sprawdzanie poprawności wyrażenia
- * SHOW - Pokazanie elementów pasujących do wzorca
+ * <p>
+ *    Tryb pracy analizatora:                            <br />
+ *    CHECK - Tylko sprawdzanie poprawności wyrażenia.   <br />
+ *    SHOW - Pokazanie elementów pasujących do wzorca.   <br />
+ * </p>
  */
 public enum AnalyzerWorkType {
 	CHECK, SHOW
