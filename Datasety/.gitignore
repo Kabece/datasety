@@ -14,7 +14,7 @@ hs_err_pid*
 .metadata
 .project
 
-.idea/*
+*/.idea/*
 
 *.iml
 
