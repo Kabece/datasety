@@ -15,8 +15,8 @@ hs_err_pid*
 .project
 
 */.idea/*
-../.idea/*
-../.idea/
+.idea/*
+.idea/
 
 *.iml
 
