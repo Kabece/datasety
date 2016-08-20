@@ -1,5 +1,8 @@
 package application;
 
+import application.implementations.analyzer.CheckAnalyzer;
+import application.implementations.analyzer.ShowAnalyzer;
+import application.interfaces.analyzer.Analyzer;
 import enums.AnalyzerWorkType;
 import enums.FileType;
 import enums.OperatorType;
@@ -24,6 +27,9 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import static enums.AnalyzerWorkType.CHECK;
+import static enums.AnalyzerWorkType.SHOW;
+
 /**
  * Created by kczurylo on 2016-08-09.
  * <p>
@@ -35,12 +41,12 @@ import java.util.List;
 public class SectionsBuilder {
 
 	private static Logger logger = LogManager.getLogger(SectionsBuilder.class.getName());
+
 	private int currentLogicSentencesRowNumber;
 	private List<LogicSentence> logicSentences;
 	private Analyzer analyzer;
 
 	public SectionsBuilder() {
-		this.analyzer = new Analyzer();
 		this.logicSentences = new ArrayList<LogicSentence>();
 		this.currentLogicSentencesRowNumber = 0;
 	}
@@ -56,12 +62,30 @@ public class SectionsBuilder {
 		// Analyzer Work Type
 		final Label analyzerWorkTypeLabel = new Label("Tryb pracy analizatora:");
 		final ComboBox analyzerWorkTypeComboBox = new ComboBox();
-		analyzerWorkTypeComboBox.getItems().setAll(AnalyzerWorkType.values());
-		analyzerWorkTypeComboBox.getSelectionModel().selectedItemProperty()
+
+        // FIXME: fajnie byloby wrzucic wszystkie pola jakas metodka zmiast wymieniac
+        analyzerWorkTypeComboBox.getItems().setAll(AnalyzerWorkType.CHECK, AnalyzerWorkType.SHOW);
+
+        // FIXME: nie koniecznie fixme, ale tu sie ustawia domyslny tryb analizatora
+        analyzerWorkTypeComboBox.setValue(AnalyzerWorkType.CHECK);
+        analyzer = new CheckAnalyzer();
+
+        analyzerWorkTypeComboBox.getSelectionModel().selectedItemProperty()
 				.addListener((observable, oldValue, newValue) -> {
 					logger.debug("Process createLogicControlSection, analyzerWorkTypeComboBox has changed from = {} to = {}",
 							oldValue, newValue);
-					analyzer.setAnalyzerWorkType((AnalyzerWorkType) newValue);
+
+					switch(oldValue.toString()) { 
+						case CHECK:
+							analyzer = new CheckAnalyzer();
+							break;
+						case SHOW:
+							analyzer = new ShowAnalyzer();
+                            break;
+						default:
+                            logger.error("Something gone terribly wrong and non-existing analyzer mode was chosen!");
+					}
+
 				});
 
 		// Result Indicator
@@ -77,12 +101,16 @@ public class SectionsBuilder {
 			resultIndicatorCircle.setFill(Color.DARKGRAY);
 			logger.debug("Process createLogicControlSection, analyzeButton fired!");
 			if (logicSentences.get(currentLogicSentencesRowNumber - 1).isComplete() && analyzer.isReady()) {
-				logger.trace("Process createLogicControlSection, analazyer data = {}", analyzer.getDataMap());
-				if (analyzer.analyzeList(logicSentences)) {
+				logger.trace("Process createLogicControlSection, analyzer data = {}", analyzer.getDataMap());
+
+                analyzer.setLogicSentences(logicSentences);
+
+				if (analyzer.analyzeList()) {
 					resultIndicatorCircle.setFill(Color.FORESTGREEN);
 				} else {
 					resultIndicatorCircle.setFill(Color.MAROON);
 				}
+
 			} else {
 				Alert analyzingNotReadyAlert = new Alert(Alert.AlertType.WARNING);
 				analyzingNotReadyAlert.setTitle("Uwaga!");

@@ -8,6 +8,8 @@ package enums;
  *    SHOW - Pokazanie elementów pasujących do wzorca.   <br />
  * </p>
  */
-public enum AnalyzerWorkType {
-	CHECK, SHOW
+public interface AnalyzerWorkType {
+    String SHOW = "SHOW";
+    String CHECK = "CHECK";
+
 }

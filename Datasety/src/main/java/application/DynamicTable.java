@@ -1,5 +1,6 @@
 package application;
 
+import application.interfaces.analyzer.Analyzer;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -41,7 +42,7 @@ public class DynamicTable {
 	 * @param analyzer Komponent analizujący dane w kontekście wyrażeń
 	 */
 	public DynamicTable(final TableView<ObservableList<StringProperty>> table, final File file, final FileType fileType,
-			final boolean hasHeader, Analyzer analyzer) {
+			final boolean hasHeader, application.interfaces.analyzer.Analyzer analyzer) {
 		this.table = table;
 		this.file = file;
 		this.fileType = fileType;
