@@ -7,6 +7,9 @@ import java.util.Map;
 
 /**
  * Created by pawel on 19.08.2016.
+ * <p>
+ *     Implementacja wzorca możliwość (gwarantowalność)
+ * </p>
  */
 public class Existence extends Checker{
 

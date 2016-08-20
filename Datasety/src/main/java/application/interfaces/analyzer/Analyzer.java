@@ -17,7 +17,9 @@ import java.util.Map;
 
 /**
  * Created by pawel on 19.08.2016.
- *
+ * <p>
+ *     Interfejs zajmujący się analizą zbioru danych na podstawie zadanych formuł logicznych.
+ * </p>
  */
 public abstract class Analyzer {
 
@@ -34,6 +36,11 @@ public abstract class Analyzer {
     }
 
     //TODO: tymczasowo bo nie wiem czym różnią się tryby analizera -> info w implementacjach
+
+    /**
+     * Funkcja analizująca zbiór danych pod kątem występowania listy wzorców określonych w GUI aplikacji.
+     * @return boolean True jeżeli wszystkie wybrane wzorce występują w zbiorze danych, false jeżeli przynajmniej jeden nie występuje.
+     */
     public boolean analyzeList() {
         logger.info("Starting analysing list of logic sentences ... ");
 
