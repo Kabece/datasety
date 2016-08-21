@@ -302,6 +302,7 @@ public class SectionsBuilder {
 		final Button openButton = new Button("Otwórz plik");
 		final Button openMultipleButton = new Button("Otwórz wiele plików");
 		final CheckBox headerCheckBox = new CheckBox("Dane mają nagłówek");
+
 		headerCheckBox.setSelected(true);
 
 		openButton.setOnAction(e -> {
@@ -336,8 +337,17 @@ public class SectionsBuilder {
 			}
 		});
 
-		final HBox fileInputHBox = new HBox(3);
-		fileInputHBox.getChildren().addAll(openButton, openMultipleButton, headerCheckBox);
+		//TODO: do testów, wyrzucić w wersji do oddania
+		final Button loadTestData = new Button("Załaduj dane testowe");
+		loadTestData.setOnAction(click -> {
+			DynamicTable dynamicTable = new DynamicTable(tableView, new File(getClass().getClassLoader().getResource("TestData.csv").getFile()), FileType.CSV, headerCheckBox.isSelected(),
+					analyzer);
+			dynamicTable.populateTable();
+			Main.getTabs().getTabs().get(Main.getCurrentlySelectedTabIndex()).setText("TestData");
+		});
+
+		final HBox fileInputHBox = new HBox(4);
+		fileInputHBox.getChildren().addAll(openButton, openMultipleButton, headerCheckBox, loadTestData);
 		HBox.setHgrow(fileInputHBox, Priority.NEVER);
 
 		logger.info("Finish createDataInputSection");
