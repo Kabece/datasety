@@ -7,25 +7,23 @@ import enums.AnalyzerWorkType;
 import enums.FileType;
 import enums.OperatorType;
 import enums.PatternType;
+import javafx.beans.binding.BooleanBinding;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.Priority;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import static enums.AnalyzerWorkType.CHECK;
 import static enums.AnalyzerWorkType.SHOW;
@@ -42,13 +40,13 @@ public class SectionsBuilder {
 
 	private static Logger logger = LogManager.getLogger(SectionsBuilder.class.getName());
 
-	private int currentLogicSentencesRowNumber;
-	private List<LogicSentence> logicSentences;
+	private IntegerProperty currentLogicSentencesRowNumber;
+	private Map<String,LogicSentence> logicSentencesMap;
 	private Analyzer analyzer;
 
 	public SectionsBuilder() {
-		this.logicSentences = new ArrayList<LogicSentence>();
-		this.currentLogicSentencesRowNumber = 0;
+		this.logicSentencesMap = new HashMap<>();
+		this.currentLogicSentencesRowNumber = new SimpleIntegerProperty(0);
 	}
 
 	/**
@@ -96,14 +94,28 @@ public class SectionsBuilder {
 
 		// Analyzer
 		final Button analyzeButton = new Button("Analizuj");
+
+
+		analyzeButton.disableProperty().bind(new BooleanBinding(){
+			{
+				bind(currentLogicSentencesRowNumber);
+			}
+
+			@Override
+			protected boolean computeValue() {
+				return currentLogicSentencesRowNumber.get() < 1;
+			}
+		});
+
 		analyzeButton.setDefaultButton(true);
+
 		analyzeButton.setOnAction(event -> {
 			resultIndicatorCircle.setFill(Color.DARKGRAY);
 			logger.debug("Process createLogicControlSection, analyzeButton fired!");
-			if (logicSentences.get(currentLogicSentencesRowNumber - 1).isComplete() && analyzer.isReady()) {
+			if (checkIfLogicSentencesAreComplete() && analyzer.isReady()) {
 				logger.trace("Process createLogicControlSection, analyzer data = {}", analyzer.getDataMap());
 
-                analyzer.setLogicSentences(logicSentences);
+                analyzer.setLogicSentences(logicSentencesMap);
 
 				if (analyzer.analyzeList()) {
 					resultIndicatorCircle.setFill(Color.FORESTGREEN);
@@ -130,8 +142,39 @@ public class SectionsBuilder {
 		GridPane.setConstraints(resultIndicatorCircle, 0, 4);
 		analyzerGridPane.getChildren().addAll(analyzerWorkTypeLabel, analyzerWorkTypeComboBox, analyzeButton, resultIndicatorLabel, resultIndicatorCircle);
 
-		logger.info("Finish createAnallyzerSection");
+		logger.info("Finish createAnalyzerSection");
 		return analyzerGridPane;
+	}
+
+	public GridPane initializeLogicSentenceSection() {
+		logger.info("Initializing logic sentence section.");
+
+		final Button nextRowButton = new Button("Dodaj kolejne zdanie");
+		nextRowButton.setOnMouseClicked(event -> {
+			logger.debug("Process createLogicSentenceSection, nextRowButton clicked! currentLogicSentencesRowsNumber={}", currentLogicSentencesRowNumber);
+			if (currentLogicSentencesRowNumber.get() < Config.MAX_LOGIC_SENTENCES_ROWS) {
+				addNextLogicSentenceRow();
+			}
+		});
+
+		nextRowButton.disableProperty().bind(new BooleanBinding() {
+			{
+				bind(currentLogicSentencesRowNumber);
+			}
+			@Override
+			protected boolean computeValue() {
+				return currentLogicSentencesRowNumber.get() >= Config.MAX_LOGIC_SENTENCES_ROWS;
+			}
+		});
+
+		final GridPane controlsGridPane = new GridPane();
+		controlsGridPane.setHgap(3);
+		controlsGridPane.setVgap(3);
+		GridPane.setConstraints(nextRowButton, 0, 2);
+		controlsGridPane.getChildren()
+				.addAll(nextRowButton);
+		logger.info("Logic sentence section initialized sucessfully!");
+		return controlsGridPane;
 	}
 
 	/**
@@ -141,10 +184,8 @@ public class SectionsBuilder {
 	 */
 	public GridPane createLogicSentenceSection() {
 		logger.info("Start createLogicSentenceSection");
-
-		logicSentences.add(new LogicSentence());
-		// XD
-		int logicSentenceRowNumberAtTheMomentOfCreationOfThisBlock = currentLogicSentencesRowNumber;
+		String logicSentenceId = UUID.randomUUID().toString();
+		logicSentencesMap.put(logicSentenceId, new LogicSentence());
 
 		// Pattern
 		final Label patternLabel = new Label("Wzorzec: ");
@@ -153,7 +194,7 @@ public class SectionsBuilder {
 		patternComboBox.setPromptText("Wzorzec");
 		patternComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 			logger.debug("Process createLogicSentenceSection, patternComboBox value has changed from = {} to = {}", oldValue, newValue);
-			logicSentences.get(logicSentenceRowNumberAtTheMomentOfCreationOfThisBlock).setChosenPattern((PatternType) newValue);
+			logicSentencesMap.get(logicSentenceId).setChosenPattern((PatternType) newValue);
 		});
 
 		// Variable
@@ -176,7 +217,7 @@ public class SectionsBuilder {
 		variableComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 			logger.debug("Process createLogicSentenceSection, variableComboBox value has changed from = {} to = {}",
 					oldValue, newValue);
-			logicSentences.get(logicSentenceRowNumberAtTheMomentOfCreationOfThisBlock).setChosenVariable((String) newValue);
+			logicSentencesMap.get(logicSentenceId).setChosenVariable((String) newValue);
 		});
 		LogicSentence.getVariableList().addListener((ListChangeListener<String>) c -> {
 			logger.debug("Process createLogicSentenceSection, variableList changed");
@@ -192,7 +233,7 @@ public class SectionsBuilder {
 		operatorComboBox.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> {
 			logger.debug("Process createLogicSentenceSection, operatorComboBox value has changed from = {} to = {}",
 					oldValue, newValue);
-			logicSentences.get(logicSentenceRowNumberAtTheMomentOfCreationOfThisBlock).setChosenOperator((OperatorType) newValue);
+			logicSentencesMap.get(logicSentenceId).setChosenOperator((OperatorType) newValue);
 		}));
 
 		// Value
@@ -202,27 +243,22 @@ public class SectionsBuilder {
 		valueTextField.focusedProperty().addListener((observable, oldValue, newValue) -> {
 			logger.debug("Process createLogicSentenceSection, valueTextField value has been entered: {}",
 					valueTextField.textProperty().getValueSafe());
-			logicSentences.get(logicSentenceRowNumberAtTheMomentOfCreationOfThisBlock).setChosenValue(valueTextField.textProperty().getValueSafe());
+			logicSentencesMap.get(logicSentenceId).setChosenValue(valueTextField.textProperty().getValueSafe());
 		});
 
+		Button removeSection = new Button();
+		removeSection.setText("Usuń zdanie");
+		removeSection.setVisible(true);
+		removeSection.setOnMouseClicked(event -> {
+			logger.info("Removing logic sentence {}...", logicSentenceId);
 
-		// Next Row
-		final Text nextRowText = new Text("Dodaj kolejne zdanie");
-		nextRowText.setFill(Color.CORNFLOWERBLUE);
-		nextRowText.setOnMouseClicked(event -> {
-			logger.debug("Process createLogicSentenceSection, nextRowText clicked! currentLogicSentencesRowsNumber={}", currentLogicSentencesRowNumber);
-			if (currentLogicSentencesRowNumber < Config.MAX_LOGIC_SENTENCES_ROWS) {
-				addNextLogicSentenceRow(nextRowText);
+			VBox group = (VBox) removeSection.getParent().getParent();
+			group.getChildren().remove(removeSection.getParent());
+			logicSentencesMap.remove(removeSection.getParent().getId());
+			currentLogicSentencesRowNumber.set(currentLogicSentencesRowNumber.get() -1);
 
-				if (currentLogicSentencesRowNumber == Config.MAX_LOGIC_SENTENCES_ROWS) {
-					nextRowText.setVisible(false);
-				}
-			}
+			logger.info("Successfully removed logic sentence! {}", logicSentenceId);
 		});
-		currentLogicSentencesRowNumber++;
-		if (currentLogicSentencesRowNumber == Config.MAX_LOGIC_SENTENCES_ROWS) {
-			nextRowText.setVisible(false);
-		}
 
 		final GridPane controlsGridPane = new GridPane();
 		controlsGridPane.setHgap(3);
@@ -235,24 +271,23 @@ public class SectionsBuilder {
 		GridPane.setConstraints(operatorComboBox, 2, 1);
 		GridPane.setConstraints(valueLabel, 3, 0);
 		GridPane.setConstraints(valueTextField, 3, 1);
-		GridPane.setConstraints(nextRowText, 0, 2);
+		GridPane.setConstraints(removeSection,5,1);
 		controlsGridPane.getChildren()
 				.addAll(patternLabel, patternComboBox, variableLabel, variableComboBox, operatorLabel, operatorComboBox,
-						valueLabel, valueTextField, nextRowText);
-
+						valueLabel, valueTextField, removeSection);
+		controlsGridPane.setId(logicSentenceId);
 		logger.info("Finish createLogicSentenceSection");
 		return controlsGridPane;
 	}
-	
-	private void addNextLogicSentenceRow(Text nextRowText) {
+
+	private void addNextLogicSentenceRow() {
 		logger.info("Start addNextLogicSentenceRow");
 
-		((Pane) Main.getTabs().getTabs().get(Main.getCurrentlySelectedTabIndex()).getContent()).getChildren().add(currentLogicSentencesRowNumber + 2, createLogicSentenceSection());
-		nextRowText.setVisible(false);
-		
+		((Pane) Main.getTabs().getTabs().get(Main.getCurrentlySelectedTabIndex()).getContent()).getChildren().add(currentLogicSentencesRowNumber.get() + 2, createLogicSentenceSection());
+		currentLogicSentencesRowNumber.set(currentLogicSentencesRowNumber.get() + 1);
 		logger.info("Finish addNextLogicSentenceRow");
 	}
-	
+
 	/**
 	 * Tworzy komponenty odpowiedzialne za wybór pliku.
 	 *
@@ -301,11 +336,26 @@ public class SectionsBuilder {
 			}
 		});
 
-		final HBox fileInputHBox = new HBox(3); // spacing = 3
+		final HBox fileInputHBox = new HBox(3);
 		fileInputHBox.getChildren().addAll(openButton, openMultipleButton, headerCheckBox);
 		HBox.setHgrow(fileInputHBox, Priority.NEVER);
 
 		logger.info("Finish createDataInputSection");
 		return fileInputHBox;
+	}
+
+	/**
+	 * Metoda pomocnicza, sprawdzająca czy wszystkie zdania zdefiniowane w GUI są poprawne(kompletne)
+	 * @return boolean true jeżeli wszystkie zdania sa zdefiniowane poprawnie, false w przeciwnym wypadku
+	 */
+	private boolean checkIfLogicSentencesAreComplete() {
+		Iterator iterator = logicSentencesMap.entrySet().iterator();
+		while(iterator.hasNext()) {
+			Map.Entry hashMapElement = (Map.Entry) iterator.next();
+			if (!((LogicSentence)hashMapElement.getValue()).isComplete()) {
+				return false;
+			}
+		}
+		return true;
 	}
 }

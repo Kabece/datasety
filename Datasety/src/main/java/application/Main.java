@@ -53,7 +53,7 @@ public class Main extends Application {
 		logger.info("Start start");
 
 		try {
-			primaryStage.setTitle("HorseApp");
+			primaryStage.setTitle("Dataset analyzer");
 
 			final AnchorPane root = new AnchorPane();
 			final Button addNewTabButton = new Button("+");
@@ -135,7 +135,7 @@ public class Main extends Application {
 		int lastTab = tabsContent.size() - 1;
 
 		final HBox fileInputHBox = sectionsBuilder.createDataInputSection(primaryStage, tableViews.get(lastTableView));
-		final GridPane controlsGridPane = sectionsBuilder.createLogicSentenceSection();
+		final GridPane controlsGridPane = sectionsBuilder.initializeLogicSentenceSection();
 		final GridPane analyzerGridPane = sectionsBuilder.createAnalyzerSection();
 
 		tabsContent.get(lastTab).setPadding(new Insets(12, 12, 12, 12));

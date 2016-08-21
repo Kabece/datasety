@@ -10,10 +10,7 @@ import enums.PatternType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by pawel on 19.08.2016.
@@ -26,7 +23,7 @@ public abstract class Analyzer {
     public Logger logger = LogManager.getLogger(Analyzer.class.getName());
 
     private Checker checker;
-    private List<LogicSentence> logicSentences;
+    private Map<String,LogicSentence> logicSentences;
     private Map<String, ArrayList<String>> dataMap;
     private List<String> dataHeaders;
 
@@ -45,9 +42,13 @@ public abstract class Analyzer {
         logger.info("Starting analysing list of logic sentences ... ");
 
         List<Boolean> outcomes = new ArrayList<>();
+        Iterator iterator = logicSentences.entrySet().iterator();
 
-        for (LogicSentence logicSentence : logicSentences) {
-           switch(logicSentence.getChosenPattern()) {
+
+        while(iterator.hasNext()) {
+           Map.Entry hashMapElement = (Map.Entry) iterator.next();
+
+           switch(((LogicSentence)hashMapElement.getValue()).getChosenPattern()) {
                case ABSENCE:
                    checker = new Absence();
                    break;
@@ -64,7 +65,7 @@ public abstract class Analyzer {
                     logger.error("Something gone bad and none of checker was chosen!");
 
            }
-           checker.setLogicSentence(logicSentence);
+           checker.setLogicSentence((LogicSentence)hashMapElement.getValue());
            outcomes.add(checker.checkPattern(dataMap));
         }
 
@@ -93,7 +94,11 @@ public abstract class Analyzer {
         this.checker = checker;
     }
 
-    public void setLogicSentences(List<LogicSentence> logicSentences) {
+    public Map<String, LogicSentence> getLogicSentences() {
+        return logicSentences;
+    }
+
+    public void setLogicSentences(Map<String, LogicSentence> logicSentences) {
         this.logicSentences = logicSentences;
     }
 
