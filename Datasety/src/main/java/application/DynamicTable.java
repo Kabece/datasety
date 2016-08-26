@@ -32,6 +32,7 @@ public class DynamicTable {
 	private FileType fileType;
 	private boolean hasHeader;
 	private Analyzer analyzer;
+	private static SectionsBuilder currentSectionBuilder;
 
 	/**
 	 * Podstawowy konstruktor
@@ -102,7 +103,8 @@ public class DynamicTable {
 							analyzer.getDataMap().put(headerValues[column], new ArrayList<>());
 							analyzer.getDataHeaders().add(headerValues[column]);
 						}
-						LogicSentence.getVariableList().addAll(headerValues);
+						currentSectionBuilder.setDataVariables(headerValues);
+
 					});
 				}
 
@@ -165,5 +167,9 @@ public class DynamicTable {
 		});
 
 		return column;
+	}
+
+	public static void setCurrentSectionBuilder(SectionsBuilder currentSectionBuilder) {
+		DynamicTable.currentSectionBuilder = currentSectionBuilder;
 	}
 }

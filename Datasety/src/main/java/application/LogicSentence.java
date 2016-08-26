@@ -14,12 +14,16 @@ import enums.PatternType;
 @SuppressWarnings("WeakerAccess")
 public class LogicSentence {
 
-	private static ObservableList<String> variableList = FXCollections.observableArrayList();
+	private ObservableList<String> variableList = FXCollections.observableArrayList();
 
 	private PatternType chosenPattern;
 	private OperatorType chosenOperator;
 	private String chosenVariable;
 	private String chosenValue;
+
+	public LogicSentence(ObservableList<String> variables) {
+		variableList = variables;
+	}
 
 	/**
 	 * Sprawdza czy zdanie logiczne jest kompletne
@@ -33,7 +37,7 @@ public class LogicSentence {
 		}
 	}
 
-	public static ObservableList<String> getVariableList() {
+	public  ObservableList<String> getVariableList() {
 		return variableList;
 	}
 

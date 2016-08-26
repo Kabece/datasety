@@ -11,6 +11,7 @@ import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
@@ -43,6 +44,7 @@ public class SectionsBuilder {
 	private IntegerProperty currentLogicSentencesRowNumber;
 	private Map<String,LogicSentence> logicSentencesMap;
 	private Analyzer analyzer;
+	private String[] dataVariables;
 
 	public SectionsBuilder() {
 		this.logicSentencesMap = new HashMap<>();
@@ -185,7 +187,10 @@ public class SectionsBuilder {
 	public GridPane createLogicSentenceSection() {
 		logger.info("Start createLogicSentenceSection");
 		String logicSentenceId = UUID.randomUUID().toString();
-		logicSentencesMap.put(logicSentenceId, new LogicSentence());
+		ObservableList<String> observableList = FXCollections.observableArrayList();
+		observableList.addAll(dataVariables);
+		LogicSentence sentence = new LogicSentence(observableList);
+		logicSentencesMap.put(logicSentenceId, sentence);
 
 		// Pattern
 		final Label patternLabel = new Label("Wzorzec: ");
@@ -200,14 +205,14 @@ public class SectionsBuilder {
 		variableComboBox.setPromptText("Zmienna");
 		variableComboBox.setOnMouseClicked(event -> {
 			if (variableComboBox.getItems().isEmpty()) {
-				if (LogicSentence.getVariableList().isEmpty()) {
+				if (sentence.getVariableList().isEmpty()) {
 					Alert noDataSpecifiedAlert = new Alert(Alert.AlertType.WARNING);
 					noDataSpecifiedAlert.setTitle("Uwaga!");
 					noDataSpecifiedAlert.setHeaderText("Brak wybranych danych!");
 					noDataSpecifiedAlert.setContentText("Wybierz poprawny z plik z danymi i poczekaj aż się załaduje.");
 					noDataSpecifiedAlert.showAndWait();
 				} else {
-					variableComboBox.getItems().setAll(LogicSentence.getVariableList());
+					variableComboBox.getItems().setAll(sentence.getVariableList());
 				}
 			}
 		});
@@ -216,10 +221,10 @@ public class SectionsBuilder {
 					oldValue, newValue);
 			logicSentencesMap.get(logicSentenceId).setChosenVariable((String) newValue);
 		});
-		LogicSentence.getVariableList().addListener((ListChangeListener<String>) c -> {
+		sentence.getVariableList().addListener((ListChangeListener<String>) c -> {
 			logger.debug("Process createLogicSentenceSection, variableList changed");
 			// TODO Dodać sprawdzanie czy nie null / może optional?
-			variableComboBox.getItems().setAll(LogicSentence.getVariableList());
+			variableComboBox.getItems().setAll(sentence.getVariableList());
 		});
 
 		// Operator
@@ -265,14 +270,14 @@ public class SectionsBuilder {
 		secondVariableComboBox.setPromptText("Zmienna 2");
 		secondVariableComboBox.setOnMouseClicked(event -> {
 			if (secondVariableComboBox.getItems().isEmpty()) {
-				if (LogicSentence.getVariableList().isEmpty()) {
+				if (sentence.getVariableList().isEmpty()) {
 					Alert noDataSpecifiedAlert = new Alert(Alert.AlertType.WARNING);
 					noDataSpecifiedAlert.setTitle("Uwaga!");
 					noDataSpecifiedAlert.setHeaderText("Brak wybranych danych!");
 					noDataSpecifiedAlert.setContentText("Wybierz poprawny z plik z danymi i poczekaj aż się załaduje.");
 					noDataSpecifiedAlert.showAndWait();
 				} else {
-					secondVariableComboBox.getItems().setAll(LogicSentence.getVariableList());
+					secondVariableComboBox.getItems().setAll(sentence.getVariableList());
 				}
 			}
 		});
@@ -281,10 +286,10 @@ public class SectionsBuilder {
 					oldValue, newValue);
 			logicSentencesMap.get(logicSentenceId).setChosenVariable((String) newValue);
 		});
-		LogicSentence.getVariableList().addListener((ListChangeListener<String>) c -> {
+		sentence.getVariableList().addListener((ListChangeListener<String>) c -> {
 			logger.debug("Process createLogicSentenceSection, variableList changed");
 			// TODO Dodać sprawdzanie czy nie null / może optional?
-			secondVariableComboBox.getItems().setAll(LogicSentence.getVariableList());
+			secondVariableComboBox.getItems().setAll(sentence.getVariableList());
 		});
 
 		// Value
@@ -402,10 +407,14 @@ public class SectionsBuilder {
 			File file = fileChooser.showOpenDialog(primaryStage);
 			if (file != null) {
 				if (fileChooser.getSelectedExtensionFilter().getDescription().equals("CSV Files")) {
+
 					DynamicTable dynamicTable = new DynamicTable(tableView, file, FileType.CSV, headerCheckBox.isSelected(),
 							analyzer);
+					dynamicTable.setCurrentSectionBuilder(this);
 					dynamicTable.populateTable();
+
 					Main.getTabs().getTabs().get(Main.getCurrentlySelectedTabIndex()).setText(file.getName().substring(0, Config.MAX_TAB_NAME_LENGHT) + "..");
+					//dataVariables = dynamicTable.getDataVariables();
 				}
 
 				if (fileChooser.getSelectedExtensionFilter().getDescription().equals("JSON Files")) {
@@ -429,6 +438,7 @@ public class SectionsBuilder {
 		loadTestData.setOnAction(click -> {
 			DynamicTable dynamicTable = new DynamicTable(tableView, new File(getClass().getClassLoader().getResource("TestData.csv").getFile()), FileType.CSV, headerCheckBox.isSelected(),
 					analyzer);
+			dynamicTable.setCurrentSectionBuilder(this);
 			dynamicTable.populateTable();
 			Main.getTabs().getTabs().get(Main.getCurrentlySelectedTabIndex()).setText("TestData");
 
@@ -455,5 +465,9 @@ public class SectionsBuilder {
 			}
 		}
 		return true;
+	}
+
+	public void setDataVariables(String[] dataVariables) {
+		this.dataVariables = dataVariables;
 	}
 }
