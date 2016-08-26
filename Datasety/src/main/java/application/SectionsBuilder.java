@@ -192,10 +192,7 @@ public class SectionsBuilder {
 		final ComboBox patternComboBox = new ComboBox();
 		patternComboBox.getItems().setAll(PatternType.values());
 		patternComboBox.setPromptText("Wzorzec");
-		patternComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-			logger.debug("Process createLogicSentenceSection, patternComboBox value has changed from = {} to = {}", oldValue, newValue);
-			logicSentencesMap.get(logicSentenceId).setChosenPattern((PatternType) newValue);
-		});
+
 
 		// Variable
 		final Label variableLabel = new Label("Zmienna: ");
@@ -260,6 +257,64 @@ public class SectionsBuilder {
 			logger.info("Successfully removed logic sentence! {}", logicSentenceId);
 		});
 
+		/* FOR BINARY PATTERNS */
+
+		// Second Variable
+		final Label secondVariableLabel = new Label("Zmienna 2: ");
+		final ComboBox secondVariableComboBox = new ComboBox();
+		secondVariableComboBox.setPromptText("Zmienna 2");
+		secondVariableComboBox.setOnMouseClicked(event -> {
+			if (secondVariableComboBox.getItems().isEmpty()) {
+				if (LogicSentence.getVariableList().isEmpty()) {
+					Alert noDataSpecifiedAlert = new Alert(Alert.AlertType.WARNING);
+					noDataSpecifiedAlert.setTitle("Uwaga!");
+					noDataSpecifiedAlert.setHeaderText("Brak wybranych danych!");
+					noDataSpecifiedAlert.setContentText("Wybierz poprawny z plik z danymi i poczekaj aż się załaduje.");
+					noDataSpecifiedAlert.showAndWait();
+				} else {
+					secondVariableComboBox.getItems().setAll(LogicSentence.getVariableList());
+				}
+			}
+		});
+		secondVariableComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+			logger.debug("Process createLogicSentenceSection, variableComboBox value has changed from = {} to = {}",
+					oldValue, newValue);
+			logicSentencesMap.get(logicSentenceId).setChosenVariable((String) newValue);
+		});
+		LogicSentence.getVariableList().addListener((ListChangeListener<String>) c -> {
+			logger.debug("Process createLogicSentenceSection, variableList changed");
+			// TODO Dodać sprawdzanie czy nie null / może optional?
+			secondVariableComboBox.getItems().setAll(LogicSentence.getVariableList());
+		});
+
+		// Value
+		final Label secondValueLabel = new Label("Wartość: ");
+		final TextField secondValueTextField = new TextField();
+		secondValueTextField.setPromptText("Wpisz wartość");
+		secondValueTextField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+			logger.debug("Process createLogicSentenceSection, valueTextField value has been entered: {}",
+					secondValueTextField.textProperty().getValueSafe());
+			logicSentencesMap.get(logicSentenceId).setChosenValue(secondValueTextField.textProperty().getValueSafe());
+		});
+
+		// Second Operator
+		final Label secondOperatorLabel = new Label("Operator 2: ");
+		final ComboBox secondOperatorComboBox = new ComboBox();
+		secondOperatorComboBox.getItems().setAll(OperatorType.values());
+		secondOperatorComboBox.setPromptText("Operator 2");
+		secondOperatorComboBox.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> {
+			logger.debug("Process createLogicSentenceSection, operatorComboBox value has changed from = {} to = {}",
+					oldValue, newValue);
+			logicSentencesMap.get(logicSentenceId).setChosenOperator((OperatorType) newValue);
+		}));
+
+		secondVariableLabel.setVisible(false);
+		secondVariableComboBox.setVisible(false);
+		secondOperatorLabel.setVisible(false);
+		secondOperatorComboBox.setVisible(false);
+		secondValueLabel.setVisible(false);
+		secondValueTextField.setVisible(false);
+
 		final GridPane controlsGridPane = new GridPane();
 		controlsGridPane.setHgap(3);
 		controlsGridPane.setVgap(3);
@@ -272,11 +327,43 @@ public class SectionsBuilder {
 		GridPane.setConstraints(valueLabel, 3, 0);
 		GridPane.setConstraints(valueTextField, 3, 1);
 		GridPane.setConstraints(removeSection,5,1);
+		GridPane.setConstraints(secondVariableLabel, 1, 2);
+		GridPane.setConstraints(secondVariableComboBox, 1, 3);
+		GridPane.setConstraints(secondOperatorLabel, 2 ,2);
+		GridPane.setConstraints(secondOperatorComboBox, 2, 3);
+		GridPane.setConstraints(secondValueLabel,3,2);
+		GridPane.setConstraints(secondValueTextField,3,3);
+
+
 		controlsGridPane.getChildren()
 				.addAll(patternLabel, patternComboBox, variableLabel, variableComboBox, operatorLabel, operatorComboBox,
-						valueLabel, valueTextField, removeSection);
+						valueLabel, valueTextField, removeSection, secondVariableLabel, secondVariableComboBox, secondOperatorLabel, secondOperatorComboBox,
+						secondValueLabel, secondValueTextField);
 		controlsGridPane.setId(logicSentenceId);
 		logger.info("Finish createLogicSentenceSection");
+
+		patternComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+			logger.debug("Process createLogicSentenceSection, patternComboBox value has changed from = {} to = {}", oldValue, newValue);
+			logicSentencesMap.get(logicSentenceId).setChosenPattern((PatternType) newValue);
+
+			if(newValue.equals(PatternType.RESPONSIVENESS)) {
+				secondVariableLabel.setVisible(true);
+				secondVariableComboBox.setVisible(true);
+				secondOperatorLabel.setVisible(true);
+				secondOperatorComboBox.setVisible(true);
+				secondValueLabel.setVisible(true);
+				secondValueTextField.setVisible(true);
+			} else {
+				secondVariableLabel.setVisible(false);
+				secondVariableComboBox.setVisible(false);
+				secondOperatorLabel.setVisible(false);
+				secondOperatorComboBox.setVisible(false);
+				secondValueLabel.setVisible(false);
+				secondValueTextField.setVisible(false);
+			}
+
+		});
+
 		return controlsGridPane;
 	}
 
@@ -344,6 +431,7 @@ public class SectionsBuilder {
 					analyzer);
 			dynamicTable.populateTable();
 			Main.getTabs().getTabs().get(Main.getCurrentlySelectedTabIndex()).setText("TestData");
+
 		});
 
 		final HBox fileInputHBox = new HBox(4);

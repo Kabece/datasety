@@ -71,6 +71,7 @@ public class Main extends Application {
 				tabs.getSelectionModel().select(tab);
 
 				if (tabs.getTabs().size() == Config.MAX_TABS_AMOUNT) {
+					//TODO: zmienic na disabled?
 					addNewTabButton.setVisible(false);
 				}
 			});

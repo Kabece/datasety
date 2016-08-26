@@ -1,10 +1,7 @@
 package application.interfaces.analyzer;
 
 import application.LogicSentence;
-import application.implementations.checker.Absence;
-import application.implementations.checker.Existence;
-import application.implementations.checker.Invariance;
-import application.implementations.checker.Persistence;
+import application.implementations.checker.*;
 import application.interfaces.checker.Checker;
 import enums.PatternType;
 import org.apache.logging.log4j.LogManager;
@@ -61,6 +58,8 @@ public abstract class Analyzer {
                case PERSISTENCE:
                    checker = new Persistence();
                    break;
+               case RESPONSIVENESS:
+                   checker = new Responsiveness();
                default:
                     logger.error("Something gone bad and none of checker was chosen!");
 
