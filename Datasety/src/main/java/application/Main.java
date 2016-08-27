@@ -16,6 +16,8 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class Main extends Application {
 
@@ -28,8 +30,17 @@ public class Main extends Application {
 
 	public static void main(String[] args) {
 		logger.info("Start main");
+
+		/* Przykładowe pobieranie - na forum pisalo ze lubi takie 'choinkowe' motywy - przy chwili czasu do przekminienia wszedzie*/
+		Locale defaultLocale = new Locale("pl","PL");
+		ResourceBundle messages = ResourceBundle.getBundle("MessagesBundle", defaultLocale);
+		messages.getString("test");
+
 		launch(args);
 		logger.info("Finish main");
+
+
+
 	}
 
 	/**
