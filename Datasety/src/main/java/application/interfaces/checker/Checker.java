@@ -1,6 +1,6 @@
 package application.interfaces.checker;
 
-import application.LogicSentence;
+import application.interfaces.logicSentence.LogicSentence;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

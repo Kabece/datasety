@@ -1,9 +1,8 @@
 package application.interfaces.analyzer;
 
-import application.LogicSentence;
+import application.interfaces.logicSentence.LogicSentence;
 import application.implementations.checker.*;
 import application.interfaces.checker.Checker;
-import enums.PatternType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

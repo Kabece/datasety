@@ -1,4 +1,4 @@
-package application;
+package application.interfaces.logicSentence;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,7 +12,7 @@ import enums.PatternType;
  * </p>
  */
 @SuppressWarnings("WeakerAccess")
-public class LogicSentence {
+public abstract class LogicSentence {
 
 	private ObservableList<String> variableList = FXCollections.observableArrayList();
 
@@ -21,7 +21,10 @@ public class LogicSentence {
 	private String chosenVariable;
 	private String chosenValue;
 
-	public LogicSentence(ObservableList<String> variables) {
+	public abstract LogicSentence getNextSentencePart();
+
+	public LogicSentence(PatternType patternType, ObservableList<String> variables) {
+		chosenPattern = patternType;
 		variableList = variables;
 	}
 

@@ -2,7 +2,10 @@ package application;
 
 import application.implementations.analyzer.CheckAnalyzer;
 import application.implementations.analyzer.ShowAnalyzer;
+import application.implementations.logicSentence.SingleLogicSentence;
+import application.implementations.logicSentence.ExtendedLogicSentence;
 import application.interfaces.analyzer.Analyzer;
+import application.interfaces.logicSentence.LogicSentence;
 import enums.AnalyzerWorkType;
 import enums.FileType;
 import enums.OperatorType;
@@ -189,8 +192,8 @@ public class SectionsBuilder {
 		String logicSentenceId = UUID.randomUUID().toString();
 		ObservableList<String> observableList = FXCollections.observableArrayList();
 		observableList.addAll(dataVariables);
-		LogicSentence sentence = new LogicSentence(observableList);
-		logicSentencesMap.put(logicSentenceId, sentence);
+		logicSentencesMap.put(logicSentenceId, new SingleLogicSentence(PatternType.values()[0], observableList));
+
 
 		// Pattern
 		final Label patternLabel = new Label("Wzorzec: ");
@@ -205,14 +208,14 @@ public class SectionsBuilder {
 		variableComboBox.setPromptText("Zmienna");
 		variableComboBox.setOnMouseClicked(event -> {
 			if (variableComboBox.getItems().isEmpty()) {
-				if (sentence.getVariableList().isEmpty()) {
+				if (logicSentencesMap.get(logicSentenceId).getVariableList().isEmpty()) {
 					Alert noDataSpecifiedAlert = new Alert(Alert.AlertType.WARNING);
 					noDataSpecifiedAlert.setTitle("Uwaga!");
 					noDataSpecifiedAlert.setHeaderText("Brak wybranych danych!");
 					noDataSpecifiedAlert.setContentText("Wybierz poprawny z plik z danymi i poczekaj aż się załaduje.");
 					noDataSpecifiedAlert.showAndWait();
 				} else {
-					variableComboBox.getItems().setAll(sentence.getVariableList());
+					variableComboBox.getItems().setAll(logicSentencesMap.get(logicSentenceId).getVariableList());
 				}
 			}
 		});
@@ -221,10 +224,10 @@ public class SectionsBuilder {
 					oldValue, newValue);
 			logicSentencesMap.get(logicSentenceId).setChosenVariable((String) newValue);
 		});
-		sentence.getVariableList().addListener((ListChangeListener<String>) c -> {
+		logicSentencesMap.get(logicSentenceId).getVariableList().addListener((ListChangeListener<String>) c -> {
 			logger.debug("Process createLogicSentenceSection, variableList changed");
 			// TODO Dodać sprawdzanie czy nie null / może optional?
-			variableComboBox.getItems().setAll(sentence.getVariableList());
+			variableComboBox.getItems().setAll(logicSentencesMap.get(logicSentenceId).getVariableList());
 		});
 
 		// Operator
@@ -270,26 +273,27 @@ public class SectionsBuilder {
 		secondVariableComboBox.setPromptText("Zmienna 2");
 		secondVariableComboBox.setOnMouseClicked(event -> {
 			if (secondVariableComboBox.getItems().isEmpty()) {
-				if (sentence.getVariableList().isEmpty()) {
+				// Tutaj rzutowanie - zawsze zlozone zdanie bedzie typu ExtendedLogicSentence
+				if (logicSentencesMap.get(logicSentenceId).getNextSentencePart().getVariableList().isEmpty()) {
 					Alert noDataSpecifiedAlert = new Alert(Alert.AlertType.WARNING);
 					noDataSpecifiedAlert.setTitle("Uwaga!");
 					noDataSpecifiedAlert.setHeaderText("Brak wybranych danych!");
 					noDataSpecifiedAlert.setContentText("Wybierz poprawny z plik z danymi i poczekaj aż się załaduje.");
 					noDataSpecifiedAlert.showAndWait();
 				} else {
-					secondVariableComboBox.getItems().setAll(sentence.getVariableList());
+					secondVariableComboBox.getItems().setAll(logicSentencesMap.get(logicSentenceId).getNextSentencePart().getVariableList());
 				}
 			}
 		});
 		secondVariableComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 			logger.debug("Process createLogicSentenceSection, variableComboBox value has changed from = {} to = {}",
 					oldValue, newValue);
-			logicSentencesMap.get(logicSentenceId).setChosenVariable((String) newValue);
+			logicSentencesMap.get(logicSentenceId).getNextSentencePart().setChosenVariable((String) newValue);
 		});
-		sentence.getVariableList().addListener((ListChangeListener<String>) c -> {
+		logicSentencesMap.get(logicSentenceId).getNextSentencePart().getVariableList().addListener((ListChangeListener<String>) c -> {
 			logger.debug("Process createLogicSentenceSection, variableList changed");
 			// TODO Dodać sprawdzanie czy nie null / może optional?
-			secondVariableComboBox.getItems().setAll(sentence.getVariableList());
+			secondVariableComboBox.getItems().setAll(logicSentencesMap.get(logicSentenceId).getNextSentencePart().getVariableList());
 		});
 
 		// Value
@@ -299,7 +303,7 @@ public class SectionsBuilder {
 		secondValueTextField.focusedProperty().addListener((observable, oldValue, newValue) -> {
 			logger.debug("Process createLogicSentenceSection, valueTextField value has been entered: {}",
 					secondValueTextField.textProperty().getValueSafe());
-			logicSentencesMap.get(logicSentenceId).setChosenValue(secondValueTextField.textProperty().getValueSafe());
+			logicSentencesMap.get(logicSentenceId).getNextSentencePart().setChosenValue(secondValueTextField.textProperty().getValueSafe());
 		});
 
 		// Second Operator
@@ -310,7 +314,7 @@ public class SectionsBuilder {
 		secondOperatorComboBox.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> {
 			logger.debug("Process createLogicSentenceSection, operatorComboBox value has changed from = {} to = {}",
 					oldValue, newValue);
-			logicSentencesMap.get(logicSentenceId).setChosenOperator((OperatorType) newValue);
+			logicSentencesMap.get(logicSentenceId).getNextSentencePart().setChosenOperator((OperatorType) newValue);
 		}));
 
 		secondVariableLabel.setVisible(false);
@@ -352,20 +356,36 @@ public class SectionsBuilder {
 			logicSentencesMap.get(logicSentenceId).setChosenPattern((PatternType) newValue);
 
 			if(newValue.equals(PatternType.RESPONSIVENESS)) {
+
+				logicSentencesMap.put(logicSentenceId, new ExtendedLogicSentence(new SingleLogicSentence((PatternType) newValue, observableList)));
+
 				secondVariableLabel.setVisible(true);
 				secondVariableComboBox.setVisible(true);
 				secondOperatorLabel.setVisible(true);
 				secondOperatorComboBox.setVisible(true);
 				secondValueLabel.setVisible(true);
 				secondValueTextField.setVisible(true);
+
+
 			} else {
+
+				logicSentencesMap.put(logicSentenceId, new SingleLogicSentence((PatternType) newValue, observableList));
+
 				secondVariableLabel.setVisible(false);
 				secondVariableComboBox.setVisible(false);
 				secondOperatorLabel.setVisible(false);
 				secondOperatorComboBox.setVisible(false);
 				secondValueLabel.setVisible(false);
 				secondValueTextField.setVisible(false);
+
 			}
+
+			variableComboBox.setValue(null);
+			operatorComboBox.setValue(null);
+			valueTextField.setText(null);
+			secondVariableComboBox.setValue(null);
+			secondOperatorComboBox.setValue(null);
+			secondValueTextField.setText(null);
 
 		});
 
@@ -414,7 +434,7 @@ public class SectionsBuilder {
 					dynamicTable.populateTable();
 
 					Main.getTabs().getTabs().get(Main.getCurrentlySelectedTabIndex()).setText(file.getName().substring(0, Config.MAX_TAB_NAME_LENGHT) + "..");
-					//dataVariables = dynamicTable.getDataVariables();
+
 				}
 
 				if (fileChooser.getSelectedExtensionFilter().getDescription().equals("JSON Files")) {

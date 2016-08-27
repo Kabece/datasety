@@ -15,6 +15,8 @@ import java.util.Map;
 public class Responsiveness extends Checker{
 
     public boolean checkPattern(Map<String, ArrayList<String>> dataMap) {
+
         return false;
+
     }
 }
