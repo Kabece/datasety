@@ -19,9 +19,13 @@ import java.util.Map;
 /*
         TODO: chyba zeby to robilo wiekszy sens, powinno sie sortować dataset po timestampach.
         Na ten moment zakładam, że dataset jest posortowany
+        P.S. nie daje sobie reki uciac, ze ten wzorzec jest dobrze zaimplementowany
 */
 
-public class Responsiveness extends Checker{
+public class Responsiveness extends Checker {
+
+    private int firstSentenceOccurenceIndex;
+    private int secondSentenceOccurenceIndex;
 
     public boolean checkPattern(Map<String, ArrayList<String>> dataMap) {
 
@@ -31,16 +35,38 @@ public class Responsiveness extends Checker{
         switch (logicSentence.getChosenOperator()) {
             case EQ:
 
-                for (String value : values) {
-                    if (value.equals(logicSentence.getChosenValue())) {
-                        return checkSuccessorEvent(dataMap.get(logicSentence.getNextSentencePart().getChosenVariable()), values.indexOf(value));
+                for (int i = 0; i < values.size() ; i++) {
+                    if(values.get(i).equals(logicSentence.getChosenValue())) {
+                        firstSentenceOccurenceIndex = i;
+                        if (checkSuccessorEvent(dataMap.get(logicSentence.getNextSentencePart().getChosenVariable()),i)) {
+                           boolean duplication = false;
+
+                           for (int j = firstSentenceOccurenceIndex + 1; j < secondSentenceOccurenceIndex; j ++) {
+                               if(values.get(j).equals(values.get(i))) {
+                                   duplication = true;
+                                   break;
+                               }
+                           }
+                           if(!duplication) return true;
+                        }
                     }
                 }
                 break;
             case NE:
-                for (String value : values) {
-                    if (!value.equals(logicSentence.getChosenValue())) {
-                        return checkSuccessorEvent(dataMap.get(logicSentence.getNextSentencePart().getChosenVariable()), values.indexOf(value));
+                for (int i = 0; i < values.size() ; i++) {
+                    if(!values.get(i).equals(logicSentence.getChosenValue())) {
+                        firstSentenceOccurenceIndex = i;
+                        if (checkSuccessorEvent(dataMap.get(logicSentence.getNextSentencePart().getChosenVariable()),i)) {
+                           boolean duplication = false;
+
+                           for (int j = firstSentenceOccurenceIndex + 1; j < secondSentenceOccurenceIndex; j ++) {
+                               if(!values.get(j).equals(values.get(i))) {
+                                   duplication = true;
+                                   break;
+                               }
+                           }
+                           if(!duplication) return true;
+                        }
                     }
                 }
                 break;
@@ -60,13 +86,15 @@ public class Responsiveness extends Checker{
             case EQ:
                 for (int i = recordPosition; i < values.size(); i++) {
                     if (values.get(i).equals(logicSentence.getNextSentencePart().getChosenValue())) {
-                       return true;
+                        secondSentenceOccurenceIndex = i;
+                        return true;
                     }
                 }
                 break;
             case NE:
                 for (int i = recordPosition; i < values.size(); i++) {
                     if (!values.get(i).equals(logicSentence.getNextSentencePart().getChosenValue())) {
+                        secondSentenceOccurenceIndex = i;
                         return true;
                     }
                 }
