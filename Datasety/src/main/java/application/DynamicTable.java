@@ -92,6 +92,8 @@ public class DynamicTable {
 	 *
 	 * @return Zadanie (Task) parsujące CSV
 	 */
+
+	//TODO: z tego co zauwazylem, jesli sei odznaczy "hasHeader" to sie psuje :(
 	private Task<Void> parseCsvContent() {
 		logger.info("Start parseCsvContent");
 
@@ -172,30 +174,21 @@ public class DynamicTable {
 						analyzer.getDataHeaders().add(headerValues[column]);
 					}
 					currentSectionBuilder.setDataVariables(headerValues);
-
 				});
 
 				for(String line; (line = in.readLine()) != null; ) {
 					final Map singleJsonLine = parser.parseJson(line);
-
-/*					Platform.runLater(() -> {
-
-						// Add dataMap to table:
-						ObservableList<StringProperty> data = FXCollections.observableArrayList();
-						for (String value : dataValues) {
-							data.add(new SimpleStringProperty(value));
-						}
-						for (int i = 0; i < data.size(); i++) {
-							analyzer.getDataMap().get(analyzer.getDataHeaders().get(i)).add(data.get(i).getValue());
-						}
-						table.getItems().add(data);
-					});*/
 
 					Platform.runLater(() -> {
 						ObservableList<StringProperty> data = FXCollections.observableArrayList();
 						for (String key : headerValues) {
 							data.add(new SimpleStringProperty(singleJsonLine.get(key).toString()));
 						}
+
+						for (int i = 0; i < data.size(); i++) {
+							analyzer.getDataMap().get(analyzer.getDataHeaders().get(i)).add(data.get(i).getValue());
+						}
+
 						table.getItems().add(data);
 
 					});
