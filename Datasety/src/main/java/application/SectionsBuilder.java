@@ -355,7 +355,7 @@ public class SectionsBuilder {
 			logger.debug("Process createLogicSentenceSection, patternComboBox value has changed from = {} to = {}", oldValue, newValue);
 			logicSentencesMap.get(logicSentenceId).setChosenPattern((PatternType) newValue);
 
-			if(newValue.equals(PatternType.RESPONSIVENESS)) {
+			if(newValue.equals(PatternType.RESPONSIVENESS) || newValue.equals(PatternType.OBLIGATION) ) {
 
 				logicSentencesMap.put(logicSentenceId, new ExtendedLogicSentence(new SingleLogicSentence((PatternType) newValue, observableList)));
 

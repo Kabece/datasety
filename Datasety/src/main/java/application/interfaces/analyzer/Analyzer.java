@@ -59,6 +59,10 @@ public abstract class Analyzer {
                    break;
                case RESPONSIVENESS:
                    checker = new Responsiveness();
+                   break;
+               case OBLIGATION:
+                   checker = new Obligation();
+                   break;
                default:
                     logger.error("Something gone bad and none of checker was chosen!");
 
