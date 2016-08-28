@@ -1,6 +1,8 @@
 package application;
 
 import application.interfaces.analyzer.Analyzer;
+import com.codesnippets4all.json.parsers.JSONParser;
+import com.codesnippets4all.json.parsers.JsonParserFactory;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -18,6 +20,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Klasa zajmująca się tworzeniem widoku danych w postaci tabeli.
@@ -64,6 +69,9 @@ public class DynamicTable {
 		switch (fileType) {
 			case CSV:
 				task = parseCsvContent();
+				break;
+			case JSON:
+				task = parseJson();
 				break;
 			default:
 				task = null;
@@ -139,6 +147,67 @@ public class DynamicTable {
 		logger.info("Finish parseCsvContent");
 		return task;
 	}
+
+	private Task<Void> parseJson() {
+		logger.info("Start parseJson");
+
+
+		Task<Void> task = new Task<Void>() {
+			@Override
+			protected Void call() throws Exception {
+				logger.info("Start call (inside parseJson)");
+				JsonParserFactory factory=JsonParserFactory.getInstance();
+				JSONParser parser = factory.newJsonParser();
+
+				BufferedReader in = new BufferedReader(new FileReader(file));
+				String firstLine = in.readLine();
+				Map singleJson = parser.parseJson(firstLine);
+
+				final String[] headerValues =  Arrays.copyOf(singleJson.keySet().toArray(), singleJson.keySet().toArray().length, String[].class);
+
+				Platform.runLater(() -> {
+					for (int column = 0; column < headerValues.length; column++) {
+						table.getColumns().add(createColumn(column, headerValues[column]));
+						analyzer.getDataMap().put(headerValues[column], new ArrayList<>());
+						analyzer.getDataHeaders().add(headerValues[column]);
+					}
+					currentSectionBuilder.setDataVariables(headerValues);
+
+				});
+
+				for(String line; (line = in.readLine()) != null; ) {
+					final Map singleJsonLine = parser.parseJson(line);
+
+/*					Platform.runLater(() -> {
+
+						// Add dataMap to table:
+						ObservableList<StringProperty> data = FXCollections.observableArrayList();
+						for (String value : dataValues) {
+							data.add(new SimpleStringProperty(value));
+						}
+						for (int i = 0; i < data.size(); i++) {
+							analyzer.getDataMap().get(analyzer.getDataHeaders().get(i)).add(data.get(i).getValue());
+						}
+						table.getItems().add(data);
+					});*/
+
+					Platform.runLater(() -> {
+						ObservableList<StringProperty> data = FXCollections.observableArrayList();
+						for (String key : headerValues) {
+							data.add(new SimpleStringProperty(singleJsonLine.get(key).toString()));
+						}
+						table.getItems().add(data);
+
+					});
+				}
+				in.close();
+
+				return null;
+			}
+		};
+		logger.info("Finished parseJson");
+		return task;
+	};
 
 	/**
 	 * Tworzy kolumny tabeli, z odpowiednimi nagłówkami oraz dodaje fabrykę komórek tabeli

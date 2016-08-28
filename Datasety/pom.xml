@@ -32,6 +32,13 @@
             <version>2.7</version>
         </dependency>
 
+        <!-- JSON  -->
+        <dependency>
+            <groupId>com.codesnippets4all</groupId>
+            <artifactId>quick-json</artifactId>
+            <version>1.0.4</version>
+        </dependency>
+
         <!-- LOGGER -->
 
         <dependency>

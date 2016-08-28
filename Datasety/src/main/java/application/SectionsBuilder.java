@@ -439,6 +439,12 @@ public class SectionsBuilder {
 
 				if (fileChooser.getSelectedExtensionFilter().getDescription().equals("JSON Files")) {
 					// TODO Dodać obsługę JSONa
+					DynamicTable dynamicTable = new DynamicTable(tableView, file, FileType.JSON, headerCheckBox.isSelected(),
+					analyzer);
+					dynamicTable.setCurrentSectionBuilder(this);
+					dynamicTable.populateTable();
+
+					Main.getTabs().getTabs().get(Main.getCurrentlySelectedTabIndex()).setText(file.getName().substring(0, Config.MAX_TAB_NAME_LENGHT) + "..");
 				}
 			}
 		});
