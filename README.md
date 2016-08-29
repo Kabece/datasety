@@ -7,3 +7,5 @@ https://data.cityofnewyork.us/view/ba8s-jw6u - dane z przejazdów taksówek w No
 https://data.cityofnewyork.us/Transportation/Bus-Breakdown-and-Delays/ez4e-fazm - Data set ze awariami autobusow w danym okresie w NYC
 
 https://data.cityofnewyork.us/Public-Safety/NYPD-Motor-Vehicle-Collisions/h9gi-nx95 - dataset z wypadkami samochodowymi w NYC (zakres 2012-2016)
+
+https://archive.ics.uci.edu/ml/datasets/Localization+Data+for+Person+Activity - jakies pomiary ruchów ludzi, z timestampami
