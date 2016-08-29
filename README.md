@@ -9,3 +9,6 @@ https://data.cityofnewyork.us/Transportation/Bus-Breakdown-and-Delays/ez4e-fazm 
 https://data.cityofnewyork.us/Public-Safety/NYPD-Motor-Vehicle-Collisions/h9gi-nx95 - dataset z wypadkami samochodowymi w NYC (zakres 2012-2016)
 
 https://archive.ics.uci.edu/ml/datasets/Localization+Data+for+Person+Activity - jakies pomiary ruchów ludzi, z timestampami
+
+https://archive.ics.uci.edu/ml/datasets/Activities+of+Daily+Living+(ADLs)+Recognition+Using+Binary+Sensors - z tego co wstepnie przejrzalem, to sa jakies odczyty z sensorow rozmieszczonych w domu, dwa timestampy (start i koniec) i dwa pliki
+
