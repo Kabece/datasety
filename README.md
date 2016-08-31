@@ -12,3 +12,17 @@ https://archive.ics.uci.edu/ml/datasets/Localization+Data+for+Person+Activity - 
 
 https://archive.ics.uci.edu/ml/datasets/Activities+of+Daily+Living+(ADLs)+Recognition+Using+Binary+Sensors - z tego co wstepnie przejrzalem, to sa jakies odczyty z sensorow rozmieszczonych w domu, dwa timestampy (start i koniec) i dwa pliki
 
+https://www.kaggle.com/adriferher/electric-power-consumption-data-set
+odczyty wykorzyastania energii elektycznej w gospodarstwie domowym w ciagu 4 lat, odczyt co minute (120mb colon separated, mam go lokalnie)
+
+https://www.kaggle.com/mylesoneill/warcraft-avatar-history
+informacje o postaciach graczy World of Warcraft (lokalizacja, level, klasa etc) - duzy csv ~700mb, mam go lokalnie pobranego
+
+https://www.kaggle.com/kzaman/how-isis-uses-twitter
+tweety dot. ISIS, csv + xlsx, umieszczone w repozytorium
+
+https://www.kaggle.com/mchirico/montcoalert
+wezwania 911 z lokalizacja, powodem etc. - umieszczone w repozytorium,csv
+
+
+
