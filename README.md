@@ -24,5 +24,13 @@ tweety dot. ISIS, csv + xlsx, umieszczone w repozytorium
 https://www.kaggle.com/mchirico/montcoalert
 wezwania 911 z lokalizacja, powodem etc. - umieszczone w repozytorium,csv
 
+https://catalogue.data.gov.bc.ca/dataset/77eeadf4-0c19-48bf-a47a-fa9eef01f409
+pomiary stężęń różnych rzeczy w powietrzu(air quality), pomiar co godzinę, csv
+
+https://catalogue.data.gov.bc.ca/dataset/air-quality-monitoring-unverified-hourly-air-quality-and-meteorological-data
+takie same pomiary jak wyżej, ale z ostatnich 30 dni, nie zwalidowane, ale obszerniejsze (więcej danych), plus pomiary meteorologiczne różne, csv
+
+
+
 
 
