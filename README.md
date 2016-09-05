@@ -30,7 +30,8 @@ pomiary stężęń różnych rzeczy w powietrzu(air quality), pomiar co godzinę
 https://catalogue.data.gov.bc.ca/dataset/air-quality-monitoring-unverified-hourly-air-quality-and-meteorological-data
 takie same pomiary jak wyżej, ale z ostatnich 30 dni, nie zwalidowane, ale obszerniejsze (więcej danych), plus pomiary meteorologiczne różne, csv
 
-
+https://datahub.io/dataset/basque-traffic-incidents
+wypadki samochodowe w kraju basków (XML)
 
 
 
