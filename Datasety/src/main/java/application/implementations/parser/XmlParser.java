@@ -43,7 +43,7 @@ public class XmlParser extends DefaultHandler{
 
                 while(iterator.hasNext()) {
                     Map.Entry pair = (Map.Entry) iterator.next();
-                    if(((List<String>) pair.getValue()).size() < largestList) {
+                    if(((List<String>) pair.getValue()).size() > largestList) {
                         largestList = ((List<String>) pair.getValue()).size();
                     }
                 }
