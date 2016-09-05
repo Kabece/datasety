@@ -108,6 +108,10 @@ public abstract class Analyzer {
         return dataMap;
     }
 
+    public void setDataMap(Map<String, ArrayList<String>> dataMap) {
+        this.dataMap = dataMap;
+    }
+
     public List<String> getDataHeaders() {
         return dataHeaders;
     }

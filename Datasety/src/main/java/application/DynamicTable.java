@@ -1,8 +1,10 @@
 package application;
 
+import application.implementations.parser.XmlParser;
 import application.interfaces.analyzer.Analyzer;
 import com.codesnippets4all.json.parsers.JSONParser;
 import com.codesnippets4all.json.parsers.JsonParserFactory;
+import enums.FileType;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -12,7 +14,6 @@ import javafx.concurrent.Task;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import enums.FileType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -21,7 +22,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -72,6 +72,9 @@ public class DynamicTable {
 				break;
 			case JSON:
 				task = parseJson();
+				break;
+			case XML:
+				task = parseXML();
 				break;
 			default:
 				task = null;
@@ -158,7 +161,7 @@ public class DynamicTable {
 			@Override
 			protected Void call() throws Exception {
 				logger.info("Start call (inside parseJson)");
-				JsonParserFactory factory=JsonParserFactory.getInstance();
+				JsonParserFactory factory = JsonParserFactory.getInstance();
 				JSONParser parser = factory.newJsonParser();
 
 				BufferedReader in = new BufferedReader(new FileReader(file));
@@ -200,7 +203,38 @@ public class DynamicTable {
 		};
 		logger.info("Finished parseJson");
 		return task;
-	};
+	}
+
+	private Task<Void> parseXML() {
+		logger.info("Start parseXML");
+
+		Task<Void> task = new Task<Void>() {
+			@Override
+			protected Void call() throws Exception {
+				XmlParser parser = new XmlParser(file);
+
+				Map<String,ArrayList<String>> dataset = parser.parseXml();
+				analyzer.setDataMap(dataset);
+
+				final String[] headerValues =  Arrays.copyOf(dataset.keySet().toArray(), dataset.keySet().toArray().length, String[].class);
+
+				Platform.runLater(() -> {
+					for (int column = 0; column < headerValues.length; column++) {
+						table.getColumns().add(createColumn(column, headerValues[column]));
+						analyzer.getDataMap().put(headerValues[column], new ArrayList<>());
+						analyzer.getDataHeaders().add(headerValues[column]);
+					}
+					currentSectionBuilder.setDataVariables(headerValues);
+				});
+
+		//		table.getItems().add(dataset);
+				return null;
+			}
+		};
+
+		return task;
+
+	}
 
 	/**
 	 * Tworzy kolumny tabeli, z odpowiednimi nagłówkami oraz dodaje fabrykę komórek tabeli

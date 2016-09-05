@@ -1,0 +1,2859 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<raiz>
+  <incidencia>
+    <tipo>Accidente</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>GIPUZKOA</provincia>
+    <matricula>SS</matricula>
+    <causa>Alcance</causa>
+    <poblacion>Errenteria</poblacion>
+    <fechahora_ini>2016-09-05 19:06:17</fechahora_ini>
+    <nivel>Blanco</nivel>
+    <carretera>GI-2132</carretera>
+    <pk_inicial>15</pk_inicial>
+    <pk_final>15</pk_final>
+    <sentido>REKALDE</sentido>
+  </incidencia>
+  <incidencia>
+    <tipo>Seguridad vial</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>GIPUZKOA</provincia>
+    <matricula>SS</matricula>
+    <causa>Aver�a</causa>
+    <poblacion>Lezo</poblacion>
+    <fechahora_ini>2016-09-05 19:05:59</fechahora_ini>
+    <nivel>Amarillo</nivel>
+    <carretera>GI-636</carretera>
+    <pk_inicial>3</pk_inicial>
+    <pk_final>3</pk_final>
+    <sentido>DONOSTIA/SAN SEBASTI�N</sentido>
+  </incidencia>
+  <incidencia>
+    <tipo>Seguridad vial</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>GIPUZKOA</provincia>
+    <matricula>SS</matricula>
+    <causa>Aver�a</causa>
+    <poblacion>Albiztur</poblacion>
+    <fechahora_ini>2016-09-05 18:55:08</fechahora_ini>
+    <nivel>Amarillo</nivel>
+    <carretera>GI-2634</carretera>
+    <pk_inicial>5</pk_inicial>
+    <pk_final>5</pk_final>
+    <sentido>ELGOIBAR</sentido>
+  </incidencia>
+  <incidencia>
+    <tipo>Otras incidencias</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>ARABA</provincia>
+    <matricula>VI</matricula>
+    <causa/>
+    <poblacion>Ribera Alta</poblacion>
+    <fechahora_ini>2016-09-05 18:36:49</fechahora_ini>
+    <nivel>Amarillo</nivel>
+    <carretera>A-2622</carretera>
+    <pk_inicial>27</pk_inicial>
+    <pk_final>27</pk_final>
+    <sentido>SAN PANTALEON DE LOSA</sentido>
+  </incidencia>
+  <incidencia>
+    <tipo>Seguridad vial</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>BIZKAIA</provincia>
+    <matricula>BI</matricula>
+    <causa>Aver�a</causa>
+    <poblacion>Orozko</poblacion>
+    <fechahora_ini>2016-09-05 18:34:00</fechahora_ini>
+    <nivel>Amarillo</nivel>
+    <carretera>AP-68</carretera>
+    <pk_inicial>20</pk_inicial>
+    <pk_final>20</pk_final>
+    <sentido>ZARAGOZA</sentido>
+  </incidencia>
+  <incidencia>
+    <tipo>Seguridad vial</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>GIPUZKOA</provincia>
+    <matricula>SS</matricula>
+    <causa>Ca�da de objetos</causa>
+    <poblacion>Astigarraga</poblacion>
+    <fechahora_ini>2016-09-05 18:29:17</fechahora_ini>
+    <nivel>Amarillo</nivel>
+    <carretera>AP-8</carretera>
+    <pk_inicial>16</pk_inicial>
+    <pk_final>16</pk_final>
+    <sentido>CANTABRIA</sentido>
+  </incidencia>
+  <incidencia>
+    <tipo>Seguridad vial</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>BIZKAIA</provincia>
+    <matricula>BI</matricula>
+    <causa>Aver�a</causa>
+    <poblacion>Erandio</poblacion>
+    <fechahora_ini>2016-09-05 18:18:31</fechahora_ini>
+    <nivel>Amarillo</nivel>
+    <carretera>BI-647</carretera>
+    <pk_inicial>3</pk_inicial>
+    <pk_final>3</pk_final>
+    <sentido>UNIVERSIDAD</sentido>
+  </incidencia>
+  <incidencia>
+    <tipo>Seguridad vial</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>BIZKAIA</provincia>
+    <matricula>BI</matricula>
+    <causa>Aver�a</causa>
+    <poblacion>Markina-Xemein</poblacion>
+    <fechahora_ini>2016-09-05 18:12:08</fechahora_ini>
+    <nivel>Amarillo</nivel>
+    <carretera>BI-633</carretera>
+    <pk_inicial>46</pk_inicial>
+    <pk_final>46</pk_final>
+    <sentido>ONDARROA (POR TRABAKUA)</sentido>
+  </incidencia>
+  <incidencia>
+    <tipo>Obras</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>GIPUZKOA</provincia>
+    <matricula>SS</matricula>
+    <causa>Obras</causa>
+    <poblacion>Bergara</poblacion>
+    <fechahora_ini>2016-09-05 12:10:53</fechahora_ini>
+    <nivel>Rojo</nivel>
+    <carretera>AP-1</carretera>
+    <pk_inicial>138</pk_inicial>
+    <pk_final>141</pk_final>
+    <sentido>Eibar</sentido>
+  </incidencia>
+  <incidencia>
+    <tipo>Obras</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>BIZKAIA</provincia>
+    <matricula>BI</matricula>
+    <causa>Obras</causa>
+    <poblacion>Dima</poblacion>
+    <fechahora_ini>2016-09-05 12:07:05</fechahora_ini>
+    <nivel>Blanco</nivel>
+    <carretera>BI-2543</carretera>
+    <pk_inicial>32</pk_inicial>
+    <pk_final>32</pk_final>
+    <sentido>IGORRE</sentido>
+  </incidencia>
+  <incidencia>
+    <tipo>Obras</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>ARABA</provincia>
+    <matricula>VI</matricula>
+    <causa>Obras</causa>
+    <poblacion>Zuia</poblacion>
+    <fechahora_ini>2016-09-05 11:28:27</fechahora_ini>
+    <nivel>Blanco</nivel>
+    <carretera>AP-68</carretera>
+    <pk_inicial>32</pk_inicial>
+    <pk_final>32</pk_final>
+    <sentido>ZARAGOZA</sentido>
+  </incidencia>
+  <incidencia>
+    <tipo>Obras</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>GIPUZKOA</provincia>
+    <matricula>SS</matricula>
+    <causa>Obras</causa>
+    <poblacion>Bergara</poblacion>
+    <fechahora_ini>2016-09-05 11:27:39</fechahora_ini>
+    <nivel>Negro</nivel>
+    <carretera>AP-1</carretera>
+    <pk_inicial>141</pk_inicial>
+    <pk_final>138</pk_final>
+    <sentido>Madrid</sentido>
+  </incidencia>
+  <incidencia>
+    <tipo>Obras</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>ARABA</provincia>
+    <matricula>VI</matricula>
+    <causa>Obras</causa>
+    <poblacion>Kuartango</poblacion>
+    <fechahora_ini>2016-09-05 11:02:10</fechahora_ini>
+    <nivel>Blanco</nivel>
+    <carretera>AP-68</carretera>
+    <pk_inicial>49</pk_inicial>
+    <pk_final>49</pk_final>
+    <sentido>ZARAGOZA</sentido>
+  </incidencia>
+  <incidencia>
+    <tipo>Obras</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>BIZKAIA</provincia>
+    <matricula>BI</matricula>
+    <causa>Obras</causa>
+    <poblacion>Iurreta</poblacion>
+    <fechahora_ini>2016-09-05 10:40:49</fechahora_ini>
+    <nivel>Blanco</nivel>
+    <carretera>AP-8</carretera>
+    <pk_inicial>86</pk_inicial>
+    <pk_final>86</pk_final>
+    <sentido>IRUN</sentido>
+  </incidencia>
+  <incidencia>
+    <tipo>Obras</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>BIZKAIA</provincia>
+    <matricula>BI</matricula>
+    <causa>Obras</causa>
+    <poblacion>Galdakao</poblacion>
+    <fechahora_ini>2016-09-05 07:57:24</fechahora_ini>
+    <nivel>Blanco</nivel>
+    <carretera>N-634</carretera>
+    <pk_inicial>98</pk_inicial>
+    <pk_final>98</pk_final>
+    <sentido>SANTANDER</sentido>
+  </incidencia>
+  <incidencia>
+    <tipo>Obras</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>BIZKAIA</provincia>
+    <matricula>BI</matricula>
+    <causa>Obras</causa>
+    <poblacion>Bilbao</poblacion>
+    <fechahora_ini>2016-09-05 06:57:36</fechahora_ini>
+    <nivel>Blanco</nivel>
+    <carretera>N-634</carretera>
+    <pk_inicial>107</pk_inicial>
+    <pk_final>107</pk_final>
+    <sentido>SANTANDER</sentido>
+  </incidencia>
+  <incidencia>
+    <tipo>Obras</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>BIZKAIA</provincia>
+    <matricula>BI</matricula>
+    <causa>Obras</causa>
+    <poblacion>Atxondo</poblacion>
+    <fechahora_ini>2016-09-05 06:57:00</fechahora_ini>
+    <nivel>Amarillo</nivel>
+    <carretera>BI-4332</carretera>
+    <pk_inicial>37</pk_inicial>
+    <pk_final>37</pk_final>
+    <sentido>ARRAZOLA</sentido>
+  </incidencia>
+  <incidencia>
+    <tipo>Obras</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>BIZKAIA</provincia>
+    <matricula>BI</matricula>
+    <causa>Obras</causa>
+    <poblacion>Derio</poblacion>
+    <fechahora_ini>2016-09-05 06:56:37</fechahora_ini>
+    <nivel>Blanco</nivel>
+    <carretera>BI-631</carretera>
+    <pk_inicial>9</pk_inicial>
+    <pk_final>7</pk_final>
+    <sentido>Bilbao</sentido>
+  </incidencia>
+  <incidencia>
+    <tipo>Obras</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>BIZKAIA</provincia>
+    <matricula>BI</matricula>
+    <causa>Obras</causa>
+    <poblacion>Amorebieta-Etxano</poblacion>
+    <fechahora_ini>2016-09-05 06:56:17</fechahora_ini>
+    <nivel>Amarillo</nivel>
+    <carretera>BI-635</carretera>
+    <pk_inicial>24</pk_inicial>
+    <pk_final>24</pk_final>
+    <sentido>Lemoa</sentido>
+  </incidencia>
+  <incidencia>
+    <tipo>Obras</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>BIZKAIA</provincia>
+    <matricula>BI</matricula>
+    <causa>Obras</causa>
+    <poblacion>Muxika</poblacion>
+    <fechahora_ini>2016-09-05 06:55:56</fechahora_ini>
+    <nivel>Amarillo</nivel>
+    <carretera>BI-635</carretera>
+    <pk_inicial>25</pk_inicial>
+    <pk_final>25</pk_final>
+    <sentido>Gernika-Lumo</sentido>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Bizkaia</provincia>
+    <matricula>BI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>BI-631</carretera>
+    <pk_inicial>8.10</pk_inicial>
+    <pk_final>10.00</pk_final>
+    <sentido>GALDAKAO</sentido>
+    <nombre>AGIRLETA/SANTO DOMINGO</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Alava-Araba</provincia>
+    <matricula>VI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>A-3600</carretera>
+    <pk_inicial>16.60</pk_inicial>
+    <pk_final>16.60</pk_final>
+    <sentido>ALTUBE</sentido>
+    <nombre>AIURDIN</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Alava-Araba</provincia>
+    <matricula>VI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>A-624</carretera>
+    <pk_inicial>24.30</pk_inicial>
+    <pk_final>26.30</pk_final>
+    <sentido>BALMASEDA</sentido>
+    <nombre>ALTUBE</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Alava-Araba</provincia>
+    <matricula>VI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>AP-68</carretera>
+    <pk_inicial>35.80</pk_inicial>
+    <pk_final>35.80</pk_final>
+    <sentido>BILBAO</sentido>
+    <nombre>ALTUBE AP-68 (BILBAO)</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Alava-Araba</provincia>
+    <matricula>VI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>AP-68</carretera>
+    <pk_inicial>35.80</pk_inicial>
+    <pk_final>35.80</pk_final>
+    <sentido>ZARAGOZA</sentido>
+    <nombre>ALTUBE AP-68 (ZARAGOZA)</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>GI-2631</carretera>
+    <pk_inicial>0.00</pk_inicial>
+    <pk_final>0.00</pk_final>
+    <sentido>ORIO</sentido>
+    <nombre>ANDATZARRATE</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Bizkaia</provincia>
+    <matricula>BI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>BI-2120</carretera>
+    <pk_inicial>20.00</pk_inicial>
+    <pk_final>21.00</pk_final>
+    <sentido>PLENTZIA</sentido>
+    <nombre>ANDRAKA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>GI-3591</carretera>
+    <pk_inicial>0.00</pk_inicial>
+    <pk_final>0.00</pk_final>
+    <sentido>O�ATI</sentido>
+    <nombre>ARANTZAZU</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Bizkaia</provincia>
+    <matricula>BI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>N-634</carretera>
+    <pk_inicial>70.10</pk_inicial>
+    <pk_final>70.10</pk_final>
+    <sentido>SANTANDER</sentido>
+    <nombre>AREITIO</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>GI-3420</carretera>
+    <pk_inicial>0.00</pk_inicial>
+    <pk_final>0.00</pk_final>
+    <sentido>LESAKA</sentido>
+    <nombre>ARITXULEGI</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>GI-627</carretera>
+    <pk_inicial>18.00</pk_inicial>
+    <pk_final>20.00</pk_final>
+    <sentido>EIBAR</sentido>
+    <nombre>ARLABAN</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Bizkaia</provincia>
+    <matricula>BI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>BI-633</carretera>
+    <pk_inicial>39.30</pk_inicial>
+    <pk_final>42.00</pk_final>
+    <sentido>ONDARROA</sentido>
+    <nombre>ARRANGIZGANA (TRABAKUA)</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>GI-3301</carretera>
+    <pk_inicial>0.00</pk_inicial>
+    <pk_final>0.00</pk_final>
+    <sentido>EIBAR</sentido>
+    <nombre>ARRATE</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Bizkaia</provincia>
+    <matricula>BI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>BI-631</carretera>
+    <pk_inicial>8.60</pk_inicial>
+    <pk_final>10.40</pk_final>
+    <sentido>BERMEO</sentido>
+    <nombre>ARTEBAKARRA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>GI-3631</carretera>
+    <pk_inicial>9.00</pk_inicial>
+    <pk_final>13.00</pk_final>
+    <sentido>OIARTZUN</sentido>
+    <nombre>ARTIKUTZA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Bizkaia</provincia>
+    <matricula>BI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>BI-3741</carretera>
+    <pk_inicial>0.00</pk_inicial>
+    <pk_final>0.00</pk_final>
+    <sentido>NO DISPONIBLE</sentido>
+    <nombre>ARTXANDA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Bizkaia</provincia>
+    <matricula>BI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>BI-2224</carretera>
+    <pk_inicial>0.00</pk_inicial>
+    <pk_final>0.00</pk_final>
+    <sentido>MARKINA-XEMEIN</sentido>
+    <nombre>ASTORKIGANA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Bizkaia</provincia>
+    <matricula>BI</matricula>
+    <causa>Obras</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: null C: null A: null</nivel>
+    <carretera>BI-635</carretera>
+    <pk_inicial>26.00</pk_inicial>
+    <pk_final>26.00</pk_final>
+    <sentido>GERNIKA-LUMO</sentido>
+    <nombre>AUTZAGANA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Bizkaia</provincia>
+    <matricula>BI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>BI-2701</carretera>
+    <pk_inicial>0.00</pk_inicial>
+    <pk_final>0.00</pk_final>
+    <sentido>NO DISPONIBLE</sentido>
+    <nombre>AVELLANEDA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Alava-Araba</provincia>
+    <matricula>VI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>A-132  </carretera>
+    <pk_inicial>17.60</pk_inicial>
+    <pk_final>17.70</pk_final>
+    <sentido>NAVARRA</sentido>
+    <nombre>AZAZETA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>GI-2634</carretera>
+    <pk_inicial>32.00</pk_inicial>
+    <pk_final>34.00</pk_final>
+    <sentido>ELGOIBAR</sentido>
+    <nombre>AZKARATE</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>GI-3210</carretera>
+    <pk_inicial>0.00</pk_inicial>
+    <pk_final>0.00</pk_final>
+    <sentido>AZKARATE</sentido>
+    <nombre>AZURKI</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Bizkaia</provincia>
+    <matricula>BI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>N-240  </carretera>
+    <pk_inicial>38.50</pk_inicial>
+    <pk_final>38.50</pk_final>
+    <sentido>BILBAO</sentido>
+    <nombre>BARAZAR</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Bizkaia</provincia>
+    <matricula>BI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>BI-631</carretera>
+    <pk_inicial>0.00</pk_inicial>
+    <pk_final>0.00</pk_final>
+    <sentido>BERMEO</sentido>
+    <nombre>BAREZI</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Alava-Araba</provincia>
+    <matricula>VI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>A-2521</carretera>
+    <pk_inicial>32.50</pk_inicial>
+    <pk_final>33.90</pk_final>
+    <sentido>URDU�A-ORDU�A</sentido>
+    <nombre>BARRERILLA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Bizkaia</provincia>
+    <matricula>BI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>BI-3621</carretera>
+    <pk_inicial>0.00</pk_inicial>
+    <pk_final>0.00</pk_final>
+    <sentido>NO DISPONIBLE</sentido>
+    <nombre>BERBIKIZ (SAN COSME)</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Alava-Araba</provincia>
+    <matricula>VI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>A-2126</carretera>
+    <pk_inicial>0.00</pk_inicial>
+    <pk_final>0.00</pk_final>
+    <sentido>BERNEDO</sentido>
+    <nombre>BERNEDOKO MENDATEA/PUERTO DE BERNEDO</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>GI-2634</carretera>
+    <pk_inicial>5.00</pk_inicial>
+    <pk_final>7.00</pk_final>
+    <sentido>ELGOIBAR</sentido>
+    <nombre>BIDANIA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Bizkaia</provincia>
+    <matricula>BI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>BI-3513</carretera>
+    <pk_inicial>39.00</pk_inicial>
+    <pk_final>39.00</pk_final>
+    <sentido>OROZKO</sentido>
+    <nombre>BIKOSGANA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Bizkaia</provincia>
+    <matricula>BI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>BI-3231</carretera>
+    <pk_inicial>0.00</pk_inicial>
+    <pk_final>0.00</pk_final>
+    <sentido>NO DISPONIBLE</sentido>
+    <nombre>BIZKAIKO BEHATOKIA/BALC�N DE BIZKAIA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>GI-632</carretera>
+    <pk_inicial>14.00</pk_inicial>
+    <pk_final>16.00</pk_final>
+    <sentido>DURANGO</sentido>
+    <nombre>DESKARGA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Bizkaia</provincia>
+    <matricula>BI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>BI-623</carretera>
+    <pk_inicial>30.00</pk_inicial>
+    <pk_final>35.00</pk_final>
+    <sentido>VITORIA-GASTEIZ</sentido>
+    <nombre>DIMA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>GI-2632</carretera>
+    <pk_inicial>11.00</pk_inicial>
+    <pk_final>12.00</pk_final>
+    <sentido>DURANGO</sentido>
+    <nombre>EITZAGA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>GI-3750</carretera>
+    <pk_inicial>0.00</pk_inicial>
+    <pk_final>0.00</pk_final>
+    <sentido>BERGARA</sentido>
+    <nombre>ELOSUA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Bizkaia</provincia>
+    <matricula>BI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>BI-604</carretera>
+    <pk_inicial>92.00</pk_inicial>
+    <pk_final>100.00</pk_final>
+    <sentido>NO DISPONIBLE</sentido>
+    <nombre>ENEKURI</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>GI-3454 </carretera>
+    <pk_inicial>18.00</pk_inicial>
+    <pk_final>23.00</pk_final>
+    <sentido>NO DISPONIBLE</sentido>
+    <nombre>ERLAITZ</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Bizkaia</provincia>
+    <matricula>BI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>BI-630</carretera>
+    <pk_inicial>42.60</pk_inicial>
+    <pk_final>49.00</pk_final>
+    <sentido>KARRANTZA HARANA/VALLE DE CARRANZA</sentido>
+    <nombre>ESCRITA/LA ESCRITA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>N-1</carretera>
+    <pk_inicial>405.50</pk_inicial>
+    <pk_final>412.60</pk_final>
+    <sentido>IRUN</sentido>
+    <nombre>ETZEGARATE (IRUN)</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>N-1</carretera>
+    <pk_inicial>405.50</pk_inicial>
+    <pk_final>412.60</pk_final>
+    <sentido>MADRID</sentido>
+    <nombre>ETZEGARATE (MADRID)</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>N-1</carretera>
+    <pk_inicial>471.70</pk_inicial>
+    <pk_final>473.00</pk_final>
+    <sentido>IRUN</sentido>
+    <nombre>GAINTXURIZKETA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Bizkaia</provincia>
+    <matricula>BI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>BI-3732</carretera>
+    <pk_inicial>0.00</pk_inicial>
+    <pk_final>0.00</pk_final>
+    <sentido>NO DISPONIBLE</sentido>
+    <nombre>GANGUREN (EL VIVERO)</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Alava-Araba</provincia>
+    <matricula>VI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>A-3632</carretera>
+    <pk_inicial>0.00</pk_inicial>
+    <pk_final>0.00</pk_final>
+    <sentido>OKONDO</sentido>
+    <nombre>GARATE</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Alava-Araba</provincia>
+    <matricula>VI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>A-2124</carretera>
+    <pk_inicial>4.10</pk_inicial>
+    <pk_final>8.00</pk_final>
+    <sentido>VITORIA-GASTEIZ</sentido>
+    <nombre>GASTEIZKO MENDATEA/PUERTO DE VITORIA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>GI-3310</carretera>
+    <pk_inicial>5.00</pk_inicial>
+    <pk_final>6.80</pk_final>
+    <sentido>ESKORIATZA</sentido>
+    <nombre>GATZAGA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Alava-Araba</provincia>
+    <matricula>VI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>A-2622</carretera>
+    <pk_inicial>0.00</pk_inicial>
+    <pk_final>0.00</pk_final>
+    <sentido>NO DISPONIBLE</sentido>
+    <nombre>GATZAGAKO MENDATEA (PUERTO DE SALINAS)</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Bizkaia</provincia>
+    <matricula>BI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>BI-2224</carretera>
+    <pk_inicial>0.00</pk_inicial>
+    <pk_final>0.00</pk_final>
+    <sentido>MARKINA-XEMEIN</sentido>
+    <nombre>GORONTZUGARAI</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Bizkaia</provincia>
+    <matricula>BI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>BI-636</carretera>
+    <pk_inicial>14.50</pk_inicial>
+    <pk_final>19.40</pk_final>
+    <sentido>CADAGUA</sentido>
+    <nombre>HERRERA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Alava-Araba</provincia>
+    <matricula>VI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>A-2124</carretera>
+    <pk_inicial>21.60</pk_inicial>
+    <pk_final>36.00</pk_final>
+    <sentido>LAGUARDIA</sentido>
+    <nombre>HERRERAKO MENDATEA/PUERTO DE HERRERA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Bizkaia</provincia>
+    <matricula>BI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>BI-3601</carretera>
+    <pk_inicial>33.30</pk_inicial>
+    <pk_final>33.30</pk_final>
+    <sentido>SOPUERTA</sentido>
+    <nombre>ILSOGANA (LAS MU�ECAS)</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Bizkaia</provincia>
+    <matricula>BI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>BI-633</carretera>
+    <pk_inicial>0.00</pk_inicial>
+    <pk_final>0.00</pk_final>
+    <sentido>ELGOIBAR</sentido>
+    <nombre>IRUZUBIETA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>GI-2634</carretera>
+    <pk_inicial>0.00</pk_inicial>
+    <pk_final>0.00</pk_final>
+    <sentido>NO DISPONIBLE</sentido>
+    <nombre>ITURBURU</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>N-634</carretera>
+    <pk_inicial>5.00</pk_inicial>
+    <pk_final>6.80</pk_final>
+    <sentido>SANTANDER</sentido>
+    <nombre>ITZIAR</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>GI-3421</carretera>
+    <pk_inicial>0.00</pk_inicial>
+    <pk_final>0.00</pk_final>
+    <sentido>ERMITA IZASKUN</sentido>
+    <nombre>IZASKUN</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>GI-3440</carretera>
+    <pk_inicial>0.00</pk_inicial>
+    <pk_final>0.00</pk_final>
+    <sentido>HONDARRIBIA</sentido>
+    <nombre>JAIZKIBEL</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Bizkaia</provincia>
+    <matricula>BI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>N-636</carretera>
+    <pk_inicial>0.00</pk_inicial>
+    <pk_final>0.00</pk_final>
+    <sentido>DURANGO</sentido>
+    <nombre>KANPANZAR</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>GI-2639</carretera>
+    <pk_inicial>0.00</pk_inicial>
+    <pk_final>0.00</pk_final>
+    <sentido>EIBAR</sentido>
+    <nombre>KARABIETA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Bizkaia</provincia>
+    <matricula>BI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>BI-636</carretera>
+    <pk_inicial>0.00</pk_inicial>
+    <pk_final>0.00</pk_final>
+    <sentido>CORREDOR DEL CADAGUA</sentido>
+    <nombre>KASTREXANA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Alava-Araba</provincia>
+    <matricula>VI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>A-2620</carretera>
+    <pk_inicial>27.00</pk_inicial>
+    <pk_final>27.00</pk_final>
+    <sentido>ARRASATE-MONDRAG�N</sentido>
+    <nombre>KURTZETA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Bizkaia</provincia>
+    <matricula>BI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>BI-3755</carretera>
+    <pk_inicial>0.00</pk_inicial>
+    <pk_final>0.00</pk_final>
+    <sentido>LA ARBOLEDA</sentido>
+    <nombre>LARREINETA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Bizkaia</provincia>
+    <matricula>BI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>BI-3448</carretera>
+    <pk_inicial>0.00</pk_inicial>
+    <pk_final>0.00</pk_final>
+    <sentido>NO DISPONIBLE</sentido>
+    <nombre>LEKOIZGANA (SANTA EUFEMIA)</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>GI-120</carretera>
+    <pk_inicial>47.70</pk_inicial>
+    <pk_final>47.70</pk_final>
+    <sentido>BEASAIN</sentido>
+    <nombre>LIZARRUSTI</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>GI-2635</carretera>
+    <pk_inicial>0.00</pk_inicial>
+    <pk_final>0.00</pk_final>
+    <sentido>BEASAIN</sentido>
+    <nombre>MANDUBIA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>GI-2633</carretera>
+    <pk_inicial>0.00</pk_inicial>
+    <pk_final>0.00</pk_final>
+    <sentido>IRAETA</sentido>
+    <nombre>MEAGA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Bizkaia</provincia>
+    <matricula>BI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>BI-2405</carretera>
+    <pk_inicial>0.00</pk_inicial>
+    <pk_final>0.00</pk_final>
+    <sentido>NO DISPONIBLE</sentido>
+    <nombre>MERELLUDI (MILLOI)</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Bizkaia</provincia>
+    <matricula>BI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>BI-3321</carretera>
+    <pk_inicial>0.00</pk_inicial>
+    <pk_final>0.00</pk_final>
+    <sentido>NO DISPONIBLE</sentido>
+    <nombre>MIOTA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Bizkaia</provincia>
+    <matricula>BI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>BI-3148</carretera>
+    <pk_inicial>0.00</pk_inicial>
+    <pk_final>0.00</pk_final>
+    <sentido>MORGA</sentido>
+    <nombre>MORGA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Bizkaia</provincia>
+    <matricula>BI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>BI-3332</carretera>
+    <pk_inicial>0.00</pk_inicial>
+    <pk_final>0.00</pk_final>
+    <sentido>MUXIKA</sentido>
+    <nombre>MUNIKETA (MONTECALVO)</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>GI-3720</carretera>
+    <pk_inicial>0.00</pk_inicial>
+    <pk_final>0.00</pk_final>
+    <sentido>ALBIZTUR</sentido>
+    <nombre>OLLOKI</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Alava-Araba</provincia>
+    <matricula>VI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>A-2128</carretera>
+    <pk_inicial>28.00</pk_inicial>
+    <pk_final>33.40</pk_final>
+    <sentido>CAMPEZO/KANPEZU</sentido>
+    <nombre>OPAKUA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>GI-2637</carretera>
+    <pk_inicial>15.00</pk_inicial>
+    <pk_final>15.00</pk_final>
+    <sentido>ALTSASU/ALSASUA</sentido>
+    <nombre>OTSAURTE</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>GI-2632</carretera>
+    <pk_inicial>27.00</pk_inicial>
+    <pk_final>32.00</pk_final>
+    <sentido>ELORRIO</sentido>
+    <nombre>PAGATZA (ELGETA)</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Bizkaia</provincia>
+    <matricula>BI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>BI-3101</carretera>
+    <pk_inicial>0.00</pk_inicial>
+    <pk_final>0.00</pk_final>
+    <sentido>NO DISPONIBLE</sentido>
+    <nombre>SAN PELAIO</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Bizkaia</provincia>
+    <matricula>BI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>BI-3524</carretera>
+    <pk_inicial>0.00</pk_inicial>
+    <pk_final>0.00</pk_final>
+    <sentido>NO DISPONIBLE</sentido>
+    <nombre>SARASOLA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Bizkaia</provincia>
+    <matricula>BI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>BI-631</carretera>
+    <pk_inicial>28.00</pk_inicial>
+    <pk_final>28.00</pk_final>
+    <sentido>BERMEO</sentido>
+    <nombre>SOLLUBE</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Bizkaia</provincia>
+    <matricula>BI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>BI-3622</carretera>
+    <pk_inicial>0.00</pk_inicial>
+    <pk_final>0.00</pk_final>
+    <sentido>LANESTOSA</sentido>
+    <nombre>UBAL</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>GI-2630</carretera>
+    <pk_inicial>0.00</pk_inicial>
+    <pk_final>9.00</pk_final>
+    <sentido>BERGARA</sentido>
+    <nombre>UDANA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Bizkaia</provincia>
+    <matricula>BI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>BI-3631</carretera>
+    <pk_inicial>0.00</pk_inicial>
+    <pk_final>0.00</pk_final>
+    <sentido>NO DISPONIBLE</sentido>
+    <nombre>UMARAN</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Bizkaia</provincia>
+    <matricula>BI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>BI-2704</carretera>
+    <pk_inicial>9.50</pk_inicial>
+    <pk_final>9.50</pk_final>
+    <sentido>PLENTZIA</sentido>
+    <nombre>UNBE</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Alava-Araba</provincia>
+    <matricula>VI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>A-2625</carretera>
+    <pk_inicial>346.70</pk_inicial>
+    <pk_final>350.40</pk_final>
+    <sentido>URDU�A-ORDU�A</sentido>
+    <nombre>URDU�AKO MENDATEA/PUERTO DE ORDU�A</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Bizkaia</provincia>
+    <matricula>BI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>BI-2636</carretera>
+    <pk_inicial>50.00</pk_inicial>
+    <pk_final>56.00</pk_final>
+    <sentido>NO DISPONIBLE</sentido>
+    <nombre>URKAREGI (SAN MIGEL)</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Bizkaia</provincia>
+    <matricula>BI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>BI-623</carretera>
+    <pk_inicial>39.60</pk_inicial>
+    <pk_final>46.30</pk_final>
+    <sentido>VITORIA-GASTEIZ</sentido>
+    <nombre>URKIOLA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>GI-3740</carretera>
+    <pk_inicial>0.00</pk_inicial>
+    <pk_final>0.00</pk_final>
+    <sentido>BIDANIA</sentido>
+    <nombre>URRAKI</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>GI-2130</carretera>
+    <pk_inicial>0.00</pk_inicial>
+    <pk_final>0.00</pk_final>
+    <sentido>LEITZA</sentido>
+    <nombre>URTO</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Alava-Araba</provincia>
+    <matricula>VI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>A-3102</carretera>
+    <pk_inicial>5.50</pk_inicial>
+    <pk_final>9.00</pk_final>
+    <sentido>TREVI�O</sentido>
+    <nombre>ZALDIARAN</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Puertos de monta�a</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel>T: Abierto C: Abierto A: Abierto</nivel>
+    <carretera>N-634</carretera>
+    <pk_inicial>0.00</pk_inicial>
+    <pk_final>0.00</pk_final>
+    <sentido>SANTANDER</sentido>
+    <nombre>ZUDUGARAIGAIN (ALTO DE ORIO)</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Vialidad invernal tramos</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Alava-Araba</provincia>
+    <matricula>VI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel/>
+    <carretera>A-124</carretera>
+    <pk_inicial>0.00</pk_inicial>
+    <pk_final>0.00</pk_final>
+    <sentido>NO DISPONIBLE</sentido>
+    <nombre>A-124 BRI�AS - LOGRO�O</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Vialidad invernal tramos</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel/>
+    <carretera>A-15</carretera>
+    <pk_inicial>152.00</pk_inicial>
+    <pk_final>153.00</pk_final>
+    <sentido>NO DISPONIBLE</sentido>
+    <nombre>A-15 ANDOAIN-NAFARROA/NAVARRA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Vialidad invernal tramos</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel/>
+    <carretera>A-15</carretera>
+    <pk_inicial>139.80</pk_inicial>
+    <pk_final>152.00</pk_final>
+    <sentido>NO DISPONIBLE</sentido>
+    <nombre>A-15 NAFARROA/NAVARRA-ANDOAIN</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Vialidad invernal tramos</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Alava-Araba</provincia>
+    <matricula>VI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel/>
+    <carretera>A-2622</carretera>
+    <pk_inicial>0.00</pk_inicial>
+    <pk_final>0.00</pk_final>
+    <sentido>NO DISPONIBLE</sentido>
+    <nombre>A-2622 LANGRAIZ/NANCLARES</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Vialidad invernal tramos</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Alava-Araba</provincia>
+    <matricula>VI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel/>
+    <carretera>A-3126</carretera>
+    <pk_inicial>0.00</pk_inicial>
+    <pk_final>0.00</pk_final>
+    <sentido>NO DISPONIBLE</sentido>
+    <nombre>A-3126 BERGANZO-URIZAHARRA/PE�ACERRADA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Vialidad invernal tramos</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Alava-Araba</provincia>
+    <matricula>VI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel/>
+    <carretera>A-3130</carretera>
+    <pk_inicial>0.00</pk_inicial>
+    <pk_final>0.00</pk_final>
+    <sentido>NO DISPONIBLE</sentido>
+    <nombre>A-3130 BERNEDO-URIZAHARRA/PE�ACERRADA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Vialidad invernal tramos</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Alava-Araba</provincia>
+    <matricula>VI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel/>
+    <carretera>A-623</carretera>
+    <pk_inicial>0.00</pk_inicial>
+    <pk_final>0.00</pk_final>
+    <sentido>NO DISPONIBLE</sentido>
+    <nombre>A-623 LEGUTIO-DURANGO</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Vialidad invernal tramos</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Alava-Araba</provincia>
+    <matricula>VI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel/>
+    <carretera>A-625</carretera>
+    <pk_inicial>0.00</pk_inicial>
+    <pk_final>0.00</pk_final>
+    <sentido>NO DISPONIBLE</sentido>
+    <nombre>A-625 URDU�A/ORDU�A-BILBAO</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Vialidad invernal tramos</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Bizkaia</provincia>
+    <matricula>BI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel/>
+    <carretera>A-8</carretera>
+    <pk_inicial>0.00</pk_inicial>
+    <pk_final>0.00</pk_final>
+    <sentido>NO DISPONIBLE</sentido>
+    <nombre>A-8 BILBAO - EL HAYA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Vialidad invernal tramos</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Bizkaia</provincia>
+    <matricula>BI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel/>
+    <carretera>A-8</carretera>
+    <pk_inicial>75.00</pk_inicial>
+    <pk_final>93.00</pk_final>
+    <sentido>NO DISPONIBLE</sentido>
+    <nombre>A-8 BILBAO - ERMUA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Vialidad invernal tramos</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Bizkaia</provincia>
+    <matricula>BI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel/>
+    <carretera>A-8</carretera>
+    <pk_inicial>0.00</pk_inicial>
+    <pk_final>0.00</pk_final>
+    <sentido>NO DISPONIBLE</sentido>
+    <nombre>A-8 EL HAYA - BILBAO</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Vialidad invernal tramos</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Bizkaia</provincia>
+    <matricula>BI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel/>
+    <carretera>A-8</carretera>
+    <pk_inicial>75.00</pk_inicial>
+    <pk_final>93.00</pk_final>
+    <sentido>NO DISPONIBLE</sentido>
+    <nombre>A-8 ERMUA - BILBAO</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Vialidad invernal tramos</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel/>
+    <carretera>A-8</carretera>
+    <pk_inicial>2.00</pk_inicial>
+    <pk_final>1.00</pk_final>
+    <sentido>NO DISPONIBLE</sentido>
+    <nombre>A-8 ERMUA - IRUN</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Vialidad invernal tramos</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel/>
+    <carretera>A-8</carretera>
+    <pk_inicial>1.00</pk_inicial>
+    <pk_final>2.00</pk_final>
+    <sentido>NO DISPONIBLE</sentido>
+    <nombre>A-8 IRUN - ERMUA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Vialidad invernal tramos</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Alava-Araba</provincia>
+    <matricula>VI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel/>
+    <carretera>N-622</carretera>
+    <pk_inicial>4.00</pk_inicial>
+    <pk_final>23.00</pk_final>
+    <sentido>NO DISPONIBLE</sentido>
+    <nombre>ALTUBE-VITORIA/GASTEIZ AUTOBIA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Vialidad invernal tramos</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Alava-Araba</provincia>
+    <matricula>VI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel/>
+    <carretera>AP-1</carretera>
+    <pk_inicial>77.30</pk_inicial>
+    <pk_final>83.30</pk_final>
+    <sentido>EIBAR</sentido>
+    <nombre>AP-1 (BURGOS-ARMI�ON)</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Vialidad invernal tramos</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Alava-Araba</provincia>
+    <matricula>VI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel/>
+    <carretera>AP-1</carretera>
+    <pk_inicial>100.00</pk_inicial>
+    <pk_final>123.00</pk_final>
+    <sentido>MADRID</sentido>
+    <nombre>AP-1 (ESKORIATZA-FORONDA)</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Vialidad invernal tramos</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Alava-Araba</provincia>
+    <matricula>VI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel/>
+    <carretera>AP-1</carretera>
+    <pk_inicial>100.00</pk_inicial>
+    <pk_final>123.00</pk_final>
+    <sentido>EIBAR</sentido>
+    <nombre>AP-1 (FORONDA-ESKORIATZA)</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Vialidad invernal tramos</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Alava-Araba</provincia>
+    <matricula>VI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel/>
+    <carretera>AP-1</carretera>
+    <pk_inicial>77.30</pk_inicial>
+    <pk_final>83.10</pk_final>
+    <sentido>BURGOS</sentido>
+    <nombre>AP-1 (N-1CR-BURGOS)</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Vialidad invernal tramos</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel/>
+    <carretera>AP-1 </carretera>
+    <pk_inicial>0.00</pk_inicial>
+    <pk_final>16.50</pk_final>
+    <sentido>NO DISPONIBLE</sentido>
+    <nombre>AP-1(ARRASATE-EIBAR)</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Vialidad invernal tramos</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel/>
+    <carretera>AP-1 </carretera>
+    <pk_inicial>0.00</pk_inicial>
+    <pk_final>12.00</pk_final>
+    <sentido>NO DISPONIBLE</sentido>
+    <nombre>AP-1(EIBAR-ARRASATE)</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Vialidad invernal tramos</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Bizkaia</provincia>
+    <matricula>BI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel/>
+    <carretera>BI-623</carretera>
+    <pk_inicial>350.00</pk_inicial>
+    <pk_final>392.00</pk_final>
+    <sentido>NO DISPONIBLE</sentido>
+    <nombre>BI-623 OTXANDIO SAIHESBIDEA/VARIANTE</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Vialidad invernal tramos</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Alava-Araba</provincia>
+    <matricula>VI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel/>
+    <carretera>N-1</carretera>
+    <pk_inicial>322.00</pk_inicial>
+    <pk_final>350.00</pk_final>
+    <sentido>NO DISPONIBLE</sentido>
+    <nombre>N-1 MIRANDA-VITORIA/GASTEIZ</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Vialidad invernal tramos</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Alava-Araba</provincia>
+    <matricula>VI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel/>
+    <carretera>N-1</carretera>
+    <pk_inicial>392.00</pk_inicial>
+    <pk_final>350.00</pk_final>
+    <sentido>NO DISPONIBLE</sentido>
+    <nombre>N-1 NAFARROA/NAVARRA-VITORIA/GASTEIZ</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Vialidad invernal tramos</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Alava-Araba</provincia>
+    <matricula>VI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel/>
+    <carretera>N-1</carretera>
+    <pk_inicial>350.00</pk_inicial>
+    <pk_final>322.00</pk_final>
+    <sentido>NO DISPONIBLE</sentido>
+    <nombre>N-1 VITORIA/GASTEIZ-MIRANDA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Vialidad invernal tramos</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Alava-Araba</provincia>
+    <matricula>VI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel/>
+    <carretera>N-1</carretera>
+    <pk_inicial>350.00</pk_inicial>
+    <pk_final>392.00</pk_final>
+    <sentido>NO DISPONIBLE</sentido>
+    <nombre>N-1 VITORIA/GASTEIZ-NAFARROA/NAVARRA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Vialidad invernal tramos</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Alava-Araba</provincia>
+    <matricula>VI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel/>
+    <carretera>N-124</carretera>
+    <pk_inicial>7.00</pk_inicial>
+    <pk_final>14.00</pk_final>
+    <sentido>NO DISPONIBLE</sentido>
+    <nombre>N-124 LAS CONCHAS</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Vialidad invernal tramos</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Alava-Araba</provincia>
+    <matricula>VI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel/>
+    <carretera>N-240</carretera>
+    <pk_inicial>0.00</pk_inicial>
+    <pk_final>0.00</pk_final>
+    <sentido>NO DISPONIBLE</sentido>
+    <nombre>N-240 LEGUTIO-VITORIA/GASTEIZ</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Vialidad invernal tramos</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Alava-Araba</provincia>
+    <matricula>VI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel/>
+    <carretera>N-240</carretera>
+    <pk_inicial>7.00</pk_inicial>
+    <pk_final>14.00</pk_final>
+    <sentido>NO DISPONIBLE</sentido>
+    <nombre>N-240 VITORIA/GASTEIZ-LEGUTIO</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Vialidad invernal tramos</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Alava-Araba</provincia>
+    <matricula>VI</matricula>
+    <causa>Desconocida</causa>
+    <poblacion/>
+    <fechahora_ini>2016-07-04 06:26:04.447</fechahora_ini>
+    <nivel/>
+    <carretera>N-622</carretera>
+    <pk_inicial>4.00</pk_inicial>
+    <pk_final>23.00</pk_final>
+    <sentido>NO DISPONIBLE</sentido>
+    <nombre>VITORIA/GASTEIZ-ALTUBE AUTOBIA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Obras</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Obra</causa>
+    <poblacion/>
+    <fechahora_ini>2015-05-25 - 2017-11-25</fechahora_ini>
+    <nivel/>
+    <carretera>GI-41-0</carretera>
+    <pk_inicial>0.0</pk_inicial>
+    <pk_final>0.0</pk_final>
+    <sentido>AMBOS</sentido>
+  </incidencia>
+  <incidencia>
+    <tipo>Obras</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Araba</provincia>
+    <matricula>VI</matricula>
+    <causa>Obra</causa>
+    <poblacion/>
+    <fechahora_ini>2016-08-08 - 2016-09-16</fechahora_ini>
+    <nivel/>
+    <carretera>A-3308</carretera>
+    <pk_inicial>15.2</pk_inicial>
+    <pk_final>15.7</pk_final>
+    <sentido>BIETARA/AMBOS</sentido>
+  </incidencia>
+  <incidencia>
+    <tipo>Obras</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Obra</causa>
+    <poblacion/>
+    <fechahora_ini>2016-08-29 - 2016-09-11</fechahora_ini>
+    <nivel/>
+    <carretera>GI-2634</carretera>
+    <pk_inicial>33.0</pk_inicial>
+    <pk_final>34.5</pk_final>
+    <sentido>AMBOS</sentido>
+  </incidencia>
+  <incidencia>
+    <tipo>Obras</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Obra</causa>
+    <poblacion/>
+    <fechahora_ini>2016-09-02 - 2016-09-08</fechahora_ini>
+    <nivel/>
+    <carretera>GI-2634</carretera>
+    <pk_inicial>23.0</pk_inicial>
+    <pk_final>24.0</pk_final>
+    <sentido>AMBOS</sentido>
+  </incidencia>
+  <incidencia>
+    <tipo>Obras</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Obra</causa>
+    <poblacion/>
+    <fechahora_ini>2016-09-05 - 2016-09-08</fechahora_ini>
+    <nivel/>
+    <carretera>GI-3740</carretera>
+    <pk_inicial>0.0</pk_inicial>
+    <pk_final>4.0</pk_final>
+    <sentido>AMBOS</sentido>
+  </incidencia>
+  <incidencia>
+    <tipo>Obras</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Obra</causa>
+    <poblacion/>
+    <fechahora_ini>2016-09-05 - 2016-09-08</fechahora_ini>
+    <nivel/>
+    <carretera>GI-2633</carretera>
+    <pk_inicial>0.0</pk_inicial>
+    <pk_final>12.96</pk_final>
+    <sentido>AMBOS</sentido>
+  </incidencia>
+  <incidencia>
+    <tipo>Obras</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Obra</causa>
+    <poblacion/>
+    <fechahora_ini>2016-09-05 - 2016-09-07</fechahora_ini>
+    <nivel/>
+    <carretera>GI-2634</carretera>
+    <pk_inicial>8.0</pk_inicial>
+    <pk_final>23.7</pk_final>
+    <sentido>AMBOS</sentido>
+  </incidencia>
+  <incidencia>
+    <tipo>Obras</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Obra</causa>
+    <poblacion/>
+    <fechahora_ini>2016-09-05 - 2016-09-11</fechahora_ini>
+    <nivel/>
+    <carretera>GI-2634</carretera>
+    <pk_inicial>33.0</pk_inicial>
+    <pk_final>34.5</pk_final>
+    <sentido>AMBOS</sentido>
+  </incidencia>
+  <incidencia>
+    <tipo>Obras</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Obra</causa>
+    <poblacion/>
+    <fechahora_ini>2016-09-05 - 2016-09-16</fechahora_ini>
+    <nivel/>
+    <carretera>GI-20</carretera>
+    <pk_inicial>9.5</pk_inicial>
+    <pk_final>2.0</pk_final>
+    <sentido>IRUN</sentido>
+  </incidencia>
+  <incidencia>
+    <tipo>Obras</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Obra</causa>
+    <poblacion/>
+    <fechahora_ini>2016-09-05 - 2016-09-05</fechahora_ini>
+    <nivel/>
+    <carretera>AP-1</carretera>
+    <pk_inicial>140.3</pk_inicial>
+    <pk_final>138.7</pk_final>
+    <sentido>EIBAR</sentido>
+  </incidencia>
+  <incidencia>
+    <tipo>Obras</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Obra</causa>
+    <poblacion/>
+    <fechahora_ini>2016-09-05 - 2016-09-05</fechahora_ini>
+    <nivel/>
+    <carretera>AP-1</carretera>
+    <pk_inicial>140.3</pk_inicial>
+    <pk_final>138.7</pk_final>
+    <sentido>GASTEIZ</sentido>
+  </incidencia>
+  <incidencia>
+    <tipo>Obras</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Obra</causa>
+    <poblacion/>
+    <fechahora_ini>2016-09-05 - 2016-09-08</fechahora_ini>
+    <nivel/>
+    <carretera>GI-631</carretera>
+    <pk_inicial>6.0</pk_inicial>
+    <pk_final>16.0</pk_final>
+    <sentido>AMBOS</sentido>
+  </incidencia>
+  <incidencia>
+    <tipo>Obras</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Obra</causa>
+    <poblacion/>
+    <fechahora_ini>2016-09-05 - 2016-09-08</fechahora_ini>
+    <nivel/>
+    <carretera>GI-627</carretera>
+    <pk_inicial>56.0</pk_inicial>
+    <pk_final>41.0</pk_final>
+    <sentido>AMBOS</sentido>
+  </incidencia>
+  <incidencia>
+    <tipo>Obras</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Obra</causa>
+    <poblacion/>
+    <fechahora_ini>2016-09-05 - 2016-09-05</fechahora_ini>
+    <nivel/>
+    <carretera>N-1</carretera>
+    <pk_inicial>445.0</pk_inicial>
+    <pk_final>453.0</pk_final>
+    <sentido>AMBOS</sentido>
+  </incidencia>
+  <incidencia>
+    <tipo>Obras</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Araba</provincia>
+    <matricula>VI</matricula>
+    <causa>Otra actividad</causa>
+    <poblacion/>
+    <fechahora_ini>2016-05-20 - 2017-01-07</fechahora_ini>
+    <nivel/>
+    <carretera>A-2620</carretera>
+    <pk_inicial>15.8</pk_inicial>
+    <pk_final>15.93</pk_final>
+    <sentido>AMBOS</sentido>
+  </incidencia>
+  <incidencia>
+    <tipo>Obras</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Araba</provincia>
+    <matricula>VI</matricula>
+    <causa>Obra</causa>
+    <poblacion/>
+    <fechahora_ini>2016-09-11 - 2016-09-11</fechahora_ini>
+    <nivel/>
+    <carretera>AP-1</carretera>
+    <pk_inicial>83.0</pk_inicial>
+    <pk_final>83.5</pk_final>
+    <sentido>Ascendente</sentido>
+  </incidencia>
+  <incidencia>
+    <tipo>Obras</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Araba</provincia>
+    <matricula>VI</matricula>
+    <causa>Obra</causa>
+    <poblacion/>
+    <fechahora_ini>2016-09-06 - 2016-09-08</fechahora_ini>
+    <nivel/>
+    <carretera>A-4024</carretera>
+    <pk_inicial>29.28</pk_inicial>
+    <pk_final>29.28</pk_final>
+    <sentido>AMBOS</sentido>
+  </incidencia>
+  <incidencia>
+    <tipo>Obras</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Obra</causa>
+    <poblacion/>
+    <fechahora_ini>2016-09-05 - 2016-09-11</fechahora_ini>
+    <nivel/>
+    <carretera>GI-2634</carretera>
+    <pk_inicial>33.0</pk_inicial>
+    <pk_final>34.5</pk_final>
+    <sentido>AMBOS</sentido>
+  </incidencia>
+  <incidencia>
+    <tipo>Obras</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Obra</causa>
+    <poblacion/>
+    <fechahora_ini>2016-09-07 - 2016-09-08</fechahora_ini>
+    <nivel/>
+    <carretera>GI-2635</carretera>
+    <pk_inicial>0.0</pk_inicial>
+    <pk_final>5.2</pk_final>
+    <sentido>AMBOS</sentido>
+  </incidencia>
+  <incidencia>
+    <tipo>Obras</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Obra</causa>
+    <poblacion/>
+    <fechahora_ini>2016-09-07 - 2016-09-08</fechahora_ini>
+    <nivel/>
+    <carretera>GI-3210</carretera>
+    <pk_inicial>0.0</pk_inicial>
+    <pk_final>6.0</pk_final>
+    <sentido>AMBOS</sentido>
+  </incidencia>
+  <incidencia>
+    <tipo>Obras</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Obra</causa>
+    <poblacion/>
+    <fechahora_ini>2016-09-05 - 2016-09-05</fechahora_ini>
+    <nivel/>
+    <carretera>AP-1</carretera>
+    <pk_inicial>140.3</pk_inicial>
+    <pk_final>138.7</pk_final>
+    <sentido>EIBAR</sentido>
+  </incidencia>
+  <incidencia>
+    <tipo>Obras</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Obra</causa>
+    <poblacion/>
+    <fechahora_ini>2016-09-06 - 2016-09-07</fechahora_ini>
+    <nivel/>
+    <carretera>AP-1</carretera>
+    <pk_inicial>140.3</pk_inicial>
+    <pk_final>138.7</pk_final>
+    <sentido>EIBAR</sentido>
+  </incidencia>
+  <incidencia>
+    <tipo>Obras</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Obra</causa>
+    <poblacion/>
+    <fechahora_ini>2016-09-08 - 2016-09-08</fechahora_ini>
+    <nivel/>
+    <carretera>AP-1</carretera>
+    <pk_inicial>140.3</pk_inicial>
+    <pk_final>138.7</pk_final>
+    <sentido>EIBAR</sentido>
+  </incidencia>
+  <incidencia>
+    <tipo>Obras</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Obra</causa>
+    <poblacion/>
+    <fechahora_ini>2016-09-05 - 2016-09-05</fechahora_ini>
+    <nivel/>
+    <carretera>AP-1</carretera>
+    <pk_inicial>140.3</pk_inicial>
+    <pk_final>138.7</pk_final>
+    <sentido>GASTEIZ</sentido>
+  </incidencia>
+  <incidencia>
+    <tipo>Obras</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Obra</causa>
+    <poblacion/>
+    <fechahora_ini>2016-09-06 - 2016-09-07</fechahora_ini>
+    <nivel/>
+    <carretera>AP-1</carretera>
+    <pk_inicial>140.3</pk_inicial>
+    <pk_final>138.7</pk_final>
+    <sentido>GASTEIZ</sentido>
+  </incidencia>
+  <incidencia>
+    <tipo>Obras</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Obra</causa>
+    <poblacion/>
+    <fechahora_ini>2016-09-08 - 2016-09-08</fechahora_ini>
+    <nivel/>
+    <carretera>AP-1</carretera>
+    <pk_inicial>140.3</pk_inicial>
+    <pk_final>138.7</pk_final>
+    <sentido>GASTEIZ</sentido>
+  </incidencia>
+  <incidencia>
+    <tipo>Obras</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Obra</causa>
+    <poblacion/>
+    <fechahora_ini>2016-09-06 - 2016-09-06</fechahora_ini>
+    <nivel/>
+    <carretera>AP-1</carretera>
+    <pk_inicial>120.4</pk_inicial>
+    <pk_final>120.5</pk_final>
+    <sentido>GASTEIZ</sentido>
+  </incidencia>
+  <incidencia>
+    <tipo>Obras</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Obra</causa>
+    <poblacion/>
+    <fechahora_ini>2016-09-05 - 2016-09-05</fechahora_ini>
+    <nivel/>
+    <carretera>N-1</carretera>
+    <pk_inicial>445.0</pk_inicial>
+    <pk_final>453.0</pk_final>
+    <sentido>AMBOS</sentido>
+  </incidencia>
+  <incidencia>
+    <tipo>Obras</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Obra</causa>
+    <poblacion/>
+    <fechahora_ini>2016-09-06 - 2016-09-06</fechahora_ini>
+    <nivel/>
+    <carretera>N-1</carretera>
+    <pk_inicial>445.0</pk_inicial>
+    <pk_final>453.0</pk_final>
+    <sentido>AMBOS</sentido>
+  </incidencia>
+  <incidencia>
+    <tipo>Obras</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Obra</causa>
+    <poblacion/>
+    <fechahora_ini>2016-09-06 - 2016-09-06</fechahora_ini>
+    <nivel/>
+    <carretera>GI-2130</carretera>
+    <pk_inicial>2.0</pk_inicial>
+    <pk_final>4.0</pk_final>
+    <sentido>AMBOS</sentido>
+  </incidencia>
+  <incidencia>
+    <tipo>Obras</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Obra</causa>
+    <poblacion/>
+    <fechahora_ini>2016-09-06 - 2016-09-06</fechahora_ini>
+    <nivel/>
+    <carretera>A-15</carretera>
+    <pk_inicial>152.0</pk_inicial>
+    <pk_final>149.0</pk_final>
+    <sentido>IRU�EA</sentido>
+  </incidencia>
+  <incidencia>
+    <tipo>Obras</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Obra</causa>
+    <poblacion/>
+    <fechahora_ini>2016-09-10 - 2016-09-10</fechahora_ini>
+    <nivel/>
+    <carretera>N-634</carretera>
+    <pk_inicial>5.0</pk_inicial>
+    <pk_final>6.0</pk_final>
+    <sentido>AMBOS</sentido>
+  </incidencia>
+  <incidencia>
+    <tipo>Obras</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Otra actividad</causa>
+    <poblacion/>
+    <fechahora_ini>2016-09-06 - 2016-09-06</fechahora_ini>
+    <nivel/>
+    <carretera>N-1</carretera>
+    <pk_inicial>448.0</pk_inicial>
+    <pk_final>448.0</pk_final>
+    <sentido>IRUN</sentido>
+  </incidencia>
+  <incidencia>
+    <tipo>Obras</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia>Gipuzkoa</provincia>
+    <matricula>SS</matricula>
+    <causa>Otra actividad</causa>
+    <poblacion/>
+    <fechahora_ini>2016-09-11 - 2016-09-11</fechahora_ini>
+    <nivel/>
+    <carretera>GI-3750</carretera>
+    <pk_inicial>7.5</pk_inicial>
+    <pk_final>8.8</pk_final>
+    <sentido>AMBOS</sentido>
+  </incidencia>
+  <incidencia>
+    <tipo>Pruebas deportivas</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia/>
+    <matricula/>
+    <causa>Mixta</causa>
+    <poblacion/>
+    <fechahora_ini>2016-09-06 - 2016-09-06</fechahora_ini>
+    <nivel/>
+    <carretera/>
+    <pk_inicial/>
+    <pk_final/>
+    <sentido/>
+    <nombre>GURDI BIDEA: 18 EGUNEZ, BURGOSTIK PASAIRA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Pruebas deportivas</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia/>
+    <matricula/>
+    <causa>Ciclismo</causa>
+    <poblacion/>
+    <fechahora_ini>2016-09-08 - 2016-09-08</fechahora_ini>
+    <nivel/>
+    <carretera/>
+    <pk_inicial/>
+    <pk_final/>
+    <sentido/>
+    <nombre>XXX ANDRA MARI SARI NAGUSIA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Pruebas deportivas</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia/>
+    <matricula/>
+    <causa>Ciclismo</causa>
+    <poblacion/>
+    <fechahora_ini>2016-09-10 - 2016-09-10</fechahora_ini>
+    <nivel/>
+    <carretera/>
+    <pk_inicial/>
+    <pk_final/>
+    <sentido/>
+    <nombre>XXXV TROFEO NTRA. SRA. DEL SUCESO</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Pruebas deportivas</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia/>
+    <matricula/>
+    <causa>Marcha ciclista</causa>
+    <poblacion/>
+    <fechahora_ini>2016-09-10 - 2016-09-10</fechahora_ini>
+    <nivel/>
+    <carretera/>
+    <pk_inicial/>
+    <pk_final/>
+    <sentido/>
+    <nombre>LXI PRUEBA CICLOTURISTA BLAN</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Pruebas deportivas</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia/>
+    <matricula/>
+    <causa>Ciclismo</causa>
+    <poblacion/>
+    <fechahora_ini>2016-09-10 - 2016-09-10</fechahora_ini>
+    <nivel/>
+    <carretera/>
+    <pk_inicial/>
+    <pk_final/>
+    <sentido/>
+    <nombre>MIKEL DEUNAREN LVIII SARIA MENDIKO KRITERIUMA (1�ETAPA)</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Pruebas deportivas</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia/>
+    <matricula/>
+    <causa>Ciclismo</causa>
+    <poblacion/>
+    <fechahora_ini>2016-09-11 - 2016-09-11</fechahora_ini>
+    <nivel/>
+    <carretera/>
+    <pk_inicial/>
+    <pk_final/>
+    <sentido/>
+    <nombre>XXXV. LIERNIA SARIA- MENDIKO KRITERIUMA (2.ETAPA)</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Pruebas deportivas</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia/>
+    <matricula/>
+    <causa>Ciclismo</causa>
+    <poblacion/>
+    <fechahora_ini>2016-09-11 - 2016-09-11</fechahora_ini>
+    <nivel/>
+    <carretera/>
+    <pk_inicial/>
+    <pk_final/>
+    <sentido/>
+    <nombre>XXV PREMIO NUESTRA SE�ORA DE LA ENCINA / 2� etapa XXXIX VUELTA A ALAVA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Pruebas deportivas</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia/>
+    <matricula/>
+    <causa>Ciclismo</causa>
+    <poblacion/>
+    <fechahora_ini>2016-09-11 - 2016-09-11</fechahora_ini>
+    <nivel/>
+    <carretera/>
+    <pk_inicial/>
+    <pk_final/>
+    <sentido/>
+    <nombre>XXXIV PREMIO VIRGEN DE UDIARRAGA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Pruebas deportivas</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia/>
+    <matricula/>
+    <causa>Triatl�n</causa>
+    <poblacion/>
+    <fechahora_ini>2016-09-11 - 2016-09-11</fechahora_ini>
+    <nivel/>
+    <carretera/>
+    <pk_inicial/>
+    <pk_final/>
+    <sentido/>
+    <nombre>III TRIATL�N DE SESTAO</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Pruebas deportivas</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia/>
+    <matricula/>
+    <causa>Automovilismo</causa>
+    <poblacion/>
+    <fechahora_ini>2016-09-11 - 2016-09-11</fechahora_ini>
+    <nivel/>
+    <carretera/>
+    <pk_inicial/>
+    <pk_final/>
+    <sentido/>
+    <nombre>RALLYE PERE ET FILS</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Pruebas deportivas</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia/>
+    <matricula/>
+    <causa>Marath�n</causa>
+    <poblacion/>
+    <fechahora_ini>2016-09-11 - 2016-09-11</fechahora_ini>
+    <nivel/>
+    <carretera/>
+    <pk_inicial/>
+    <pk_final/>
+    <sentido/>
+    <nombre>I MARATON VIAS VERDES PLAZAOLA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Pruebas deportivas</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia/>
+    <matricula/>
+    <causa>Ciclismo</causa>
+    <poblacion/>
+    <fechahora_ini>2016-09-11 - 2016-09-11</fechahora_ini>
+    <nivel/>
+    <carretera/>
+    <pk_inicial/>
+    <pk_final/>
+    <sentido/>
+    <nombre>54. SOLLUBE ZIRKUITOA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Pruebas deportivas</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia/>
+    <matricula/>
+    <causa>Ciclismo</causa>
+    <poblacion/>
+    <fechahora_ini>2016-09-17 - 2016-09-17</fechahora_ini>
+    <nivel/>
+    <carretera/>
+    <pk_inicial/>
+    <pk_final/>
+    <sentido/>
+    <nombre>XL PREMIO SANTA KRUTZ</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Pruebas deportivas</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia/>
+    <matricula/>
+    <causa>Ciclismo</causa>
+    <poblacion/>
+    <fechahora_ini>2016-09-17 - 2016-09-17</fechahora_ini>
+    <nivel/>
+    <carretera/>
+    <pk_inicial/>
+    <pk_final/>
+    <sentido/>
+    <nombre>XXXIV AITXEKUTZ SARIA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Pruebas deportivas</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia/>
+    <matricula/>
+    <causa>Ciclismo</causa>
+    <poblacion/>
+    <fechahora_ini>2016-09-17 - 2016-09-17</fechahora_ini>
+    <nivel/>
+    <carretera/>
+    <pk_inicial/>
+    <pk_final/>
+    <sentido/>
+    <nombre>XXIX. O�ATI PROBA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Pruebas deportivas</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia/>
+    <matricula/>
+    <causa>Ciclismo</causa>
+    <poblacion/>
+    <fechahora_ini>2016-09-17 - 2016-09-17</fechahora_ini>
+    <nivel/>
+    <carretera/>
+    <pk_inicial/>
+    <pk_final/>
+    <sentido/>
+    <nombre>JABI AMORRORTU MARTXA ZIKLOTURISTA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Pruebas deportivas</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia/>
+    <matricula/>
+    <causa>Automovilismo</causa>
+    <poblacion/>
+    <fechahora_ini>2016-09-17 - 2016-09-17</fechahora_ini>
+    <nivel/>
+    <carretera/>
+    <pk_inicial/>
+    <pk_final/>
+    <sentido/>
+    <nombre>XV. ATAMAIOKO RALLYSPRINTA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Pruebas deportivas</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia/>
+    <matricula/>
+    <causa>Ciclismo</causa>
+    <poblacion/>
+    <fechahora_ini>2016-09-18 - 2016-09-18</fechahora_ini>
+    <nivel/>
+    <carretera/>
+    <pk_inicial/>
+    <pk_final/>
+    <sentido/>
+    <nombre>XXVII MENDATAKO UDALA SARI NAGUSIA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Pruebas deportivas</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia/>
+    <matricula/>
+    <causa>Ciclismo</causa>
+    <poblacion/>
+    <fechahora_ini>2016-09-18 - 2016-09-18</fechahora_ini>
+    <nivel/>
+    <carretera/>
+    <pk_inicial/>
+    <pk_final/>
+    <sentido/>
+    <nombre>VI. ZALDIBIA SARI NAGUSIA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Pruebas deportivas</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia/>
+    <matricula/>
+    <causa>Automovilismo</causa>
+    <poblacion/>
+    <fechahora_ini>2016-09-18 - 2016-09-18</fechahora_ini>
+    <nivel/>
+    <carretera/>
+    <pk_inicial/>
+    <pk_final/>
+    <sentido/>
+    <nombre>I KLASIKOEN TOPAKETA URNIETA </nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Pruebas deportivas</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia/>
+    <matricula/>
+    <causa>Ciclismo</causa>
+    <poblacion/>
+    <fechahora_ini>2016-09-18 - 2016-09-18</fechahora_ini>
+    <nivel/>
+    <carretera/>
+    <pk_inicial/>
+    <pk_final/>
+    <sentido/>
+    <nombre>VIII PREMIO AYUNTAMIENTO DE ALEGRIA-DULANTZI, 3� etapa XXXIX VUELTA A ALAVA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Pruebas deportivas</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia/>
+    <matricula/>
+    <causa>Automovilismo</causa>
+    <poblacion/>
+    <fechahora_ini>2016-09-24 - 2016-09-24</fechahora_ini>
+    <nivel/>
+    <carretera/>
+    <pk_inicial/>
+    <pk_final/>
+    <sentido/>
+    <nombre>XII CONCENTRACI�N DE CAMIONES CL�SICOS</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Pruebas deportivas</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia/>
+    <matricula/>
+    <causa>Ciclismo</causa>
+    <poblacion/>
+    <fechahora_ini>2016-09-24 - 2016-09-24</fechahora_ini>
+    <nivel/>
+    <carretera/>
+    <pk_inicial/>
+    <pk_final/>
+    <sentido/>
+    <nombre>XLIII PREMIO SAN MIGUEL-CAMPEONATO DE ALAVA C.R.I</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Pruebas deportivas</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia/>
+    <matricula/>
+    <causa>Atletismo</causa>
+    <poblacion/>
+    <fechahora_ini>2016-09-24 - 2016-09-24</fechahora_ini>
+    <nivel/>
+    <carretera/>
+    <pk_inicial/>
+    <pk_final/>
+    <sentido/>
+    <nombre>ONDARRU-LEKITTO KOSTALDEKO LASTERKETA</nombre>
+  </incidencia>
+  <incidencia>
+    <tipo>Pruebas deportivas</tipo>
+    <autonomia>Euskadi</autonomia>
+    <provincia/>
+    <matricula/>
+    <causa>Mixta</causa>
+    <poblacion/>
+    <fechahora_ini>2016-09-25 - 2016-09-25</fechahora_ini>
+    <nivel/>
+    <carretera/>
+    <pk_inicial/>
+    <pk_final/>
+    <sentido/>
+    <nombre>VIII DIA DE LA VIA VERDE DEL FERROCARRIL VASCO NAVARRO</nombre>
+  </incidencia>
+</raiz>

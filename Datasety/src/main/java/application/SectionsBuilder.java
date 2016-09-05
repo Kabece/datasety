@@ -446,6 +446,17 @@ public class SectionsBuilder {
 
 					Main.getTabs().getTabs().get(Main.getCurrentlySelectedTabIndex()).setText(file.getName().substring(0, Config.MAX_TAB_NAME_LENGHT) + "..");
 				}
+
+				if (fileChooser.getSelectedExtensionFilter().getDescription().equals("XML Files")) {
+					// TODO Dodać obsługę JSONa
+					DynamicTable dynamicTable = new DynamicTable(tableView, file, FileType.XML, headerCheckBox.isSelected(),
+							analyzer);
+					dynamicTable.setCurrentSectionBuilder(this);
+					dynamicTable.populateTable();
+
+					Main.getTabs().getTabs().get(Main.getCurrentlySelectedTabIndex()).setText(file.getName().substring(0, Config.MAX_TAB_NAME_LENGHT) + "..");
+				}
+
 			}
 		});
 
