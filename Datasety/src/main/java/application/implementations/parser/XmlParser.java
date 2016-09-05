@@ -1,14 +1,14 @@
 package application.implementations.parser;
 
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.JDOMException;
+import org.jdom2.input.SAXBuilder;
+import org.xml.sax.helpers.DefaultHandler;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
-import org.xml.sax.Attributes;
-import org.xml.sax.SAXException;
-import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * Created by pawel on 05.09.2016.
@@ -16,79 +16,56 @@ import org.xml.sax.helpers.DefaultHandler;
 public class XmlParser extends DefaultHandler{
 
     private File parsedFile;
-    private Hashtable tags;
-    private Map<String,ArrayList<String>> dataset;
+    private Map<String,ArrayList<String>> dataset = new HashMap<>();
 
 
     public Map<String,ArrayList<String>> parseXml() {
-        SAXParserFactory factory = SAXParserFactory.newInstance();
-        factory.setNamespaceAware(true);
 
         try {
-            SAXParser parser = factory.newSAXParser();
-            parser.parse(parsedFile, this);
-        } catch (ParserConfigurationException e) {
-            System.out.println("ParserConfigurationException: ");
-            e.printStackTrace();
-        } catch (org.xml.sax.SAXException e) {
-            System.out.println("SAXException: ");
-            e.printStackTrace();
+            SAXBuilder builder = new SAXBuilder();
+            Document document = builder.build(parsedFile);
+            Element recordList = document.getRootElement();
+
+            /* Niestety musimy dwa razy leciec po dokumencie - zeby nie zgubic atrybutow, ktore nie wystepuja w czesci rekordow */
+            for (Element singleRow : recordList.getChildren()) {
+                for(Element singleAttribute : singleRow.getChildren()) {
+                    dataset.put(singleAttribute.getName(), new ArrayList<>());
+                }
+            }
+
+            for(Element singleRow : recordList.getChildren()) {
+                for (Element singleAttribute : singleRow.getChildren()) {
+                    dataset.get(singleAttribute.getName()).add(singleAttribute.getValue());
+                }
+
+                int largestList = 0;
+                Iterator iterator = dataset.entrySet().iterator();
+
+                while(iterator.hasNext()) {
+                    Map.Entry pair = (Map.Entry) iterator.next();
+                    if(((List<String>) pair.getValue()).size() < largestList) {
+                        largestList = ((List<String>) pair.getValue()).size();
+                    }
+                }
+
+                iterator = dataset.entrySet().iterator();
+
+                while(iterator.hasNext()) {
+                    Map.Entry pair = (Map.Entry) iterator.next();
+                    if(((List<String>) pair.getValue()).size() < largestList) {
+                        ((List<String>) pair.getValue()).add("");
+                    }
+                }
+            }
+
+
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JDOMException e) {
             e.printStackTrace();
         }
 
         return dataset;
-    }
-    /**
-     * Event: Parser starts reading an element
-     */
-    @Override
-    public void startElement(String namespaceURI,
-                             String localName,
-                             String qName,
-                             Attributes atts)
-            throws SAXException {
-
-        String key = localName;
-        Object value = dataset.get(key);
-
-        if (value == null) {
-            dataset.put(key, null);
-        }
-        else {
-            int count = ((Integer)value).intValue();
-            count++;
-            dataset.put(key, null);
-        }
-    }
-
-    @Override
-    public void characters(char[] ch, int start, int length) throws SAXException {
-        boolean isFirstName=true, isLastName=false, isLocation=false;
-
-        String a = "";
-        if (isFirstName) {
-            a = new String(ch, start, length);
-        }
-        if (isLastName) {
-            a = new String(ch, start, length);
-        }
-        if (isLocation) {
-            a = new String(ch, start, length);
-        }
-
-        System.out.println(a);
-    }
-
-    @Override
-    public void startDocument() throws SAXException {
-        dataset = new HashMap<String,ArrayList<String>>();
-    }
-
-    @Override
-    public void endDocument() throws SAXException {
-        Set e = dataset.keySet();
-
     }
 
     public XmlParser(File parsedFile) {

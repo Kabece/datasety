@@ -20,9 +20,8 @@ import org.apache.logging.log4j.Logger;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Map;
+import java.lang.reflect.Array;
+import java.util.*;
 
 /**
  * Klasa zajmująca się tworzeniem widoku danych w postaci tabeli.
@@ -214,7 +213,7 @@ public class DynamicTable {
 				XmlParser parser = new XmlParser(file);
 
 				Map<String,ArrayList<String>> dataset = parser.parseXml();
-				analyzer.setDataMap(dataset);
+				analyzer.setDataMap(new HashMap<>(dataset));
 
 				final String[] headerValues =  Arrays.copyOf(dataset.keySet().toArray(), dataset.keySet().toArray().length, String[].class);
 
@@ -225,9 +224,28 @@ public class DynamicTable {
 						analyzer.getDataHeaders().add(headerValues[column]);
 					}
 					currentSectionBuilder.setDataVariables(headerValues);
+
+
+
+					Iterator iterator = dataset.entrySet().iterator();
+
+
+					for(int i = 0; i < dataset.get(headerValues[0]).size(); i++) {
+
+						ObservableList<StringProperty> data = FXCollections.observableArrayList();
+						for (String key : headerValues) {
+							data.add(new SimpleStringProperty(dataset.get(key).get(i).toString()));
+							table.getItems().add(data);
+						}
+					}
+
+				/*	for (int i = 0; i < data.size(); i++) {
+						analyzer.getDataMap().get(analyzer.getDataHeaders().get(i)).add(data.get(i).getValue());
+					}
+*/
+
 				});
 
-		//		table.getItems().add(dataset);
 				return null;
 			}
 		};
