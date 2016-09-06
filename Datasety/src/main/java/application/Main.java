@@ -72,6 +72,10 @@ public class Main extends Application {
 			AnchorPane.setTopAnchor(addNewTabButton, 5.0);
 			AnchorPane.setLeftAnchor(addNewTabButton, 5.0);
 
+			final Tab initTab = createTab(primaryStage, addNewTabButton);
+			tabs.getTabs().add(initTab);
+			tabs.getSelectionModel().select(initTab);
+
 			addNewTabButton.setOnAction(event -> {
 				final Tab tab = createTab(primaryStage, addNewTabButton);
 				tabs.getTabs().add(tab);

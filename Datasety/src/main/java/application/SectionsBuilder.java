@@ -425,41 +425,21 @@ public class SectionsBuilder {
 
 			File file = fileChooser.showOpenDialog(primaryStage);
 			if (file != null) {
-				if (fileChooser.getSelectedExtensionFilter().getDescription().equals("CSV Files")) {
+				openFile(fileChooser.getSelectedExtensionFilter().getDescription(), file, tableView);
 
-					DynamicTable dynamicTable = new DynamicTable(tableView, file, FileType.CSV, analyzer);
-					dynamicTable.setCurrentSectionBuilder(this);
-					dynamicTable.populateTable();
-
-					Main.getTabs().getTabs().get(Main.getCurrentlySelectedTabIndex()).setText(file.getName().substring(0, Config.MAX_TAB_NAME_LENGHT) + "..");
-
-				}
-
-				if (fileChooser.getSelectedExtensionFilter().getDescription().equals("JSON Files")) {
-					DynamicTable dynamicTable = new DynamicTable(tableView, file, FileType.JSON, analyzer);
-					dynamicTable.setCurrentSectionBuilder(this);
-					dynamicTable.populateTable();
-
-					Main.getTabs().getTabs().get(Main.getCurrentlySelectedTabIndex()).setText(file.getName().substring(0, Config.MAX_TAB_NAME_LENGHT) + "..");
-				}
-
-				if (fileChooser.getSelectedExtensionFilter().getDescription().equals("XML Files")) {
-					DynamicTable dynamicTable = new DynamicTable(tableView, file, FileType.XML, analyzer);
-					dynamicTable.setCurrentSectionBuilder(this);
-					dynamicTable.populateTable();
-
-					Main.getTabs().getTabs().get(Main.getCurrentlySelectedTabIndex()).setText(file.getName().substring(0, Config.MAX_TAB_NAME_LENGHT) + "..");
-				}
-
+				Main.getTabs().getTabs().get(Main.getCurrentlySelectedTabIndex()).setText(file.getName().substring(0, Config.MAX_TAB_NAME_LENGHT) + "..");
 			}
 		});
 
-		// Póki co nic nie robi
+
 		openMultipleButton.setOnAction(e -> {
 			List<File> list = fileChooser.showOpenMultipleDialog(primaryStage);
+
 			if (list != null) {
 				for (File file : list) {
-					// TODO Dodać obsługę wielu plików
+					openFile(fileChooser.getSelectedExtensionFilter().getDescription(), file, tableView);
+
+					Main.getTabs().getTabs().get(Main.getCurrentlySelectedTabIndex()).setText(file.getName().substring(0, Config.MAX_TAB_NAME_LENGHT) + "..");
 				}
 			}
 		});
@@ -480,6 +460,26 @@ public class SectionsBuilder {
 
 		logger.info("Finish createDataInputSection");
 		return fileInputHBox;
+	}
+
+	private void openFile(String extension, File file, TableView<ObservableList<StringProperty>> tableView) {
+		if (extension.equals("CSV Files")) {
+			DynamicTable dynamicTable = new DynamicTable(tableView, file, FileType.CSV, analyzer);
+			dynamicTable.setCurrentSectionBuilder(this);
+			dynamicTable.populateTable();
+		}
+
+		if (extension.equals("JSON Files")) {
+			DynamicTable dynamicTable = new DynamicTable(tableView, file, FileType.JSON, analyzer);
+			dynamicTable.setCurrentSectionBuilder(this);
+			dynamicTable.populateTable();
+		}
+
+		if (extension.equals("XML Files")) {
+			DynamicTable dynamicTable = new DynamicTable(tableView, file, FileType.XML, analyzer);
+			dynamicTable.setCurrentSectionBuilder(this);
+			dynamicTable.populateTable();
+		}
 	}
 
 	/**
