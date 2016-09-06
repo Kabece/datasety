@@ -20,7 +20,6 @@ import org.apache.logging.log4j.Logger;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.lang.reflect.Array;
 import java.util.*;
 
 /**
@@ -34,7 +33,6 @@ public class DynamicTable {
 	private TableView<ObservableList<StringProperty>> table;
 	private File file;
 	private FileType fileType;
-	private boolean hasHeader;
 	private Analyzer analyzer;
 	private static SectionsBuilder currentSectionBuilder;
 
@@ -43,15 +41,13 @@ public class DynamicTable {
 	 * @param table Zapełniana tabela
 	 * @param file Plik z danymi
 	 * @param fileType Typ (rozszerzenie) pliku
-	 * @param hasHeader true jeżeli plik zawiera nagłówek, false w przeciwnym wypadku
 	 * @param analyzer Komponent analizujący dane w kontekście wyrażeń
 	 */
 	public DynamicTable(final TableView<ObservableList<StringProperty>> table, final File file, final FileType fileType,
-			final boolean hasHeader, application.interfaces.analyzer.Analyzer analyzer) {
+			application.interfaces.analyzer.Analyzer analyzer) {
 		this.table = table;
 		this.file = file;
 		this.fileType = fileType;
-		this.hasHeader = hasHeader;
 		this.analyzer = analyzer;
 	}
 
@@ -106,7 +102,7 @@ public class DynamicTable {
 
 				BufferedReader in = new BufferedReader(new FileReader(file));
 				// Header line
-				if (hasHeader) {
+
 					final String headerLine = in.readLine();
 					final String[] headerValues = headerLine.split(",");
 					Platform.runLater(() -> {
@@ -116,9 +112,8 @@ public class DynamicTable {
 							analyzer.getDataHeaders().add(headerValues[column]);
 						}
 						currentSectionBuilder.setDataVariables(headerValues);
-
 					});
-				}
+
 
 				// Data:
 
@@ -135,9 +130,12 @@ public class DynamicTable {
 						for (String value : dataValues) {
 							data.add(new SimpleStringProperty(value));
 						}
-						for (int i = 0; i < data.size(); i++) {
-							analyzer.getDataMap().get(analyzer.getDataHeaders().get(i)).add(data.get(i).getValue());
-						}
+
+
+							for (int i = 0; i < data.size(); i++) {
+								analyzer.getDataMap().get(analyzer.getDataHeaders().get(i)).add(data.get(i).getValue());
+							}
+
 						table.getItems().add(data);
 					});
 				}

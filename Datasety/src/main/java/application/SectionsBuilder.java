@@ -413,9 +413,6 @@ public class SectionsBuilder {
 		final FileChooser fileChooser = new FileChooser();
 		final Button openButton = new Button("Otwórz plik");
 		final Button openMultipleButton = new Button("Otwórz wiele plików");
-		final CheckBox headerCheckBox = new CheckBox("Dane mają nagłówek");
-
-		headerCheckBox.setSelected(true);
 
 		FileChooser.ExtensionFilter csvFilter = new FileChooser.ExtensionFilter("CSV Files", "*.csv");
 		FileChooser.ExtensionFilter xmlFilter = new FileChooser.ExtensionFilter("XML Files", "*.xml");
@@ -430,8 +427,7 @@ public class SectionsBuilder {
 			if (file != null) {
 				if (fileChooser.getSelectedExtensionFilter().getDescription().equals("CSV Files")) {
 
-					DynamicTable dynamicTable = new DynamicTable(tableView, file, FileType.CSV, headerCheckBox.isSelected(),
-							analyzer);
+					DynamicTable dynamicTable = new DynamicTable(tableView, file, FileType.CSV, analyzer);
 					dynamicTable.setCurrentSectionBuilder(this);
 					dynamicTable.populateTable();
 
@@ -440,8 +436,7 @@ public class SectionsBuilder {
 				}
 
 				if (fileChooser.getSelectedExtensionFilter().getDescription().equals("JSON Files")) {
-					DynamicTable dynamicTable = new DynamicTable(tableView, file, FileType.JSON, headerCheckBox.isSelected(),
-					analyzer);
+					DynamicTable dynamicTable = new DynamicTable(tableView, file, FileType.JSON, analyzer);
 					dynamicTable.setCurrentSectionBuilder(this);
 					dynamicTable.populateTable();
 
@@ -449,8 +444,7 @@ public class SectionsBuilder {
 				}
 
 				if (fileChooser.getSelectedExtensionFilter().getDescription().equals("XML Files")) {
-					DynamicTable dynamicTable = new DynamicTable(tableView, file, FileType.XML, headerCheckBox.isSelected(),
-							analyzer);
+					DynamicTable dynamicTable = new DynamicTable(tableView, file, FileType.XML, analyzer);
 					dynamicTable.setCurrentSectionBuilder(this);
 					dynamicTable.populateTable();
 
@@ -473,8 +467,7 @@ public class SectionsBuilder {
 		//TODO: do testów, wyrzucić w wersji do oddania
 		final Button loadTestData = new Button("Załaduj dane testowe");
 		loadTestData.setOnAction(click -> {
-			DynamicTable dynamicTable = new DynamicTable(tableView, new File(getClass().getClassLoader().getResource("TestData.csv").getFile()), FileType.CSV, headerCheckBox.isSelected(),
-					analyzer);
+			DynamicTable dynamicTable = new DynamicTable(tableView, new File(getClass().getClassLoader().getResource("TestData.csv").getFile()), FileType.CSV, analyzer);
 			dynamicTable.setCurrentSectionBuilder(this);
 			dynamicTable.populateTable();
 			Main.getTabs().getTabs().get(Main.getCurrentlySelectedTabIndex()).setText("TestData");
@@ -482,7 +475,7 @@ public class SectionsBuilder {
 		});
 
 		final HBox fileInputHBox = new HBox(4);
-		fileInputHBox.getChildren().addAll(openButton, openMultipleButton, headerCheckBox, loadTestData);
+		fileInputHBox.getChildren().addAll(openButton, openMultipleButton, loadTestData);
 		HBox.setHgrow(fileInputHBox, Priority.NEVER);
 
 		logger.info("Finish createDataInputSection");
