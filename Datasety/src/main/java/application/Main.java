@@ -78,8 +78,7 @@ public class Main extends Application {
 				tabs.getSelectionModel().select(tab);
 
 				if (tabs.getTabs().size() == Config.MAX_TABS_AMOUNT) {
-					//TODO: zmienic na disabled?
-					addNewTabButton.setVisible(false);
+					addNewTabButton.setDisable(true);
 				}
 			});
 
@@ -91,7 +90,6 @@ public class Main extends Application {
 			primaryStage.show();
 
 		} catch (Exception e) {
-			// TODO Lepij to można zrobić xD
 			logger.error("Error in start", e);
 		}
 
@@ -118,7 +116,7 @@ public class Main extends Application {
 		});
 
 		tab.setOnClosed(event -> {
-			addNewTabButton.setVisible(true);
+			addNewTabButton.setDisable(false);
 		});
 
 		tabsContent.add(new VBox(12));

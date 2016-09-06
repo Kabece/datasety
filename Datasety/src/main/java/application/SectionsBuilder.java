@@ -417,13 +417,15 @@ public class SectionsBuilder {
 
 		headerCheckBox.setSelected(true);
 
+		FileChooser.ExtensionFilter csvFilter = new FileChooser.ExtensionFilter("CSV Files", "*.csv");
+		FileChooser.ExtensionFilter xmlFilter = new FileChooser.ExtensionFilter("XML Files", "*.xml");
+		FileChooser.ExtensionFilter jsonFilter = new FileChooser.ExtensionFilter("JSON Files", "*.json");
+		fileChooser.getExtensionFilters().add(csvFilter);
+		fileChooser.getExtensionFilters().add(xmlFilter);
+		fileChooser.getExtensionFilters().add(jsonFilter);
+
 		openButton.setOnAction(e -> {
-			FileChooser.ExtensionFilter csvFilter = new FileChooser.ExtensionFilter("CSV Files", "*.csv");
-			FileChooser.ExtensionFilter xmlFilter = new FileChooser.ExtensionFilter("XML Files", "*.xml");
-			FileChooser.ExtensionFilter jsonFilter = new FileChooser.ExtensionFilter("JSON Files", "*.json");
-			fileChooser.getExtensionFilters().add(csvFilter);
-			fileChooser.getExtensionFilters().add(xmlFilter);
-			fileChooser.getExtensionFilters().add(jsonFilter);
+
 			File file = fileChooser.showOpenDialog(primaryStage);
 			if (file != null) {
 				if (fileChooser.getSelectedExtensionFilter().getDescription().equals("CSV Files")) {
@@ -438,7 +440,6 @@ public class SectionsBuilder {
 				}
 
 				if (fileChooser.getSelectedExtensionFilter().getDescription().equals("JSON Files")) {
-					// TODO Dodać obsługę JSONa
 					DynamicTable dynamicTable = new DynamicTable(tableView, file, FileType.JSON, headerCheckBox.isSelected(),
 					analyzer);
 					dynamicTable.setCurrentSectionBuilder(this);
@@ -448,7 +449,6 @@ public class SectionsBuilder {
 				}
 
 				if (fileChooser.getSelectedExtensionFilter().getDescription().equals("XML Files")) {
-					// TODO Dodać obsługę JSONa
 					DynamicTable dynamicTable = new DynamicTable(tableView, file, FileType.XML, headerCheckBox.isSelected(),
 							analyzer);
 					dynamicTable.setCurrentSectionBuilder(this);
