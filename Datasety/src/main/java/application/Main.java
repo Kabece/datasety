@@ -1,19 +1,19 @@
 package application;
 
+import enums.FileType;
 import javafx.application.Application;
 import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -64,15 +64,45 @@ public class Main extends Application {
 
 			final AnchorPane root = new AnchorPane();
 			final Button addNewTabButton = new Button("+");
+			final FileChooser fileChooser = new FileChooser();
 
-			AnchorPane.setTopAnchor(tabs, 5.0);
-			AnchorPane.setLeftAnchor(tabs, 5.0);
-			AnchorPane.setRightAnchor(tabs, 5.0);
-			AnchorPane.setBottomAnchor(tabs, 5.0);
-			AnchorPane.setTopAnchor(addNewTabButton, 5.0);
+			BorderPane menuPanel = new BorderPane();
+
+			MenuBar menuBar = new MenuBar();
+			menuBar.prefWidthProperty().bind(primaryStage.widthProperty());
+
+			Menu menuFile = new Menu("Plik");
+			menuBar.getMenus().addAll(menuFile);
+			MenuItem singleFile = new MenuItem("Otwórz plik...");
+			MenuItem multipleFile = new MenuItem("Otwórz pliki...");
+			menuFile.getItems().addAll(singleFile,multipleFile);
+
+			FileChooser.ExtensionFilter csvFilter = new FileChooser.ExtensionFilter("CSV Files", "*.csv");
+			FileChooser.ExtensionFilter xmlFilter = new FileChooser.ExtensionFilter("XML Files", "*.xml");
+			FileChooser.ExtensionFilter jsonFilter = new FileChooser.ExtensionFilter("JSON Files", "*.json");
+			fileChooser.getExtensionFilters().add(csvFilter);
+			fileChooser.getExtensionFilters().add(xmlFilter);
+			fileChooser.getExtensionFilters().add(jsonFilter);
+
+			singleFile.setOnAction(event -> {
+				File file = fileChooser.showOpenDialog(primaryStage);
+				if (file != null) {
+			//		openFile(fileChooser.getSelectedExtensionFilter().getDescription(), file, tableView);
+
+					Main.getTabs().getTabs().get(Main.getCurrentlySelectedTabIndex()).setText(file.getName().substring(0, Config.MAX_TAB_NAME_LENGHT) + "..");
+				}
+			});
+
+			AnchorPane.setTopAnchor(tabs, 25.0);
+			AnchorPane.setLeftAnchor(tabs, 1.0);
+			AnchorPane.setRightAnchor(tabs, 1.0);
+			AnchorPane.setBottomAnchor(tabs, 25.0);
+			AnchorPane.setTopAnchor(addNewTabButton, 25.0);
 			AnchorPane.setLeftAnchor(addNewTabButton, 5.0);
 
+
 			final Tab initTab = createTab(primaryStage, addNewTabButton);
+			initTab.setClosable(false);
 			tabs.getTabs().add(initTab);
 			tabs.getSelectionModel().select(initTab);
 
@@ -86,7 +116,7 @@ public class Main extends Application {
 				}
 			});
 
-			root.getChildren().addAll(tabs, addNewTabButton);
+			root.getChildren().addAll(tabs, addNewTabButton, menuBar);
 
 			Scene scene = new Scene(root, Config.INITIAL_SCENE_WIDTH, Config.INITIAL_SCENE_HEIGHT);
 			scene.getStylesheets().add(getClass().getResource("/css/application.css").toExternalForm());
@@ -169,5 +199,24 @@ public class Main extends Application {
 	 */
 	public static int getCurrentlySelectedTabIndex() { return currentlySelectedTabIndex; }
 
+	private void openFile(String extension, File file, TableView<ObservableList<StringProperty>> tableView) {
+		if (extension.equals("CSV Files")) {
+			// DynamicTable dynamicTable = new DynamicTable(tableView, file, FileType.CSV, analyzer);
+			// dynamicTable.setCurrentSectionBuilder(tabs.getSelectionModel().getSelectedItem());
+			// dynamicTable.populateTable();
+		}
+
+		if (extension.equals("JSON Files")) {
+			// DynamicTable dynamicTable = new DynamicTable(tableView, file, FileType.JSON, analyzer);
+			// dynamicTable.setCurrentSectionBuilder(this);
+			// dynamicTable.populateTable();
+		}
+
+		if (extension.equals("XML Files")) {
+			// DynamicTable dynamicTable = new DynamicTable(tableView, file, FileType.XML, analyzer);
+			// dynamicTable.setCurrentSectionBuilder(this);
+			// dynamicTable.populateTable();
+		}
+	}
 
 }
