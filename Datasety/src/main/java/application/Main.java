@@ -1,34 +1,41 @@
 package application;
 
 import application.implementations.analyzer.CheckAnalyzer;
+import application.implementations.analyzer.ShowAnalyzer;
 import application.implementations.logicSentence.ExtendedLogicSentence;
 import application.implementations.logicSentence.SingleLogicSentence;
 import application.interfaces.analyzer.Analyzer;
 import application.interfaces.logicSentence.LogicSentence;
+import enums.AnalyzerWorkType;
 import enums.FileType;
 import enums.OperatorType;
 import enums.PatternType;
 import javafx.application.Application;
 import javafx.beans.binding.BooleanBinding;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import sun.plugin.javascript.navig.Anchor;
 
 import java.io.File;
 import java.util.*;
+
+import static enums.AnalyzerWorkType.CHECK;
+import static enums.AnalyzerWorkType.SHOW;
 
 public class Main extends Application {
 
@@ -39,7 +46,7 @@ public class Main extends Application {
 	private Analyzer analyzer;
 	private Map<String,LogicSentence> logicSentencesMap = new HashMap<>();
 	private IntegerProperty currentLogicSentencesRowNumber;
-	public static Map<String,List<String>> dataVariables = new HashMap<>();
+	public static MapProperty<String,List<String>> dataVariables = new SimpleMapProperty<>(FXCollections.observableHashMap());
 
 	private List<TableView<ObservableList<StringProperty>>> tableViews;
 
@@ -80,9 +87,13 @@ public class Main extends Application {
 		try {
 			primaryStage.setTitle("Dataset analyzer");
 
-			final AnchorPane root = new AnchorPane();
+			final GridPane root = new GridPane();
 			final Button addNewTabButton = new Button("+");
 			final FileChooser fileChooser = new FileChooser();
+
+            ColumnConstraints column1 = new ColumnConstraints();
+            column1.setPercentWidth(100);
+            root.getColumnConstraints().add(column1);
 
 			BorderPane menuPanel = new BorderPane();
 
@@ -111,12 +122,27 @@ public class Main extends Application {
 				}
 			});
 
-			AnchorPane.setTopAnchor(tabs, 25.0);
+
+            final GridPane controlsGridPane = initializeLogicSentenceSection();
+            final GridPane analyzerGridPane = createAnalyzerSection();
+
+
+       /*     AnchorPane.setTopAnchor(tabs, 25.0);
 			AnchorPane.setLeftAnchor(tabs, 1.0);
 			AnchorPane.setRightAnchor(tabs, 1.0);
 			AnchorPane.setBottomAnchor(tabs, 25.0);
 			AnchorPane.setTopAnchor(addNewTabButton, 25.0);
 			AnchorPane.setLeftAnchor(addNewTabButton, 5.0);
+            AnchorPane.setBottomAnchor(controlsGridPane, 45.0);
+            AnchorPane.setLeftAnchor(controlsGridPane, 4.0);
+            AnchorPane.setRightAnchor(controlsGridPane, 4.0);
+            AnchorPane.setBottomAnchor(analyzerGridPane, 25.0);
+            AnchorPane.setLeftAnchor(analyzerGridPane,40d);*/
+
+            root.add(menuBar, 0, 0);
+            root.add(tabs, 0, 1);
+            root.add(controlsGridPane, 0, 2);
+            root.add(analyzerGridPane, 0, 3);
 
 
 			final Tab initTab = createTab(primaryStage, addNewTabButton);
@@ -134,7 +160,7 @@ public class Main extends Application {
 				}
 			});
 
-			root.getChildren().addAll(tabs, addNewTabButton, menuBar);
+		//	root.getChildren().addAll(tabs, addNewTabButton, menuBar, controlsGridPane, analyzerGridPane);
 
 			Scene scene = new Scene(root, Config.INITIAL_SCENE_WIDTH, Config.INITIAL_SCENE_HEIGHT);
 			scene.getStylesheets().add(getClass().getResource("/css/application.css").toExternalForm());
@@ -190,12 +216,10 @@ public class Main extends Application {
 		int lastTableView = tableViews.size() - 1;
 		int lastTab = tabsContent.size() - 1;
 
-		//final HBox fileInputHBox = sectionsBuilder.createDataInputSection(primaryStage, tableViews.get(lastTableView));
-		final GridPane controlsGridPane = initializeLogicSentenceSection();
-		final GridPane analyzerGridPane = sectionsBuilder.createAnalyzerSection();
+
 
 		tabsContent.get(lastTab).setPadding(new Insets(12, 12, 12, 12));
-		tabsContent.get(lastTab).getChildren().addAll(/*fileInputHBox,*/ tableViews.get(lastTableView), controlsGridPane, analyzerGridPane);
+		tabsContent.get(lastTab).getChildren().addAll(tableViews.get(lastTableView));
 
 		logger.info("Finish createTabContent");
 	}
@@ -223,15 +247,15 @@ public class Main extends Application {
 		}
 
 		if (extension.equals("JSON Files")) {
-			// DynamicTable dynamicTable = new DynamicTable(tableView, file, FileType.JSON, analyzer);
+			 DynamicTable dynamicTable = new DynamicTable(tableView, file, FileType.JSON, analyzer);
 			// dynamicTable.setCurrentSectionBuilder(this);
-			// dynamicTable.populateTable();
+			 dynamicTable.populateTable();
 		}
 
 		if (extension.equals("XML Files")) {
-			// DynamicTable dynamicTable = new DynamicTable(tableView, file, FileType.XML, analyzer);
+			 DynamicTable dynamicTable = new DynamicTable(tableView, file, FileType.XML, analyzer);
 			// dynamicTable.setCurrentSectionBuilder(this);
-			// dynamicTable.populateTable();
+			 dynamicTable.populateTable();
 		}
 	}
 
@@ -260,6 +284,7 @@ public class Main extends Application {
 		final GridPane controlsGridPane = new GridPane();
 		controlsGridPane.setHgap(3);
 		controlsGridPane.setVgap(3);
+        controlsGridPane.setPadding(new Insets(25,5,25,25));
 		GridPane.setConstraints(nextRowButton, 0, 2);
 		controlsGridPane.getChildren()
 				.addAll(nextRowButton);
@@ -287,8 +312,6 @@ public class Main extends Application {
 		patternComboBox.getItems().setAll(PatternType.values());
 		patternComboBox.setPromptText("Wzorzec");
 
-
-
 		// Variable
 		final Label variableLabel = new Label("Zmienna: ");
 		final ComboBox variableComboBox = new ComboBox();
@@ -311,24 +334,28 @@ public class Main extends Application {
 					oldValue, newValue);
 			logicSentencesMap.get(logicSentenceId).setChosenVariable((String) newValue);
 		});
+		/*
 		logicSentencesMap.get(logicSentenceId).getVariableList().addListener((ListChangeListener<String>) c -> {
 			logger.debug("Process createLogicSentenceSection, variableList changed");
 			// TODO Dodać sprawdzanie czy nie null / może optional?
 			variableComboBox.getItems().setAll(logicSentencesMap.get(logicSentenceId).getVariableList());
-		});
+		});*/
 
 		//Dataset
 		final Label datasetlabel = new Label("Dataset:");
 		final ComboBox datasetComboBox = new ComboBox();
 		datasetComboBox.setPromptText("Dataset");
 		datasetComboBox.getItems().addAll(dataVariables.keySet());
-		datasetComboBox.valueProperty().addListener(new ChangeListener() {
-			@Override
-			public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-				variableComboBox.getItems().addAll(dataVariables.get(datasetComboBox.getValue().toString()));
-			}
-		});
-		
+		datasetComboBox.valueProperty().addListener((observable, oldValue, newValue) -> {
+			variableComboBox.getItems().clear();
+            variableComboBox.getItems().addAll(dataVariables.get(datasetComboBox.getValue().toString()));
+        });
+
+		dataVariables.addListener((observable, oldValue, newValue) -> {
+        	datasetComboBox.getItems().clear();
+			datasetComboBox.getItems().addAll(dataVariables.keySet());
+        });
+
 		// Operator
 		final Label operatorLabel = new Label("Operator: ");
 		final ComboBox operatorComboBox = new ComboBox();
@@ -395,11 +422,11 @@ public class Main extends Application {
 					oldValue, newValue);
 			logicSentencesMap.get(logicSentenceId).getNextSentencePart().setChosenVariable((String) newValue);
 		});
-		logicSentencesMap.get(logicSentenceId).getNextSentencePart().getVariableList().addListener((ListChangeListener<String>) c -> {
+/*		logicSentencesMap.get(logicSentenceId).getNextSentencePart().getVariableList().addListener((ListChangeListener<String>) c -> {
 			logger.debug("Process createLogicSentenceSection, variableList changed");
 			// TODO Dodać sprawdzanie czy nie null / może optional?
 			secondVariableComboBox.getItems().setAll(logicSentencesMap.get(logicSentenceId).getNextSentencePart().getVariableList());
-		});
+		});*/
 
 		// Value
 		final Label secondValueLabel = new Label("Wartość: ");
@@ -530,5 +557,107 @@ public class Main extends Application {
 		}
 		return true;
 	}
+
+    /**
+     * Tworzy sekcję odpowiedzialną za startowanie analizy
+     *
+     * @return GridPane zawierający komponenty
+     */
+    public GridPane createAnalyzerSection() {
+        logger.info("Start createAnalyzerSection");
+
+        // Analyzer Work Type
+        final Label analyzerWorkTypeLabel = new Label("Tryb pracy analizatora:");
+        final ComboBox analyzerWorkTypeComboBox = new ComboBox();
+
+        // FIXME: fajnie byloby wrzucic wszystkie pola jakas metodka zmiast wymieniac
+        analyzerWorkTypeComboBox.getItems().setAll(AnalyzerWorkType.CHECK, AnalyzerWorkType.SHOW);
+
+        // FIXME: nie koniecznie fixme, ale tu sie ustawia domyslny tryb analizatora
+        analyzerWorkTypeComboBox.setValue(AnalyzerWorkType.CHECK);
+        analyzer = new CheckAnalyzer();
+
+        analyzerWorkTypeComboBox.getSelectionModel().selectedItemProperty()
+                .addListener((observable, oldValue, newValue) -> {
+                    logger.debug("Process createLogicControlSection, analyzerWorkTypeComboBox has changed from = {} to = {}",
+                            oldValue, newValue);
+
+                    switch(oldValue.toString()) {
+                        case CHECK:
+                            analyzer = new CheckAnalyzer();
+                            break;
+                        case SHOW:
+                            analyzer = new ShowAnalyzer();
+                            break;
+                        default:
+                            logger.error("Something gone terribly wrong and non-existing analyzer mode was chosen!");
+                    }
+
+                });
+
+        // Result Indicator
+        final Label resultIndicatorLabel = new Label("Wynik: ");
+        final Circle resultIndicatorCircle = new Circle();
+        resultIndicatorCircle.setRadius(15.0f);
+        resultIndicatorCircle.setFill(Color.DARKGRAY);
+
+        // Analyzer
+        final Button analyzeButton = new Button("Analizuj");
+
+
+	/*	analyzeButton.disableProperty().bind(new BooleanBinding(){
+			{
+			//	bind(currentLogicSentencesRowNumber);
+			}
+
+	*//*		@Override
+			protected boolean computeValue() {
+				return currentLogicSentencesRowNumber.get() < 1;
+			}*//*
+		});
+*/
+        analyzeButton.setDefaultButton(true);
+
+        analyzeButton.setOnAction(event -> {
+            resultIndicatorCircle.setFill(Color.DARKGRAY);
+            logger.debug("Process createLogicControlSection, analyzeButton fired!");
+            if (/*checkIfLogicSentencesAreComplete() &&*/ analyzer.isReady()) {
+                logger.trace("Process createLogicControlSection, analyzer data = {}", analyzer.getDataMap());
+
+                //analyzer.setLogicSentences(logicSentencesMap);
+
+                if (analyzer.analyzeList()) {
+                    resultIndicatorCircle.setFill(Color.FORESTGREEN);
+                } else {
+                    resultIndicatorCircle.setFill(Color.MAROON);
+                }
+
+            } else {
+                Alert analyzingNotReadyAlert = new Alert(Alert.AlertType.WARNING);
+                analyzingNotReadyAlert.setTitle("Uwaga!");
+                analyzingNotReadyAlert.setHeaderText("Analizator nie jest gotowy!");
+                analyzingNotReadyAlert.setContentText("Poprawnie skonfiguruj zdanie logiczne oraz wybierz tryb pracy analizatora.");
+                analyzingNotReadyAlert.showAndWait();
+            }
+        });
+
+        final GridPane analyzerGridPane = new GridPane();
+        analyzerGridPane.setHgap(3);
+        analyzerGridPane.setVgap(3);
+        analyzerGridPane.setPadding(new Insets(0,0,25,25));
+        GridPane.setConstraints(analyzerWorkTypeLabel, 0, 0);
+        GridPane.setConstraints(analyzerWorkTypeComboBox, 0, 1);
+        GridPane.setConstraints(analyzeButton, 1, 1);
+        GridPane.setConstraints(resultIndicatorLabel, 0, 3);
+        GridPane.setConstraints(resultIndicatorCircle, 0, 4);
+        analyzerGridPane.getChildren().addAll(analyzerWorkTypeLabel, analyzerWorkTypeComboBox, analyzeButton, resultIndicatorLabel, resultIndicatorCircle);
+
+        logger.info("Finish createAnalyzerSection");
+        return analyzerGridPane;
+    }
+
+
+
+
 
 }
