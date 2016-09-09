@@ -111,7 +111,9 @@ public class DynamicTable {
 							analyzer.getDataMap().put(headerValues[column], new ArrayList<>());
 							analyzer.getDataHeaders().add(headerValues[column]);
 						}
-						currentSectionBuilder.setDataVariables(headerValues);
+						//Main.dataVariables.addAll(new ArrayList<String>(Arrays.asList(headerValues)));// .put(file.getName(), headerValues);
+						Main.dataVariables.put(file.getName(),new ArrayList<String>(Arrays.asList(headerValues)));
+						/*currentSectionBuilder.setDataVariables(headerValues);*/
 					});
 
 
@@ -173,7 +175,10 @@ public class DynamicTable {
 						analyzer.getDataMap().put(headerValues[column], new ArrayList<>());
 						analyzer.getDataHeaders().add(headerValues[column]);
 					}
-					currentSectionBuilder.setDataVariables(headerValues);
+					Main.dataVariables.put(file.getName(),new ArrayList<String>(Arrays.asList(headerValues)));
+					//Main.dataVariables.addAll(new ArrayList<String>(Arrays.asList(headerValues)));
+					//Main.dataVariables.put(file.getName(), headerValues);
+					/*currentSectionBuilder.setDataVariables(headerValues);*/
 				});
 
 				for(String line; (line = in.readLine()) != null; ) {
@@ -221,7 +226,10 @@ public class DynamicTable {
 						analyzer.getDataMap().put(headerValues[column], new ArrayList<>());
 						analyzer.getDataHeaders().add(headerValues[column]);
 					}
-					currentSectionBuilder.setDataVariables(headerValues);
+					Main.dataVariables.put(file.getName(),new ArrayList<String>(Arrays.asList(headerValues)));
+					//Main.dataVariables.addAll(new ArrayList<String>(Arrays.asList(headerValues)));
+					//Main.dataVariables.put(file.getName(), headerValues);
+					/*currentSectionBuilder.setDataVariables(headerValues);*/
 
 
 
