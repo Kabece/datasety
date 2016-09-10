@@ -113,7 +113,7 @@ public class Main extends Application {
 
 			singleFile.setOnAction(event -> {
 				File file = fileChooser.showOpenDialog(primaryStage);
-				if (file != null) {
+				if (file != null && tabs.getTabs().size() < Config.MAX_TABS_AMOUNT) {
 
                     final Tab tab = createTab(primaryStage);
                     tabs.getTabs().add(tab);
@@ -122,11 +122,15 @@ public class Main extends Application {
 
                     tab.setOnCloseRequest(event1 -> {
                         dataVariables.remove(file.getName());
-                        int a = 3;
                     });
 
                     tab.setText(file.getName().substring(0, Config.MAX_TAB_NAME_LENGHT) + "..");
-				}
+				} else if (tabs.getTabs().size() >= Config.MAX_TABS_AMOUNT ){
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("WARNING!");
+                    alert.setContentText("Maximum of " + Config.MAX_TABS_AMOUNT + " files opened simultaneously has been reached!\n You cannot open more dataset files.");
+                    alert.showAndWait();
+                }
 			});
 
             multipleFile.setOnAction(event -> {
@@ -135,26 +139,49 @@ public class Main extends Application {
                 if(tabs.getTabs().size() == Config.MAX_TABS_AMOUNT) {
                     Alert alert = new Alert(Alert.AlertType.WARNING);
                     alert.setTitle("WARNING!");
-                    alert.setContentText("Maximim of " + Config.MAX_TABS_AMOUNT + " files opened simultaneously has been reached!");
+                    alert.setContentText("Maximum of " + Config.MAX_TABS_AMOUNT + " files opened simultaneously has been reached!\n You cannot open more dataset files.");
                     alert.showAndWait();
                 } else {
+                    List<File> files = fileChooser.showOpenMultipleDialog(primaryStage);
 
-                    List<File> file = fileChooser.showOpenMultipleDialog(primaryStage);
+                    if (files.size() + tabs.getTabs().size() > Config.MAX_TABS_AMOUNT) {
+                        Alert alert = new Alert(Alert.AlertType.WARNING);
+                        alert.setTitle("WARNING!");
+                        alert.setContentText("Maximum of " + Config.MAX_TABS_AMOUNT + " files opened simultaneously has been reached!\n Following files will not be opened: ");
+
+                        for (int i  = Config.MAX_TABS_AMOUNT - tabs.getTabs().size(); i < files.size(); i++) {
+                            alert.setContentText(alert.getContentText() + "\n   " + files.get(i).getName());
+                        }
+                        alert.showAndWait();
+
+                        for (int i = 0; i < Config.MAX_TABS_AMOUNT - tabs.getTabs().size(); i++) {
+                            final Tab tab = createTab(primaryStage);
+                            final String fileName = files.get(i).getName();
+                            tabs.getTabs().add(tab);
+                            tabs.getSelectionModel().select(tab);
+                            openFile(fileChooser.getSelectedExtensionFilter().getDescription(), files.get(i), tableViews.get(tableViews.size() - 1));
+
+                            tab.setOnCloseRequest(event1 -> dataVariables.remove(fileName));
+
+                            tab.setText(fileName.substring(0, Config.MAX_TAB_NAME_LENGHT) + "..");
+                        }
+
+
+                    } else {
+                        for (int j = 0; j < files.size(); j++) {
+                            final Tab tab = createTab(primaryStage);
+                            final String fileName = files.get(j).getName();
+                            tabs.getTabs().add(tab);
+                            tabs.getSelectionModel().select(tab);
+                            openFile(fileChooser.getSelectedExtensionFilter().getDescription(), files.get(j), tableViews.get(tableViews.size() - 1));
+
+                            tab.setOnCloseRequest(event1 -> dataVariables.remove(fileName));
+
+                            tab.setText(fileName.substring(0, Config.MAX_TAB_NAME_LENGHT) + "..");
+                        }
+
+                    }
                 }
-               /* if (file != null) {
-
-                    final Tab tab = createTab(primaryStage);
-                    tabs.getTabs().add(tab);
-                    tabs.getSelectionModel().select(tab);
-                    openFile(fileChooser.getSelectedExtensionFilter().getDescription(), file, tableViews.get(tableViews.size() - 1));
-
-                    tab.setOnCloseRequest(event1 -> {
-                        dataVariables.remove(file.getName());
-                        int a = 3;
-                    });
-
-                    tab.setText(file.getName().substring(0, Config.MAX_TAB_NAME_LENGHT) + "..");
-                }*/
             });
 
             final GridPane controlsGridPane = initializeLogicSentenceSection();

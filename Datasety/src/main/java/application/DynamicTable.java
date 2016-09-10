@@ -223,15 +223,7 @@ public class DynamicTable {
 						analyzer.getDataMap().put(headerValues[column], new ArrayList<>());
 						analyzer.getDataHeaders().add(headerValues[column]);
 					}
-					Main.dataVariables.put(file.getName(),new ArrayList<String>(Arrays.asList(headerValues)));
-					//Main.dataVariables.addAll(new ArrayList<String>(Arrays.asList(headerValues)));
-					//Main.dataVariables.put(file.getName(), headerValues);
-					/*currentSectionBuilder.setDataVariables(headerValues);*/
-
-
-
-					Iterator iterator = dataset.entrySet().iterator();
-
+					Main.dataVariables.put(file.getName(),new ArrayList<>(Arrays.asList(headerValues)));
 
 					for(int i = 0; i < dataset.get(headerValues[0]).size(); i++) {
 
