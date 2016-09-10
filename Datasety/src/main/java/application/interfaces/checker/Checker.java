@@ -5,6 +5,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -25,7 +26,7 @@ public abstract class Checker {
      * @return boolean Zwraca true jeśli wzorzec występuje, false jeżeli nie występuje
      *
     */
-    public abstract boolean checkPattern(Map<String, ArrayList<String>> dataMap);
+    public abstract boolean checkPattern(Map<String, Map<String, List<String>>> dataMap);
 
     public LogicSentence getLogicSentence() {
         return logicSentence;

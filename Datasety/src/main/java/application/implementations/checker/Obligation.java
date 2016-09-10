@@ -16,7 +16,7 @@ import java.util.Map;
 /* I have no idea what I am doing, ale tak by wnikało z tego pdfa  */
 public class Obligation extends Checker{
 
-    public boolean checkPattern(Map<String, ArrayList<String>> dataMap) {
+    public boolean checkPattern(Map<String, Map<String, List<String>>> dataMap) {
 
         logger.info("Starting checking obligation pattern ...");
 

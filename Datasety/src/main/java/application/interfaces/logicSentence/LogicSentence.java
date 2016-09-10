@@ -18,6 +18,7 @@ public abstract class LogicSentence {
 
 	private PatternType chosenPattern;
 	private OperatorType chosenOperator;
+	private String chosenDataset;
 	private String chosenVariable;
 	private String chosenValue;
 
@@ -33,7 +34,7 @@ public abstract class LogicSentence {
 	 * @return true jeżeli kompletne, false w przeciwnym wypadku
 	 */
 	public boolean isComplete() {
-		if (chosenPattern != null && chosenOperator != null && chosenVariable != null && chosenValue != null && !variableList.isEmpty()) {
+		if (chosenPattern != null&& chosenDataset != null && chosenOperator != null && chosenVariable != null && chosenValue != null && !variableList.isEmpty()) {
 			return true;
 		} else {
 			return false;
@@ -76,9 +77,22 @@ public abstract class LogicSentence {
 		this.chosenValue = chosenValue;
 	}
 
+	public String getChosenDataset() {
+		return chosenDataset;
+	}
+
+	public void setChosenDataset(String chosenDataset) {
+		this.chosenDataset = chosenDataset;
+	}
+
 	@Override
 	public String toString() {
-		return "LogicSentence{" + "chosenPattern=" + chosenPattern + ", chosenOperator=" + chosenOperator
-		       + ", chosenVariable='" + chosenVariable + '\'' + ", chosenValue='" + chosenValue + '\'' + '}';
+		return "LogicSentence{" +
+				"chosenPattern=" + chosenPattern +
+				", chosenOperator=" + chosenOperator +
+				", chosenDataset='" + chosenDataset + '\'' +
+				", chosenVariable='" + chosenVariable + '\'' +
+				", chosenValue='" + chosenValue + '\'' +
+				'}';
 	}
 }

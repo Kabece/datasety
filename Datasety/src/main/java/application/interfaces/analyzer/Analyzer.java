@@ -20,12 +20,16 @@ public abstract class Analyzer {
 
     private Checker checker;
     private Map<String,LogicSentence> logicSentences;
-    private Map<String, ArrayList<String>> dataMap;
-    private List<String> dataHeaders;
+
+    //private Map<String, ArrayList<String>> dataMap;
+    // DatasetName -> varName, valuesList
+    private Map<String, Map<String, List<String>>> datasets;
+    private Map<String,List<String>> dataHeaders;
 
     public Analyzer() {
-        this.dataHeaders = new ArrayList<>();
-        this.dataMap = new HashMap<>() ;
+        this.dataHeaders = new HashMap<>();
+       // this.dataMap = new HashMap<>() ;
+        datasets = new HashMap<>();
     }
 
     //TODO: tymczasowo bo nie wiem czym różnią się tryby analizera -> info w implementacjach
@@ -68,7 +72,7 @@ public abstract class Analyzer {
 
            }
            checker.setLogicSentence((LogicSentence)hashMapElement.getValue());
-           outcomes.add(checker.checkPattern(dataMap));
+           outcomes.add(checker.checkPattern(datasets));
         }
 
         for (int i = 0; i < outcomes.size(); i++) {
@@ -84,7 +88,7 @@ public abstract class Analyzer {
 
     // FIXME: jesli zalezne od trybu analizatora, zmienic na metode abstrakcyjna
     public boolean isReady() {
-        if (dataMap != null && dataHeaders != null /* && analyzerWorkType != null */) {
+        if (datasets != null && dataHeaders != null /* && analyzerWorkType != null */) {
             // TODO Dodać żeby sprawdzał te kolekcje też w głąb
             return true;
         } else {
@@ -104,15 +108,15 @@ public abstract class Analyzer {
         this.logicSentences = logicSentences;
     }
 
-    public Map<String, ArrayList<String>> getDataMap() {
-        return dataMap;
+    public Map<String, Map<String, List<String>>> getDatasets() {
+        return datasets;
     }
 
-    public void setDataMap(Map<String, ArrayList<String>> dataMap) {
-        this.dataMap = dataMap;
+    public void setDatasets(Map<String, Map<String, List<String>>> datasets) {
+        this.datasets = datasets;
     }
 
-    public List<String> getDataHeaders() {
+    public Map<String, List<String>> getDataHeaders() {
         return dataHeaders;
     }
 }

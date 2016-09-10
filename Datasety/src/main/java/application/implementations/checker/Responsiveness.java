@@ -27,10 +27,10 @@ public class Responsiveness extends Checker {
     private int firstSentenceOccurenceIndex;
     private int secondSentenceOccurenceIndex;
 
-    public boolean checkPattern(Map<String, ArrayList<String>> dataMap) {
+    public boolean checkPattern(Map<String, Map<String, List<String>>> dataMap) {
 
         logger.info("Starting checking responsiveness pattern ...");
-        List<String> values = dataMap.get(logicSentence.getChosenVariable());
+        List<String> values = dataMap.get(logicSentence.getChosenDataset()).get(logicSentence.getChosenVariable());
 
         switch (logicSentence.getChosenOperator()) {
             case EQ:
@@ -38,7 +38,7 @@ public class Responsiveness extends Checker {
                 for (int i = 0; i < values.size() ; i++) {
                     if(values.get(i).equals(logicSentence.getChosenValue())) {
                         firstSentenceOccurenceIndex = i;
-                        if (checkSuccessorEvent(dataMap.get(logicSentence.getNextSentencePart().getChosenVariable()),i)) {
+                        if (checkSuccessorEvent(dataMap.get(logicSentence.getChosenDataset()).get(logicSentence.getNextSentencePart().getChosenVariable()),i)) {
                            boolean duplication = false;
 
                            for (int j = firstSentenceOccurenceIndex + 1; j < secondSentenceOccurenceIndex; j ++) {
@@ -56,7 +56,7 @@ public class Responsiveness extends Checker {
                 for (int i = 0; i < values.size() ; i++) {
                     if(!values.get(i).equals(logicSentence.getChosenValue())) {
                         firstSentenceOccurenceIndex = i;
-                        if (checkSuccessorEvent(dataMap.get(logicSentence.getNextSentencePart().getChosenVariable()),i)) {
+                        if (checkSuccessorEvent(dataMap.get(logicSentence.getChosenDataset()).get(logicSentence.getNextSentencePart().getChosenVariable()),i)) {
                            boolean duplication = false;
 
                            for (int j = firstSentenceOccurenceIndex + 1; j < secondSentenceOccurenceIndex; j ++) {

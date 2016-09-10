@@ -3,6 +3,7 @@ package application.implementations.checker;
 import application.interfaces.checker.Checker;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -10,7 +11,7 @@ import java.util.Map;
  */
 public class Reactivity extends Checker {
     @Override
-    public boolean checkPattern(Map<String, ArrayList<String>> dataMap) {
+    public boolean checkPattern(Map<String, Map<String, List<String>>> dataMap) {
         return false;
     }
 }

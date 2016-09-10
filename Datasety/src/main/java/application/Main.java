@@ -98,10 +98,10 @@ public class Main extends Application {
 			MenuBar menuBar = new MenuBar();
 			menuBar.prefWidthProperty().bind(primaryStage.widthProperty());
 
-			Menu menuFile = new Menu("Plik");
+			Menu menuFile = new Menu("File");
 			menuBar.getMenus().addAll(menuFile);
-			MenuItem singleFile = new MenuItem("Otwórz plik...");
-			MenuItem multipleFile = new MenuItem("Otwórz pliki...");
+			MenuItem singleFile = new MenuItem("Open single file ...");
+			MenuItem multipleFile = new MenuItem("Open multiple files ...");
 			menuFile.getItems().addAll(singleFile,multipleFile);
 
 			FileChooser.ExtensionFilter csvFilter = new FileChooser.ExtensionFilter("CSV Files", "*.csv");
@@ -287,7 +287,7 @@ public class Main extends Application {
 	public GridPane initializeLogicSentenceSection() {
 		logger.info("Initializing logic sentence section.");
 
-		final Button nextRowButton = new Button("Dodaj kolejne zdanie");
+		final Button nextRowButton = new Button("Add next logic sentence");
 		nextRowButton.setOnMouseClicked(event -> {
 			logger.debug("Process createLogicSentenceSection, nextRowButton clicked! currentLogicSentencesRowsNumber={}", currentLogicSentencesRowNumber);
 			if (currentLogicSentencesRowNumber.get() < Config.MAX_LOGIC_SENTENCES_ROWS) {
@@ -327,26 +327,25 @@ public class Main extends Application {
 		logger.info("Start createLogicSentenceSection");
 		String logicSentenceId = UUID.randomUUID().toString();
 		ObservableList<String> observableList = FXCollections.observableArrayList();
-		//observableList.addAll(dataVariables.get);
 		logicSentencesMap.put(logicSentenceId, new SingleLogicSentence(PatternType.values()[0], observableList));
 
 		// Pattern
-		final Label patternLabel = new Label("Wzorzec: ");
+		final Label patternLabel = new Label("Pattern: ");
 		final ComboBox patternComboBox = new ComboBox();
 		patternComboBox.getItems().setAll(PatternType.values());
-		patternComboBox.setPromptText("Wzorzec");
+		patternComboBox.setPromptText("Pattern");
 
 		// Variable
-		final Label variableLabel = new Label("Zmienna: ");
+		final Label variableLabel = new Label("Variable: ");
 		final ComboBox variableComboBox = new ComboBox();
-		variableComboBox.setPromptText("Zmienna");
+		variableComboBox.setPromptText("Variable");
 		variableComboBox.setOnMouseClicked(event -> {
 			if (variableComboBox.getItems().isEmpty()) {
 				if (logicSentencesMap.get(logicSentenceId).getVariableList().isEmpty()) {
 					Alert noDataSpecifiedAlert = new Alert(Alert.AlertType.WARNING);
-					noDataSpecifiedAlert.setTitle("Uwaga!");
-					noDataSpecifiedAlert.setHeaderText("Brak wybranych danych!");
-					noDataSpecifiedAlert.setContentText("Wybierz poprawny z plik z danymi i poczekaj aż się załaduje.");
+					noDataSpecifiedAlert.setTitle("Warning!");
+					noDataSpecifiedAlert.setHeaderText("No data selected!");
+					noDataSpecifiedAlert.setContentText("Upload appropriate dataset file and wait while it load.");
 					noDataSpecifiedAlert.showAndWait();
 				} else {
 					variableComboBox.getItems().setAll(logicSentencesMap.get(logicSentenceId).getVariableList());
@@ -370,6 +369,12 @@ public class Main extends Application {
 		final ComboBox datasetComboBox = new ComboBox();
 		datasetComboBox.setPromptText("Dataset");
 		datasetComboBox.getItems().addAll(dataVariables.keySet());
+
+        datasetComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {logger.debug("Process createLogicSentenceSection, datasetComboBox value has changed from = {} to = {}",
+                oldValue, newValue);
+            logicSentencesMap.get(logicSentenceId).setChosenDataset((String) newValue);
+        });
+
 		datasetComboBox.valueProperty().addListener((observable, oldValue, newValue) -> {
 		    if(datasetComboBox.getValue() != null) {
                 variableComboBox.getItems().clear();
@@ -394,9 +399,9 @@ public class Main extends Application {
 		}));
 
 		// Value
-		final Label valueLabel = new Label("Wartość: ");
+		final Label valueLabel = new Label("Value: ");
 		final TextField valueTextField = new TextField();
-		valueTextField.setPromptText("Wpisz wartość");
+		valueTextField.setPromptText("Enter value");
 		valueTextField.focusedProperty().addListener((observable, oldValue, newValue) -> {
 			logger.debug("Process createLogicSentenceSection, valueTextField value has been entered: {}",
 					valueTextField.textProperty().getValueSafe());
@@ -404,7 +409,7 @@ public class Main extends Application {
 		});
 
 		Button removeSection = new Button();
-		removeSection.setText("Usuń zdanie");
+		removeSection.setText("Remove logic sentence");
 		removeSection.setVisible(true);
 		removeSection.setOnMouseClicked(event -> {
 			logger.info("Removing logic sentence {}...", logicSentenceId);
@@ -426,17 +431,17 @@ public class Main extends Application {
 		secondDatasetComboBox.setPromptText("Dataset 2");
 
         // Second Variable
-		final Label secondVariableLabel = new Label("Zmienna 2: ");
+		final Label secondVariableLabel = new Label("Variable 2: ");
 		final ComboBox secondVariableComboBox = new ComboBox();
-		secondVariableComboBox.setPromptText("Zmienna 2");
+		secondVariableComboBox.setPromptText("Variable 2");
 		secondVariableComboBox.setOnMouseClicked(event -> {
 			if (secondVariableComboBox.getItems().isEmpty()) {
 				// Tutaj rzutowanie - zawsze zlozone zdanie bedzie typu ExtendedLogicSentence
 				if (logicSentencesMap.get(logicSentenceId).getNextSentencePart().getVariableList().isEmpty()) {
 					Alert noDataSpecifiedAlert = new Alert(Alert.AlertType.WARNING);
-					noDataSpecifiedAlert.setTitle("Uwaga!");
-					noDataSpecifiedAlert.setHeaderText("Brak wybranych danych!");
-					noDataSpecifiedAlert.setContentText("Wybierz poprawny z plik z danymi i poczekaj aż się załaduje.");
+					noDataSpecifiedAlert.setTitle("Warning!");
+					noDataSpecifiedAlert.setHeaderText("No data selected!");
+					noDataSpecifiedAlert.setContentText("Upload appropriate dataset file and wait while it load.");
 					noDataSpecifiedAlert.showAndWait();
 				} else {
 					secondVariableComboBox.getItems().setAll(logicSentencesMap.get(logicSentenceId).getNextSentencePart().getVariableList());
@@ -458,6 +463,11 @@ public class Main extends Application {
             }
         });
 
+        secondDatasetComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {logger.debug("Process createLogicSentenceSection, datasetComboBox value has changed from = {} to = {}",
+                oldValue, newValue);
+            logicSentencesMap.get(logicSentenceId).getNextSentencePart().setChosenDataset((String) newValue);
+        });
+
 
         secondDatasetComboBox.itemsProperty().bind(Bindings.createObjectBinding(() ->
                 FXCollections.observableArrayList(dataVariables.keySet()),dataVariables)
@@ -470,9 +480,9 @@ public class Main extends Application {
 		});*/
 
 		// Value
-		final Label secondValueLabel = new Label("Wartość: ");
+		final Label secondValueLabel = new Label("Value: ");
 		final TextField secondValueTextField = new TextField();
-		secondValueTextField.setPromptText("Wpisz wartość");
+		secondValueTextField.setPromptText("Enter value");
 		secondValueTextField.focusedProperty().addListener((observable, oldValue, newValue) -> {
 			logger.debug("Process createLogicSentenceSection, valueTextField value has been entered: {}",
 					secondValueTextField.textProperty().getValueSafe());
@@ -563,9 +573,11 @@ public class Main extends Application {
 				secondDatasetComboBox.setVisible(false);
 			}
 
+            datasetComboBox.setValue(null);
 			variableComboBox.setValue(null);
 			operatorComboBox.setValue(null);
 			valueTextField.setText(null);
+            secondDatasetComboBox.setValue(null);
 			secondVariableComboBox.setValue(null);
 			secondOperatorComboBox.setValue(null);
 			secondValueTextField.setText(null);
@@ -578,8 +590,6 @@ public class Main extends Application {
 	private void addNextLogicSentenceRow() {
 		logger.info("Start addNextLogicSentenceRow");
 
-	//	((Pane) Main.getTabs().getTabs().get(Main.getCurrentlySelectedTabIndex()).getContent()).getChildren().add(currentLogicSentencesRowNumber.get() + 2, createLogicSentenceSection());
-        //stage.getScene().getRoot().getChildren().get(2);
         ((GridPane)((GridPane)stage.getScene().getRoot()).getChildren().get(2)).add(createLogicSentenceSection(),0,currentLogicSentencesRowNumber.get() + 3);
 
         currentLogicSentencesRowNumber.set(currentLogicSentencesRowNumber.get() + 1);
@@ -611,7 +621,7 @@ public class Main extends Application {
         logger.info("Start createAnalyzerSection");
 
         // Analyzer Work Type
-        final Label analyzerWorkTypeLabel = new Label("Tryb pracy analizatora:");
+        final Label analyzerWorkTypeLabel = new Label("Analyser work mode:");
         final ComboBox analyzerWorkTypeComboBox = new ComboBox();
 
         // FIXME: fajnie byloby wrzucic wszystkie pola jakas metodka zmiast wymieniac
@@ -640,13 +650,13 @@ public class Main extends Application {
                 });
 
         // Result Indicator
-        final Label resultIndicatorLabel = new Label("Wynik: ");
+        final Label resultIndicatorLabel = new Label("Result: ");
         final Circle resultIndicatorCircle = new Circle();
         resultIndicatorCircle.setRadius(15.0f);
         resultIndicatorCircle.setFill(Color.DARKGRAY);
 
         // Analyzer
-        final Button analyzeButton = new Button("Analizuj");
+        final Button analyzeButton = new Button("Analyse");
 
 
 		analyzeButton.disableProperty().bind(new BooleanBinding(){
@@ -665,10 +675,10 @@ public class Main extends Application {
         analyzeButton.setOnAction(event -> {
             resultIndicatorCircle.setFill(Color.DARKGRAY);
             logger.debug("Process createLogicControlSection, analyzeButton fired!");
-            if (/*checkIfLogicSentencesAreComplete() &&*/ analyzer.isReady()) {
-                logger.trace("Process createLogicControlSection, analyzer data = {}", analyzer.getDataMap());
+            if (checkIfLogicSentencesAreComplete() && analyzer.isReady()) {
+                logger.trace("Process createLogicControlSection, analyzer data = {}", analyzer.getDatasets());
 
-                //analyzer.setLogicSentences(logicSentencesMap);
+                analyzer.setLogicSentences(logicSentencesMap);
 
                 if (analyzer.analyzeList()) {
                     resultIndicatorCircle.setFill(Color.FORESTGREEN);
@@ -678,9 +688,9 @@ public class Main extends Application {
 
             } else {
                 Alert analyzingNotReadyAlert = new Alert(Alert.AlertType.WARNING);
-                analyzingNotReadyAlert.setTitle("Uwaga!");
-                analyzingNotReadyAlert.setHeaderText("Analizator nie jest gotowy!");
-                analyzingNotReadyAlert.setContentText("Poprawnie skonfiguruj zdanie logiczne oraz wybierz tryb pracy analizatora.");
+                analyzingNotReadyAlert.setTitle("Warning!");
+                analyzingNotReadyAlert.setHeaderText("Analyser is not ready to work!");
+                analyzingNotReadyAlert.setContentText("Fill the logic sentences properly.");
                 analyzingNotReadyAlert.showAndWait();
             }
         });

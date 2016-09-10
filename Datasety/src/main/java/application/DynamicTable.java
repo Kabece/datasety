@@ -104,11 +104,17 @@ public class DynamicTable {
 
 					final String headerLine = in.readLine();
 					final String[] headerValues = headerLine.split(",");
+
+
 					Platform.runLater(() -> {
+						analyzer.getDatasets().put(file.getName(), new HashMap<>());
+						analyzer.getDataHeaders().put(file.getName(), new ArrayList<>());
+
 						for (int column = 0; column < headerValues.length; column++) {
 							table.getColumns().add(createColumn(column, headerValues[column]));
-							analyzer.getDataMap().put(headerValues[column], new ArrayList<>());
-							analyzer.getDataHeaders().add(headerValues[column]);
+							analyzer.getDatasets().get(file.getName()).put(headerValues[column], new ArrayList<>());
+
+							analyzer.getDataHeaders().get(file.getName()).add(headerValues[column]);
 						}
 						Main.dataVariables.put(file.getName(),new ArrayList<String>(Arrays.asList(headerValues)));
 					});
@@ -130,9 +136,8 @@ public class DynamicTable {
 							data.add(new SimpleStringProperty(value));
 						}
 
-
 							for (int i = 0; i < data.size(); i++) {
-								analyzer.getDataMap().get(analyzer.getDataHeaders().get(i)).add(data.get(i).getValue());
+								analyzer.getDatasets().get(file.getName()).get(analyzer.getDataHeaders().get(file.getName()).get(i)).add(data.get(i).getValue());
 							}
 
 						table.getItems().add(data);
@@ -166,16 +171,16 @@ public class DynamicTable {
 
 				final String[] headerValues =  Arrays.copyOf(singleJson.keySet().toArray(), singleJson.keySet().toArray().length, String[].class);
 
+
 				Platform.runLater(() -> {
+					analyzer.getDatasets().put(file.getName(), new HashMap<>());
+					analyzer.getDataHeaders().put(file.getName(), new ArrayList<>());
 					for (int column = 0; column < headerValues.length; column++) {
 						table.getColumns().add(createColumn(column, headerValues[column]));
-						analyzer.getDataMap().put(headerValues[column], new ArrayList<>());
-						analyzer.getDataHeaders().add(headerValues[column]);
+						analyzer.getDatasets().get(file.getName()).put(headerValues[column], new ArrayList<>());
+						analyzer.getDataHeaders().get(file.getName()).add(headerValues[column]);
 					}
 					Main.dataVariables.put(file.getName(),new ArrayList<String>(Arrays.asList(headerValues)));
-					//Main.dataVariables.addAll(new ArrayList<String>(Arrays.asList(headerValues)));
-					//Main.dataVariables.put(file.getName(), headerValues);
-					/*currentSectionBuilder.setDataVariables(headerValues);*/
 				});
 
 				for(String line; (line = in.readLine()) != null; ) {
@@ -188,7 +193,7 @@ public class DynamicTable {
 						}
 
 						for (int i = 0; i < data.size(); i++) {
-							analyzer.getDataMap().get(analyzer.getDataHeaders().get(i)).add(data.get(i).getValue());
+							analyzer.getDatasets().get(file.getName()).get(analyzer.getDataHeaders().get(file.getName()).get(i)).add(data.get(i).getValue());
 						}
 
 						table.getItems().add(data);
@@ -213,15 +218,16 @@ public class DynamicTable {
 				XmlParser parser = new XmlParser(file);
 
 				Map<String,ArrayList<String>> dataset = parser.parseXml();
-				analyzer.setDataMap(new HashMap<>(dataset));
+
+				analyzer.getDatasets().put(file.getName(), new HashMap<>(dataset));
 
 				final String[] headerValues =  Arrays.copyOf(dataset.keySet().toArray(), dataset.keySet().toArray().length, String[].class);
 
+
+				analyzer.getDataHeaders().put(file.getName(), new ArrayList<>());
 				Platform.runLater(() -> {
 					for (int column = 0; column < headerValues.length; column++) {
 						table.getColumns().add(createColumn(column, headerValues[column]));
-						analyzer.getDataMap().put(headerValues[column], new ArrayList<>());
-						analyzer.getDataHeaders().add(headerValues[column]);
 					}
 					Main.dataVariables.put(file.getName(),new ArrayList<>(Arrays.asList(headerValues)));
 
@@ -233,12 +239,6 @@ public class DynamicTable {
 							table.getItems().add(data);
 						}
 					}
-
-				/*	for (int i = 0; i < data.size(); i++) {
-						analyzer.getDataMap().get(analyzer.getDataHeaders().get(i)).add(data.get(i).getValue());
-					}
-*/
-
 				});
 
 				return null;

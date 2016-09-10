@@ -3,6 +3,7 @@ package application.implementations.checker;
 import application.interfaces.checker.Checker;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -13,12 +14,12 @@ import java.util.Map;
  */
 public class Absence extends Checker{
 
-    public boolean checkPattern(Map<String, ArrayList<String>> dataMap) {
+    public boolean checkPattern(Map<String, Map<String, List<String>>> dataMap) {
         logger.info("Starting checking absence pattern ...");
 
         switch (logicSentence.getChosenOperator()) {
             case EQ:
-                for (String value : dataMap.get(logicSentence.getChosenVariable())) {
+                for (String value : dataMap.get(logicSentence.getChosenDataset()).get(logicSentence.getChosenVariable())) {
                     if (value.equals(logicSentence.getChosenValue())) {
                         return false;
                     }
@@ -26,7 +27,7 @@ public class Absence extends Checker{
                 break;
 
             case NE:
-                for (String value : dataMap.get((logicSentence.getChosenVariable()))) {
+                for (String value : dataMap.get(logicSentence.getChosenDataset()).get((logicSentence.getChosenVariable()))) {
                     if (!value.equals(logicSentence.getChosenValue())) {
                         return false;
                     }
