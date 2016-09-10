@@ -34,7 +34,6 @@ public class DynamicTable {
 	private File file;
 	private FileType fileType;
 	private Analyzer analyzer;
-	private static SectionsBuilder currentSectionBuilder;
 
 	/**
 	 * Podstawowy konstruktor
@@ -111,9 +110,7 @@ public class DynamicTable {
 							analyzer.getDataMap().put(headerValues[column], new ArrayList<>());
 							analyzer.getDataHeaders().add(headerValues[column]);
 						}
-						//Main.dataVariables.addAll(new ArrayList<String>(Arrays.asList(headerValues)));// .put(file.getName(), headerValues);
 						Main.dataVariables.put(file.getName(),new ArrayList<String>(Arrays.asList(headerValues)));
-						/*currentSectionBuilder.setDataVariables(headerValues);*/
 					});
 
 
@@ -289,7 +286,4 @@ public class DynamicTable {
 		return column;
 	}
 
-	public static void setCurrentSectionBuilder(SectionsBuilder currentSectionBuilder) {
-		DynamicTable.currentSectionBuilder = currentSectionBuilder;
-	}
 }

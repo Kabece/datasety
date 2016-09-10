@@ -11,25 +11,24 @@ import enums.FileType;
 import enums.OperatorType;
 import enums.PatternType;
 import javafx.application.Application;
+import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.*;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableMap;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.*;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import sun.plugin.javascript.navig.Anchor;
 
 import java.io.File;
 import java.util.*;
@@ -90,14 +89,11 @@ public class Main extends Application {
 			primaryStage.setTitle("Dataset analyzer");
 
 			final GridPane root = new GridPane();
-			final Button addNewTabButton = new Button("+");
 			final FileChooser fileChooser = new FileChooser();
 
             ColumnConstraints column1 = new ColumnConstraints();
             column1.setPercentWidth(100);
             root.getColumnConstraints().add(column1);
-
-			BorderPane menuPanel = new BorderPane();
 
 			MenuBar menuBar = new MenuBar();
 			menuBar.prefWidthProperty().bind(primaryStage.widthProperty());
@@ -118,51 +114,58 @@ public class Main extends Application {
 			singleFile.setOnAction(event -> {
 				File file = fileChooser.showOpenDialog(primaryStage);
 				if (file != null) {
-					openFile(fileChooser.getSelectedExtensionFilter().getDescription(), file, tableViews.get(tableViews.size() - 1));
 
-					Main.getTabs().getTabs().get(Main.getCurrentlySelectedTabIndex()).setText(file.getName().substring(0, Config.MAX_TAB_NAME_LENGHT) + "..");
+                    final Tab tab = createTab(primaryStage);
+                    tabs.getTabs().add(tab);
+                    tabs.getSelectionModel().select(tab);
+                    openFile(fileChooser.getSelectedExtensionFilter().getDescription(), file, tableViews.get(tableViews.size() - 1));
+
+                    tab.setOnCloseRequest(event1 -> {
+                        dataVariables.remove(file.getName());
+                        int a = 3;
+                    });
+
+                    tab.setText(file.getName().substring(0, Config.MAX_TAB_NAME_LENGHT) + "..");
 				}
 			});
 
+            multipleFile.setOnAction(event -> {
+
+
+                if(tabs.getTabs().size() == Config.MAX_TABS_AMOUNT) {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("WARNING!");
+                    alert.setContentText("Maximim of " + Config.MAX_TABS_AMOUNT + " files opened simultaneously has been reached!");
+                    alert.showAndWait();
+                } else {
+
+                    List<File> file = fileChooser.showOpenMultipleDialog(primaryStage);
+                }
+               /* if (file != null) {
+
+                    final Tab tab = createTab(primaryStage);
+                    tabs.getTabs().add(tab);
+                    tabs.getSelectionModel().select(tab);
+                    openFile(fileChooser.getSelectedExtensionFilter().getDescription(), file, tableViews.get(tableViews.size() - 1));
+
+                    tab.setOnCloseRequest(event1 -> {
+                        dataVariables.remove(file.getName());
+                        int a = 3;
+                    });
+
+                    tab.setText(file.getName().substring(0, Config.MAX_TAB_NAME_LENGHT) + "..");
+                }*/
+            });
 
             final GridPane controlsGridPane = initializeLogicSentenceSection();
             final GridPane analyzerGridPane = createAnalyzerSection();
 
-
-       /*     AnchorPane.setTopAnchor(tabs, 25.0);
-			AnchorPane.setLeftAnchor(tabs, 1.0);
-			AnchorPane.setRightAnchor(tabs, 1.0);
-			AnchorPane.setBottomAnchor(tabs, 25.0);
-			AnchorPane.setTopAnchor(addNewTabButton, 25.0);
-			AnchorPane.setLeftAnchor(addNewTabButton, 5.0);
-            AnchorPane.setBottomAnchor(controlsGridPane, 45.0);
-            AnchorPane.setLeftAnchor(controlsGridPane, 4.0);
-            AnchorPane.setRightAnchor(controlsGridPane, 4.0);
-            AnchorPane.setBottomAnchor(analyzerGridPane, 25.0);
-            AnchorPane.setLeftAnchor(analyzerGridPane,40d);*/
 
             root.add(menuBar, 0, 0);
             root.add(tabs, 0, 1);
             root.add(controlsGridPane, 0, 2);
             root.add(analyzerGridPane, 0, 3);
 
-
-			final Tab initTab = createTab(primaryStage, addNewTabButton);
-			initTab.setClosable(false);
-			tabs.getTabs().add(initTab);
-			tabs.getSelectionModel().select(initTab);
-
-			addNewTabButton.setOnAction(event -> {
-				final Tab tab = createTab(primaryStage, addNewTabButton);
-				tabs.getTabs().add(tab);
-				tabs.getSelectionModel().select(tab);
-
-				if (tabs.getTabs().size() == Config.MAX_TABS_AMOUNT) {
-					addNewTabButton.setDisable(true);
-				}
-			});
-
-		//	root.getChildren().addAll(tabs, addNewTabButton, menuBar, controlsGridPane, analyzerGridPane);
 
 			Scene scene = new Scene(root, Config.INITIAL_SCENE_WIDTH, Config.INITIAL_SCENE_HEIGHT);
 			scene.getStylesheets().add(getClass().getResource("/css/application.css").toExternalForm());
@@ -180,10 +183,9 @@ public class Main extends Application {
 	 * Tworzy nową kartę.
 	 *
 	 * @param primaryStage główna scena aplikacji.
-	 * @param addNewTabButton przycisk dodawania nowej karty.
 	 * @return stworzona karta.
 	 */
-	private Tab createTab(Stage primaryStage, Button addNewTabButton) {
+	private Tab createTab(Stage primaryStage) {
 		logger.info("Start createTab");
 
 		final Tab tab = new Tab("New Tab");
@@ -195,8 +197,6 @@ public class Main extends Application {
 			}
 		});
 
-		tab.setOnClosed(event -> addNewTabButton.setDisable(false));
-
 		tabsContent.add(new VBox(12));
 		createTabContent(primaryStage);
 		tab.setContent(tabsContent.get(tabsContent.size() - 1));
@@ -204,6 +204,7 @@ public class Main extends Application {
 		logger.info("Finish createTab");
 		return tab;
 	}
+
 
 	/**
 	 * Tworzy zawartość dla ostatnio stworzonej karty
@@ -213,12 +214,9 @@ public class Main extends Application {
 	private void createTabContent(Stage primaryStage) {
 		logger.info("Start createTabContent");
 
-		SectionsBuilder sectionsBuilder = new SectionsBuilder();
 		tableViews.add(new TableView<>());
 		int lastTableView = tableViews.size() - 1;
 		int lastTab = tabsContent.size() - 1;
-
-
 
 		tabsContent.get(lastTab).setPadding(new Insets(12, 12, 12, 12));
 		tabsContent.get(lastTab).getChildren().addAll(tableViews.get(lastTableView));
@@ -244,19 +242,16 @@ public class Main extends Application {
 	private void openFile(String extension, File file, TableView<ObservableList<StringProperty>> tableView) {
 		if (extension.equals("CSV Files")) {
 			 DynamicTable dynamicTable = new DynamicTable(tableView, file, FileType.CSV, analyzer);
-			// dynamicTable.setCurrentSectionBuilder(tabs.getSelectionModel().getSelectedItem());
 			 dynamicTable.populateTable();
 		}
 
 		if (extension.equals("JSON Files")) {
 			 DynamicTable dynamicTable = new DynamicTable(tableView, file, FileType.JSON, analyzer);
-			// dynamicTable.setCurrentSectionBuilder(this);
 			 dynamicTable.populateTable();
 		}
 
 		if (extension.equals("XML Files")) {
 			 DynamicTable dynamicTable = new DynamicTable(tableView, file, FileType.XML, analyzer);
-			// dynamicTable.setCurrentSectionBuilder(this);
 			 dynamicTable.populateTable();
 		}
 	}
@@ -269,7 +264,6 @@ public class Main extends Application {
 		nextRowButton.setOnMouseClicked(event -> {
 			logger.debug("Process createLogicSentenceSection, nextRowButton clicked! currentLogicSentencesRowsNumber={}", currentLogicSentencesRowNumber);
 			if (currentLogicSentencesRowNumber.get() < Config.MAX_LOGIC_SENTENCES_ROWS) {
-				//createLogicSentenceSection();
                 addNextLogicSentenceRow();
 			}
 		});
@@ -350,14 +344,16 @@ public class Main extends Application {
 		datasetComboBox.setPromptText("Dataset");
 		datasetComboBox.getItems().addAll(dataVariables.keySet());
 		datasetComboBox.valueProperty().addListener((observable, oldValue, newValue) -> {
-			variableComboBox.getItems().clear();
-            variableComboBox.getItems().addAll(dataVariables.get(datasetComboBox.getValue().toString()));
+		    if(datasetComboBox.getValue() != null) {
+                variableComboBox.getItems().clear();
+                variableComboBox.getItems().addAll(dataVariables.get(datasetComboBox.getValue().toString()));
+            }
         });
 
-		dataVariables.addListener((observable, oldValue, newValue) -> {
-        	datasetComboBox.getItems().clear();
-			datasetComboBox.getItems().addAll(dataVariables.keySet());
-        });
+
+        datasetComboBox.itemsProperty().bind(Bindings.createObjectBinding(() ->
+                        FXCollections.observableArrayList(dataVariables.keySet()),dataVariables)
+        );
 
 		// Operator
 		final Label operatorLabel = new Label("Operator: ");
@@ -402,7 +398,7 @@ public class Main extends Application {
 		final ComboBox secondDatasetComboBox = new ComboBox();
 		secondDatasetComboBox.setPromptText("Dataset 2");
 
-		// Second Variable
+        // Second Variable
 		final Label secondVariableLabel = new Label("Zmienna 2: ");
 		final ComboBox secondVariableComboBox = new ComboBox();
 		secondVariableComboBox.setPromptText("Zmienna 2");
@@ -425,6 +421,21 @@ public class Main extends Application {
 					oldValue, newValue);
 			logicSentencesMap.get(logicSentenceId).getNextSentencePart().setChosenVariable((String) newValue);
 		});
+
+
+        secondDatasetComboBox.getItems().addAll(dataVariables.keySet());
+        secondDatasetComboBox.valueProperty().addListener((observable, oldValue, newValue) -> {
+            if(secondDatasetComboBox.getValue() != null) {
+                secondVariableComboBox.getItems().clear();
+                secondVariableComboBox.getItems().addAll(dataVariables.get(secondDatasetComboBox.getValue().toString()));
+            }
+        });
+
+
+        secondDatasetComboBox.itemsProperty().bind(Bindings.createObjectBinding(() ->
+                FXCollections.observableArrayList(dataVariables.keySet()),dataVariables)
+        );
+
 /*		logicSentencesMap.get(logicSentenceId).getNextSentencePart().getVariableList().addListener((ListChangeListener<String>) c -> {
 			logger.debug("Process createLogicSentenceSection, variableList changed");
 			// TODO Dodać sprawdzanie czy nie null / może optional?
@@ -611,17 +622,17 @@ public class Main extends Application {
         final Button analyzeButton = new Button("Analizuj");
 
 
-	/*	analyzeButton.disableProperty().bind(new BooleanBinding(){
+		analyzeButton.disableProperty().bind(new BooleanBinding(){
 			{
-			//	bind(currentLogicSentencesRowNumber);
+				bind(currentLogicSentencesRowNumber);
 			}
 
-	*//*		@Override
+			@Override
 			protected boolean computeValue() {
 				return currentLogicSentencesRowNumber.get() < 1;
-			}*//*
+			}
 		});
-*/
+
         analyzeButton.setDefaultButton(true);
 
         analyzeButton.setOnAction(event -> {
@@ -661,9 +672,5 @@ public class Main extends Application {
         logger.info("Finish createAnalyzerSection");
         return analyzerGridPane;
     }
-
-
-
-
 
 }
