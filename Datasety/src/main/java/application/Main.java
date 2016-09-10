@@ -47,6 +47,7 @@ public class Main extends Application {
 	private Map<String,LogicSentence> logicSentencesMap = new HashMap<>();
 	private IntegerProperty currentLogicSentencesRowNumber;
 	public static MapProperty<String,List<String>> dataVariables = new SimpleMapProperty<>(FXCollections.observableHashMap());
+    private Stage stage;
 
 	private List<TableView<ObservableList<StringProperty>>> tableViews;
 
@@ -85,6 +86,7 @@ public class Main extends Application {
 		logger.info("Start start");
 
 		try {
+            stage = primaryStage;
 			primaryStage.setTitle("Dataset analyzer");
 
 			final GridPane root = new GridPane();
@@ -267,7 +269,8 @@ public class Main extends Application {
 		nextRowButton.setOnMouseClicked(event -> {
 			logger.debug("Process createLogicSentenceSection, nextRowButton clicked! currentLogicSentencesRowsNumber={}", currentLogicSentencesRowNumber);
 			if (currentLogicSentencesRowNumber.get() < Config.MAX_LOGIC_SENTENCES_ROWS) {
-				addNextLogicSentenceRow();
+				//createLogicSentenceSection();
+                addNextLogicSentenceRow();
 			}
 		});
 
@@ -285,7 +288,7 @@ public class Main extends Application {
 		controlsGridPane.setHgap(3);
 		controlsGridPane.setVgap(3);
         controlsGridPane.setPadding(new Insets(25,5,25,25));
-		GridPane.setConstraints(nextRowButton, 0, 2);
+		GridPane.setConstraints(nextRowButton, 0, 0);
 		controlsGridPane.getChildren()
 				.addAll(nextRowButton);
 		logger.info("Logic sentence section initialized sucessfully!");
@@ -383,7 +386,7 @@ public class Main extends Application {
 		removeSection.setOnMouseClicked(event -> {
 			logger.info("Removing logic sentence {}...", logicSentenceId);
 
-			VBox group = (VBox) removeSection.getParent().getParent();
+			GridPane group = (GridPane) removeSection.getParent().getParent();
 			group.getChildren().remove(removeSection.getParent());
 			logicSentencesMap.remove(removeSection.getParent().getId());
 			currentLogicSentencesRowNumber.set(currentLogicSentencesRowNumber.get() -1);
@@ -537,8 +540,11 @@ public class Main extends Application {
 	private void addNextLogicSentenceRow() {
 		logger.info("Start addNextLogicSentenceRow");
 
-		((Pane) Main.getTabs().getTabs().get(Main.getCurrentlySelectedTabIndex()).getContent()).getChildren().add(currentLogicSentencesRowNumber.get() + 2, createLogicSentenceSection());
-		currentLogicSentencesRowNumber.set(currentLogicSentencesRowNumber.get() + 1);
+	//	((Pane) Main.getTabs().getTabs().get(Main.getCurrentlySelectedTabIndex()).getContent()).getChildren().add(currentLogicSentencesRowNumber.get() + 2, createLogicSentenceSection());
+        //stage.getScene().getRoot().getChildren().get(2);
+        ((GridPane)((GridPane)stage.getScene().getRoot()).getChildren().get(2)).add(createLogicSentenceSection(),0,currentLogicSentencesRowNumber.get() + 3);
+
+        currentLogicSentencesRowNumber.set(currentLogicSentencesRowNumber.get() + 1);
 		logger.info("Finish addNextLogicSentenceRow");
 	}
 
