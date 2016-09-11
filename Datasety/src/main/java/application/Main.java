@@ -117,6 +117,7 @@ public class Main extends Application {
                     openFile(fileChooser.getSelectedExtensionFilter().getDescription(), file, tableViews.get(tableViews.size() - 1));
 
                     tab.setOnCloseRequest(event1 -> {
+						analyzer.getDatasets().remove(file.getName());
                         dataVariables.remove(file.getName());
                     });
 
@@ -612,34 +613,6 @@ public class Main extends Application {
     public GridPane createAnalyzerSection() {
         logger.info("Start createAnalyzerSection");
 
-        // Analyzer Work Type
-        final Label analyzerWorkTypeLabel = new Label("Analyser work mode:");
-        final ComboBox analyzerWorkTypeComboBox = new ComboBox();
-
-        // FIXME: fajnie byloby wrzucic wszystkie pola jakas metodka zmiast wymieniac
-        analyzerWorkTypeComboBox.getItems().setAll(AnalyzerWorkType.CHECK, AnalyzerWorkType.SHOW);
-
-        // FIXME: nie koniecznie fixme, ale tu sie ustawia domyslny tryb analizatora
-        analyzerWorkTypeComboBox.setValue(AnalyzerWorkType.CHECK);
-        analyzer = new CheckAnalyzer();
-
-        analyzerWorkTypeComboBox.getSelectionModel().selectedItemProperty()
-                .addListener((observable, oldValue, newValue) -> {
-                    logger.debug("Process createLogicControlSection, analyzerWorkTypeComboBox has changed from = {} to = {}",
-                            oldValue, newValue);
-
-                    switch(oldValue.toString()) {
-                        case CHECK:
-                            analyzer = new CheckAnalyzer();
-                            break;
-                        case SHOW:
-                            analyzer = new ShowAnalyzer();
-                            break;
-                        default:
-                            logger.error("Something gone terribly wrong and non-existing analyzer mode was chosen!");
-                    }
-
-                });
 
         // Result Indicator
         final Label resultIndicatorLabel = new Label("Result: ");
@@ -691,12 +664,10 @@ public class Main extends Application {
         analyzerGridPane.setHgap(3);
         analyzerGridPane.setVgap(3);
         analyzerGridPane.setPadding(new Insets(0,0,25,25));
-        GridPane.setConstraints(analyzerWorkTypeLabel, 0, 0);
-        GridPane.setConstraints(analyzerWorkTypeComboBox, 0, 1);
-        GridPane.setConstraints(analyzeButton, 1, 1);
+        GridPane.setConstraints(analyzeButton, 0, 1);
         GridPane.setConstraints(resultIndicatorLabel, 0, 3);
         GridPane.setConstraints(resultIndicatorCircle, 0, 4);
-        analyzerGridPane.getChildren().addAll(analyzerWorkTypeLabel, analyzerWorkTypeComboBox, analyzeButton, resultIndicatorLabel, resultIndicatorCircle);
+        analyzerGridPane.getChildren().addAll( analyzeButton, resultIndicatorLabel, resultIndicatorCircle);
 
         logger.info("Finish createAnalyzerSection");
         return analyzerGridPane;

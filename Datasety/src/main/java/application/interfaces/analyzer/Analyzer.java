@@ -21,14 +21,12 @@ public abstract class Analyzer {
     private Checker checker;
     private Map<String,LogicSentence> logicSentences;
 
-    //private Map<String, ArrayList<String>> dataMap;
     // DatasetName -> varName, valuesList
     private Map<String, Map<String, List<String>>> datasets;
     private Map<String,List<String>> dataHeaders;
 
     public Analyzer() {
         this.dataHeaders = new HashMap<>();
-       // this.dataMap = new HashMap<>() ;
         datasets = new HashMap<>();
     }
 
@@ -48,7 +46,7 @@ public abstract class Analyzer {
         while(iterator.hasNext()) {
            Map.Entry hashMapElement = (Map.Entry) iterator.next();
 
-           switch(((LogicSentence)hashMapElement.getValue()).getChosenPattern()) {
+               switch(((LogicSentence)hashMapElement.getValue()).getChosenPattern()) {
                case ABSENCE:
                    checker = new Absence();
                    break;
@@ -88,7 +86,7 @@ public abstract class Analyzer {
 
     // FIXME: jesli zalezne od trybu analizatora, zmienic na metode abstrakcyjna
     public boolean isReady() {
-        if (datasets != null && dataHeaders != null /* && analyzerWorkType != null */) {
+        if (datasets != null && dataHeaders != null) {
             // TODO Dodać żeby sprawdzał te kolekcje też w głąb
             return true;
         } else {
