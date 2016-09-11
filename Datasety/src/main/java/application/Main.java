@@ -6,6 +6,7 @@ import application.implementations.logicSentence.ExtendedLogicSentence;
 import application.implementations.logicSentence.SingleLogicSentence;
 import application.interfaces.analyzer.Analyzer;
 import application.interfaces.logicSentence.LogicSentence;
+import application.utils.TabPaneWithPlaceholder;
 import enums.AnalyzerWorkType;
 import enums.FileType;
 import enums.OperatorType;
@@ -41,7 +42,7 @@ public class Main extends Application {
 	private final static Logger logger = LogManager.getLogger(Main.class.getName());
 	private final List<Pane> tabsContent = new ArrayList<>();
 	private static int currentlySelectedTabIndex;
-	private static TabPane tabs;
+    private static TabPaneWithPlaceholder tabs;
 	private Analyzer analyzer;
 	private Map<String,LogicSentence> logicSentencesMap = new HashMap<>();
 	private IntegerProperty currentLogicSentencesRowNumber;
@@ -64,8 +65,8 @@ public class Main extends Application {
 		logger.info("Start init");
 
 		tableViews = new ArrayList<>();
-		tabs = new TabPane();
-		analyzer = new CheckAnalyzer();
+		tabs = new TabPaneWithPlaceholder("Dataset analyser","Please upload datasets using menu at the top.");
+        analyzer = new CheckAnalyzer();
 		currentLogicSentencesRowNumber = new SimpleIntegerProperty(0);
 
 
@@ -112,7 +113,7 @@ public class Main extends Application {
 
                     final Tab tab = createTab(primaryStage);
                     tabs.getTabs().add(tab);
-                    tabs.getSelectionModel().select(tab);
+                    tabs.getTabPane().getSelectionModel().select(tab);
                     openFile(fileChooser.getSelectedExtensionFilter().getDescription(), file, tableViews.get(tableViews.size() - 1));
 
                     tab.setOnCloseRequest(event1 -> {
@@ -153,7 +154,7 @@ public class Main extends Application {
                             final Tab tab = createTab(primaryStage);
                             final String fileName = files.get(i).getName();
                             tabs.getTabs().add(tab);
-                            tabs.getSelectionModel().select(tab);
+                            tabs.getTabPane().getSelectionModel().select(tab);
                             openFile(fileChooser.getSelectedExtensionFilter().getDescription(), files.get(i), tableViews.get(tableViews.size() - 1));
 
                             tab.setOnCloseRequest(event1 -> dataVariables.remove(fileName));
@@ -167,7 +168,7 @@ public class Main extends Application {
                             final Tab tab = createTab(primaryStage);
                             final String fileName = files.get(j).getName();
                             tabs.getTabs().add(tab);
-                            tabs.getSelectionModel().select(tab);
+                            tabs.getTabPane().getSelectionModel().select(tab);
                             openFile(fileChooser.getSelectedExtensionFilter().getDescription(), files.get(j), tableViews.get(tableViews.size() - 1));
 
                             tab.setOnCloseRequest(event1 -> dataVariables.remove(fileName));
@@ -182,9 +183,10 @@ public class Main extends Application {
             final GridPane controlsGridPane = initializeLogicSentenceSection();
             final GridPane analyzerGridPane = createAnalyzerSection();
 
+			tabs.setPrefHeight(320d);
 
             root.add(menuBar, 0, 0);
-            root.add(tabs, 0, 1);
+            root.add(tabs,0,1);
             root.add(controlsGridPane, 0, 2);
             root.add(analyzerGridPane, 0, 3);
 
@@ -215,7 +217,7 @@ public class Main extends Application {
 
 		tab.setOnSelectionChanged(event -> {
 			if (tab.isSelected()) {
-				currentlySelectedTabIndex = tabs.getSelectionModel().getSelectedIndex();
+				currentlySelectedTabIndex = tabs.getTabPane().getSelectionModel().getSelectedIndex();
 			}
 		});
 
@@ -252,7 +254,7 @@ public class Main extends Application {
 	 * @return główny kontener kart.
 	 */
 	public static TabPane getTabs() {
-		return tabs;
+		return tabs.getTabPane();
 	}
 
 	/**
@@ -322,6 +324,7 @@ public class Main extends Application {
 		logger.info("Start createLogicSentenceSection");
 		String logicSentenceId = UUID.randomUUID().toString();
 		ObservableList<String> observableList = FXCollections.observableArrayList();
+
 		logicSentencesMap.put(logicSentenceId, new SingleLogicSentence(PatternType.values()[0], observableList));
 
 		// Pattern
@@ -359,9 +362,12 @@ public class Main extends Application {
 		datasetComboBox.setPromptText("Dataset");
 		datasetComboBox.getItems().addAll(dataVariables.keySet());
 
-        datasetComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {logger.debug("Process createLogicSentenceSection, datasetComboBox value has changed from = {} to = {}",
+        datasetComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+			logger.debug("Process createLogicSentenceSection, datasetComboBox value has changed from = {} to = {}",
                 oldValue, newValue);
             logicSentencesMap.get(logicSentenceId).setChosenDataset((String) newValue);
+			logicSentencesMap.get(logicSentenceId).getVariableList().clear();
+			logicSentencesMap.get(logicSentenceId).getVariableList().addAll(dataVariables.get(newValue));
         });
 
 		datasetComboBox.valueProperty().addListener((observable, oldValue, newValue) -> {
@@ -452,9 +458,12 @@ public class Main extends Application {
             }
         });
 
-        secondDatasetComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {logger.debug("Process createLogicSentenceSection, datasetComboBox value has changed from = {} to = {}",
+        secondDatasetComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+			logger.debug("Process createLogicSentenceSection, datasetComboBox value has changed from = {} to = {}",
                 oldValue, newValue);
             logicSentencesMap.get(logicSentenceId).getNextSentencePart().setChosenDataset((String) newValue);
+			logicSentencesMap.get(logicSentenceId).getNextSentencePart().getVariableList().clear();
+			logicSentencesMap.get(logicSentenceId).getNextSentencePart().getVariableList().addAll(dataVariables.get(newValue));
         });
 
 
@@ -530,7 +539,7 @@ public class Main extends Application {
 
 			if(newValue.equals(PatternType.RESPONSIVENESS) || newValue.equals(PatternType.OBLIGATION) ) {
 
-				logicSentencesMap.put(logicSentenceId, new ExtendedLogicSentence(new SingleLogicSentence((PatternType) newValue, observableList)));
+				logicSentencesMap.put(logicSentenceId, new ExtendedLogicSentence(new SingleLogicSentence((PatternType) newValue, observableList), FXCollections.observableArrayList()));
 
 				secondVariableLabel.setVisible(true);
 				secondVariableComboBox.setVisible(true);

@@ -14,9 +14,10 @@ public class ExtendedLogicSentence extends LogicSentence{
         return getBasis();
     }
 
-    public ExtendedLogicSentence(LogicSentence basis) {
-        super(basis.getChosenPattern(), basis.getVariableList());
+    public ExtendedLogicSentence(LogicSentence basis, ObservableList<String> variables) {
+        super(basis.getChosenPattern(), variables);
         this.basis = basis;
+
     }
 
     public LogicSentence getBasis() {
