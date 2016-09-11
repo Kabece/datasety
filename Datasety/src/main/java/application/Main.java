@@ -52,7 +52,7 @@ public class Main extends Application {
 
 	public static void main(String[] args) {
 		logger.info("Start main");
-		/* Przykładowe pobieranie - na forum pisalo ze lubi takie 'choinkowe' motywy - przy chwili czasu do przekminienia wszedzie*/
+		/* Przykładowe pobieranie - na forum pisalo ze lubi takie 'choinkowe' motywy - przy chwili czasu do przekminienia wszedzie */
 		Locale defaultLocale = new Locale("pl","PL");
 		ResourceBundle messages = ResourceBundle.getBundle("MessagesBundle", defaultLocale);
 		messages.getString("test");
