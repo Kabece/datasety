@@ -1,13 +1,11 @@
 package application;
 
 import application.implementations.analyzer.CheckAnalyzer;
-import application.implementations.analyzer.ShowAnalyzer;
 import application.implementations.logicSentence.ExtendedLogicSentence;
 import application.implementations.logicSentence.SingleLogicSentence;
 import application.interfaces.analyzer.Analyzer;
 import application.interfaces.logicSentence.LogicSentence;
 import application.utils.TabPaneWithPlaceholder;
-import enums.AnalyzerWorkType;
 import enums.FileType;
 import enums.OperatorType;
 import enums.PatternType;
@@ -33,9 +31,6 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.util.*;
-
-import static enums.AnalyzerWorkType.CHECK;
-import static enums.AnalyzerWorkType.SHOW;
 
 public class Main extends Application {
 
@@ -341,11 +336,7 @@ public class Main extends Application {
 		variableComboBox.setOnMouseClicked(event -> {
 			if (variableComboBox.getItems().isEmpty()) {
 				if (logicSentencesMap.get(logicSentenceId).getVariableList().isEmpty()) {
-					Alert noDataSpecifiedAlert = new Alert(Alert.AlertType.WARNING);
-					noDataSpecifiedAlert.setTitle("Warning!");
-					noDataSpecifiedAlert.setHeaderText("No data selected!");
-					noDataSpecifiedAlert.setContentText("Upload appropriate dataset file and wait while it load.");
-					noDataSpecifiedAlert.showAndWait();
+					alertWarning("No dataset selected!","Select dataset in 'dataset' field.");
 				} else {
 					variableComboBox.getItems().setAll(logicSentencesMap.get(logicSentenceId).getVariableList());
 				}
@@ -361,6 +352,12 @@ public class Main extends Application {
 		final Label datasetlabel = new Label("Dataset:");
 		final ComboBox datasetComboBox = new ComboBox();
 		datasetComboBox.setPromptText("Dataset");
+        datasetComboBox.setOnMouseClicked(event -> {
+            if (dataVariables.isEmpty()) {
+                alertWarning("No data selected!","Upload appropriate dataset file and wait while it load.");
+            }
+        });
+
 		datasetComboBox.getItems().addAll(dataVariables.keySet());
 
         datasetComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
@@ -425,7 +422,11 @@ public class Main extends Application {
 		final Label secondDatasetlabel = new Label("Dataset 2:");
 		final ComboBox secondDatasetComboBox = new ComboBox();
 		secondDatasetComboBox.setPromptText("Dataset 2");
-
+        secondDatasetComboBox.setOnMouseClicked(event -> {
+            if (dataVariables.isEmpty()) {
+                alertWarning("No data selected!","Upload appropriate dataset file and wait while it load.");
+            }
+        });
         // Second Variable
 		final Label secondVariableLabel = new Label("Variable 2: ");
 		final ComboBox secondVariableComboBox = new ComboBox();
@@ -434,11 +435,7 @@ public class Main extends Application {
 			if (secondVariableComboBox.getItems().isEmpty()) {
 				// Tutaj rzutowanie - zawsze zlozone zdanie bedzie typu ExtendedLogicSentence
 				if (logicSentencesMap.get(logicSentenceId).getNextSentencePart().getVariableList().isEmpty()) {
-					Alert noDataSpecifiedAlert = new Alert(Alert.AlertType.WARNING);
-					noDataSpecifiedAlert.setTitle("Warning!");
-					noDataSpecifiedAlert.setHeaderText("No data selected!");
-					noDataSpecifiedAlert.setContentText("Upload appropriate dataset file and wait while it load.");
-					noDataSpecifiedAlert.showAndWait();
+                    alertWarning("No dataset selected!","Select dataset in 'dataset' field.");
 				} else {
 					secondVariableComboBox.getItems().setAll(logicSentencesMap.get(logicSentenceId).getNextSentencePart().getVariableList());
 				}
@@ -673,4 +670,11 @@ public class Main extends Application {
         return analyzerGridPane;
     }
 
+    private void alertWarning(String header, String content) {
+        Alert noDataSpecifiedAlert = new Alert(Alert.AlertType.WARNING);
+        noDataSpecifiedAlert.setTitle("Warning!");
+        noDataSpecifiedAlert.setHeaderText(header);
+        noDataSpecifiedAlert.setContentText(content);
+        noDataSpecifiedAlert.showAndWait();
+    }
 }
