@@ -23,7 +23,4 @@ public class ExtendedLogicSentence extends LogicSentence{
         return basis;
     }
 
-    public void setBasis(LogicSentence basis) {
-        this.basis = basis;
-    }
 }

@@ -52,11 +52,6 @@ public class Main extends Application {
 
 	public static void main(String[] args) {
 		logger.info("Start main");
-		/* Przykładowe pobieranie - na forum pisalo ze lubi takie 'choinkowe' motywy - przy chwili czasu do przekminienia wszedzie */
-		Locale defaultLocale = new Locale("pl","PL");
-		ResourceBundle messages = ResourceBundle.getBundle("MessagesBundle", defaultLocale);
-		messages.getString("test");
-
 		launch(args);
 		logger.info("Finish main");
 	}
@@ -357,12 +352,6 @@ public class Main extends Application {
 					oldValue, newValue);
 			logicSentencesMap.get(logicSentenceId).setChosenVariable((String) newValue);
 		});
-		/*
-		logicSentencesMap.get(logicSentenceId).getVariableList().addListener((ListChangeListener<String>) c -> {
-			logger.debug("Process createLogicSentenceSection, variableList changed");
-			// TODO Dodać sprawdzanie czy nie null / może optional?
-			variableComboBox.getItems().setAll(logicSentencesMap.get(logicSentenceId).getVariableList());
-		});*/
 
 		//Dataset
 		final Label datasetlabel = new Label("Dataset:");
@@ -472,12 +461,6 @@ public class Main extends Application {
         secondDatasetComboBox.itemsProperty().bind(Bindings.createObjectBinding(() ->
                 FXCollections.observableArrayList(dataVariables.keySet()),dataVariables)
         );
-
-/*		logicSentencesMap.get(logicSentenceId).getNextSentencePart().getVariableList().addListener((ListChangeListener<String>) c -> {
-			logger.debug("Process createLogicSentenceSection, variableList changed");
-			// TODO Dodać sprawdzanie czy nie null / może optional?
-			secondVariableComboBox.getItems().setAll(logicSentencesMap.get(logicSentenceId).getNextSentencePart().getVariableList());
-		});*/
 
 		// Value
 		final Label secondValueLabel = new Label("Value: ");
