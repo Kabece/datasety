@@ -1,3 +1,6 @@
+# Dokumentacja:
+https://docs.google.com/document/d/1pOeypW2teMd4GdzOBm_2qX-uV9FBnQOBI8VlAtmW3hI/edit?usp=sharing
+
 # datasety
 
 https://github.com/fivethirtyeight/uber-tlc-foil-response - dane z przejazdów Ubera w Nowym Yorku, 2015 rok, pliki CSV. Raczej spore i z bardzo dokładnymi datami (kilka sekund).
